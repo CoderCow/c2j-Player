@@ -1,0 +1,12 @@
+<p>
+	{#appStatusOK}
+	  Everything is awesome!
+	  {! Note: The template bodies below can be accessed by code. !}
+	  {:gearsError}
+	    Gears are stopped! Status code: {gears.error}
+	  {:engineError}
+	    Engine is not running! Engine temperature: {engine.temperature}
+	  {:oilLevelError}
+	    Oil level is too low! Current level: {engine.oilLevel}
+	{/appStatusOK}
+</p>

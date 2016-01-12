@@ -1,0 +1,27 @@
+/build/temp
+/dist
+/node_modules
+.sass-cache
+.idea/misc.xml
+.idea/uiDesigner.xml
+.idea/watcherTasks.xml
+.idea/workspace.xml
+.idea/scssLintPlugin.xml
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows stuff
+*.lnk
+Thumbs.db
+ehthumbs.db
+
+# Mac Stuff
+.DS_Store
+
+
+# Demoproject
+/demoproject

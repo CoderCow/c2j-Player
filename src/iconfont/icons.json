@@ -1,0 +1,14 @@
+{
+  "font-name": "icons",
+  "root-dir": "./src/iconfont/",
+  "icons": [{
+    "name": "play",
+    "svg": "material-design-icons/ic_play_arrow_48px.svg"
+  }, {
+    "name": "facebook",
+    "svg": "fontawesome/facebook.svg"
+  }, {
+    "name": "audio-description",
+    "svg": "custom/audio-description.svg"
+  }]
+}

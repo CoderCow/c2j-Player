@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"removeComments": false,
+		"preserveConstEnums": true,
+		"outFile": "dist/js/script.js",
+		"sourceMap": true,
+		"sourceRoot": "../../src/ts",
+		"target": "ES5"
+	},
+	"exclude": [
+		"node_modules",
+		"build",
+		"test",
+		"dist",
+		".idea"
+	]
+}

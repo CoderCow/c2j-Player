@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Release" type="js.build_tools.grunt" factoryName="Grunt.js">
+    <gruntfile value="$PROJECT_DIR$/Gruntfile.js" />
+    <tasks>
+      <task value="release" />
+    </tasks>
+    <envs />
+    <force value="false" />
+    <verbose value="false" />
+    <method />
+  </configuration>
+</component>

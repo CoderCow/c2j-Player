@@ -1,0 +1,40 @@
+{
+  "rules": {
+    "class-name": true,
+    "forin": true,
+    "indent": true,
+	  "interface-name": false,
+	  "jsdoc-format": true,
+    "label-position": true,
+    "label-undefined": true,
+	  "member-ordering": [true,
+		  "static-before-instance",
+		  "variables-before-functions"
+	  ],
+    "no-bitwise": true,
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-key": true,
+    "no-duplicate-variable": true,
+    "no-eval": true,
+    "no-unreachable": true,
+	  "no-unused-expression": true,
+	  "no-unused-variable": true,
+	  "no-use-before-declare": true,
+    "one-line": [true,
+      "check-catch",
+	    "check-open-brace"
+    ],
+    "radix": true,
+    "semicolon": true,
+	  "type-def": [true,
+		  "parameter",
+		  "property-declaration"
+		],
+	  "use-strict": [true,
+		  "check-module",
+		  "check-function"
+	  ],
+    "variable-name": [true, "allow-leading-underscore"]
+  }
+}

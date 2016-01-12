@@ -1,0 +1,12 @@
+<p>
+	{?appStatusOK}
+	  Everything is awesome!
+	  {:else}
+	  Something broke!
+	{/appStatusOK}
+	{^appStatusOK}
+	  This is shown when appStatusOK is false!
+	  {:else}
+	  This is shown when appStatusOK is true!
+	{/appStatusOK}
+</p>
