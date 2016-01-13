@@ -1,7 +1,7 @@
 # Setup Your Environment #
 
 Please complete the following steps to setup your development environment for this project:
-* Install Node.js if you don't have it yet.
+* Install the most recent version of Node.js if you don't have it yet.
 * Install grunt.js globally by executing 'npm install -g grunt-cli' from command line.
 * Run a command line in the project's root directory and execute 'npm install' to install all required npm packages.
 * Install the most recent version of Ruby (for the SASS preprocessor) by using [Ruby Installer](http://rubyinstaller.org/) for example.
