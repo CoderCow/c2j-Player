@@ -6,9 +6,9 @@ module Player {
 		 */
 		public static main() {
 			// Set default debug symbols, if not already set by the preprocessor.
-			if (window.RELEASE === undefined && window.DEBUG === undefined) {
-				window.RELEASE = false;
-				window.DEBUG = true;
+			if (window['RELEASE'] === undefined && window['DEBUG'] === undefined) {
+				window['RELEASE'] = false;
+				window['DEBUG'] = true;
 			}
 			if (DEBUG)
 				dust.debugLevel = "WARN";
@@ -20,3 +20,7 @@ module Player {
 }
 
 $(document).ready(Player.App.main);
+
+// This is some black magic in order to allow TypeScript to resolve the video.js classes so that we can
+// inherit from these classes and stuff.
+(<any>window).VideoJSButton = videojs.getComponent('Button');

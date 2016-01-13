@@ -2,13 +2,28 @@
   "font-name": "icons",
   "root-dir": "./src/iconfont/",
   "icons": [{
-    "name": "play",
-    "svg": "material-design-icons/ic_play_arrow_48px.svg"
-  }, {
     "name": "facebook",
     "svg": "fontawesome/facebook.svg"
   }, {
     "name": "audio-description",
     "svg": "custom/audio-description.svg"
+  }, {
+    "name": "cog",
+    "svg": "fontawesome/cog.svg"
+  }, {
+    "name": "apps",
+    "svg": "material-design-icons/ic_apps_48px.svg"
+  }, {
+    "name": "arrow_drop_up",
+    "svg": "material-design-icons/ic_arrow_drop_up_48px.svg"
+  }, {
+    "name": "cloudupload",
+    "svg": "material-design-icons/ic_backup_48px.svg"
+  }, {
+    "name": "bookmarks",
+    "svg": "material-design-icons/ic_book_48px.svg"
+  }, {
+    "name": "comments",
+    "svg": "material-design-icons/ic_chat_48px.svg"
   }]
 }
