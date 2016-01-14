@@ -461,7 +461,7 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	 * @param  attributes An object of attributes that should be set
 	 * @return {Element}
 	 */
-	public createEl(tagName: string, properties: any, attributes: any): void;
+	public createEl(tagName?: string, properties?: any, attributes?: any): void;
 
 	public localize(string: string): void;
 

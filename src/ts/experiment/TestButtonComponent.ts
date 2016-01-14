@@ -5,6 +5,12 @@ module Player {
 			super(player, options);
 		}
 
+		public createEl(tagName: string, properties?: any, attributes?: any) {
+			return super.createEl(undefined, {}, {
+				title: this.localize('Settings')
+			});
+		}
+
 		public buildCSSClass() {
 	    return `vjs-testbutton-control vjs-icon-cog ${super.buildCSSClass()}`;
 	  }
