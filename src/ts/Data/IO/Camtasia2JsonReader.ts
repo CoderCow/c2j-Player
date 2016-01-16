@@ -3,7 +3,7 @@
 module Player {
 	'use strict';
 	export class Camtasia2JsonReader {
-		private static COMPATIBLE_FILE_VERSIONS: { [version: string]: boolean } = { '1.1': true };
+		private static COMPATIBLE_FILE_VERSIONS: { [version: string]: boolean } = { '1.0': true };
 		private static stringOverlayActionMappings = new Lazy<{ [action: string]: OverlayAction }>(() => {
 			return {
 				'none': OverlayAction.None,

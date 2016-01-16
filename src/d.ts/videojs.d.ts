@@ -145,7 +145,7 @@ interface VideoJSPlayer extends VideoJSComponent {
 	bufferedPercent(): number;
 	bufferedEnd(): number;
 	volume(percentAsDecimal: number): VideoJSPlayer;
-	volume(): number;
+	volume(): number; // between 0 and 1
 	muted(isMuted: boolean): VideoJSPlayer;
 	muted(): boolean;
 	isFullscreen(): boolean;
@@ -213,7 +213,7 @@ interface VideoJSEventSubject {
 	 * @param eventName One or more event types to bind to.
 	 * @param handler The event handler.
 	 */
-	on(eventName: string|string[], handler: () => void): VideoJSComponent;
+	on(eventName: string|string[], handler: (eventData: any) => void): VideoJSComponent;
 
 	/**
 	 * Add an event listener to this component's element.
@@ -221,14 +221,14 @@ interface VideoJSEventSubject {
 	 * @param eventName One or more event types to bind to.
 	 * @param handler The event handler.
 	 */
-	on(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
+	//on(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
 
 	/**
 	 * Add an event listener to be triggered only once and then removed.
 	 * @param eventName One or more event types to bind to.
 	 * @param handler The event handler.
 	 */
-	one(eventName: string|string[], handler: () => void): VideoJSComponent;
+	one(eventName: string|string[], handler: (eventData: any) => void): VideoJSComponent;
 
 	/**
 	 * Add an event listener to be triggered only once and then removed.
@@ -236,14 +236,14 @@ interface VideoJSEventSubject {
 	 * @param eventName One or more event types to bind to.
 	 * @param handler The event handler.
 	 */
-	one(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
+	//one(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
 
 	/**
 	 * Remove an event listener from this component's element.
 	 * @param eventName One or more event types to bind to.
 	 * @param handler The event handler.
 	 */
-	off(eventName: string|string[], handler: () => void): VideoJSComponent;
+	off(eventName: string|string[], handler: (eventData: any) => void): VideoJSComponent;
 
 	/**
 	 * Remove an event listener from this component's element.
@@ -251,7 +251,7 @@ interface VideoJSEventSubject {
 	 * @param eventName One or more event types to bind to.
 	 * @param handler The event handler.
 	 */
-	off(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
+	//off(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
 
 	/**
 	 * Trigger an event on an element.
@@ -549,16 +549,14 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	 */
 	public dispose(): void;
 
-	public on(eventName: string|string[], handler: () => void): VideoJSComponent;
+	public on(eventName: string|string[], handler: (eventData: any) => void): VideoJSComponent;
+	//public on(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
 
-	public on(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
+	public one(eventName: string|string[], handler: (eventData: any) => void): VideoJSComponent;
+	//public one(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
 
-	public one(eventName: string|string[], handler: () => void): VideoJSComponent;
-
-	public one(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
-
-	public off(eventName: string|string[], handler: () => void): VideoJSComponent;
-	public off(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
+	public off(eventName: string|string[], handler: (eventData: any) => void): VideoJSComponent;
+	//public off(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
 
 	public trigger(eventName: string|Event|Object, hash?: any): VideoJSComponent;
 }

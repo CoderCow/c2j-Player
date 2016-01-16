@@ -6,13 +6,20 @@ module Player {
 		 */
 		public static VIDEOJS_ID = 'videojs';
 
-		private player: VideoJSPlayer;
+		private _userSettings: UserSettings;
+		private _player: VideoJSPlayer;
 		private testPlugin: TestPlugin;
 
-		public init(): void {
+		public constructor(userSettings: UserSettings) {
+			this._userSettings = userSettings;
+		}
+
+		public init(initCompleted: () => void): void {
+			this._player = null;
 			this.testPlugin = new TestPlugin();
 
 			var videojsOptions = <VideoJSOptions>{};
+			videojsOptions.defaultVolume = this._userSettings.volume;
 			videojsOptions.poster = 'http://vjs.zencdn.net/v/oceans.png';
 			videojsOptions.controls = true;
 			videojsOptions.width = 1280;
@@ -20,9 +27,11 @@ module Player {
 
 			var _this = this;
 			videojs(VideoJSManager.VIDEOJS_ID, videojsOptions, function() {
-				this.player = <VideoJSPlayer>this;
+				_this._player = <VideoJSPlayer>this;
+				// TODO: Remove when VideoJSOptions.defaultVolume works again..
+				_this._player.volume(_this._userSettings.volume);
 
-				_this.testPlugin.init(this.player);
+				_this.testPlugin.init(_this._player);
 
 				var source1 = <VideoJSSource>{};
 				var source2 = <VideoJSSource>{};
@@ -33,8 +42,14 @@ module Player {
 				source2.type = 'video/webm';
 				source3.src = 'http://vjs.zencdn.net/v/oceans.ogv';
 				source3.type = 'video/ogg';
-				this.player.src([source1, source2, source3]);
+				_this._player.src([source1, source2, source3]);
+
+				initCompleted();
 			});
+		}
+
+		public get player(): VideoJSPlayer {
+			return this._player;
 		}
 	}
 }
