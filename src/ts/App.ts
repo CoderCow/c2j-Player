@@ -15,6 +15,13 @@ module Player {
 
 			var manager = new VideoJSManager();
 			manager.init();
+
+			var reader = new Camtasia2JsonReader();
+			reader.read('videos/demo.json', (videoData: VideoData) => {
+				videoData.invalidate();
+			}, (error) => {
+				alert(error);
+			});
 		}
 	}
 }
