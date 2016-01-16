@@ -11,6 +11,11 @@ interface String {
 
 if (typeof String.prototype.format !== 'function') {
 	String.prototype.format = function(...args: any[]): string {
+		if (args === undefined)
+			return this;
+		if (args.length === 1 && Array.isArray(args[0]))
+			args = args[0];
+
     return this.replace(/{(\d+)}/g, (match: string, number: number): any => {
 	    let isArgInArray = typeof(args[number] != 'undefined');
 
@@ -32,4 +37,13 @@ if (typeof String.prototype.endsWith !== 'function') {
 	String.prototype.endsWith = function (value: string): boolean {
     return (this.slice(-value.length) == value);
   };
+}
+
+'use strict';
+function parseDateUTC(dateString: string): Date {
+	// Turn date string into an UTC date string if necessary.
+	if (!dateString.endsWith('Z'))
+		dateString += 'Z';
+
+	return new Date(dateString);
 }
