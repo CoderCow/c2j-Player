@@ -8,6 +8,9 @@
 .idea/workspace.xml
 .idea/scssLintPlugin.xml
 
+# tscommand files
+*.tmp.txt
+
 # Folder config file
 Desktop.ini
 
