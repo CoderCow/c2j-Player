@@ -1,8 +1,10 @@
 module Player {
 	'use strict';
 	export class App {
+		public static VIDEO_BASE_PATH = 'videos/';
 		private static _userSettingsManager: UserSettingsManager;
 		private static _videoJSManager: VideoJSManager;
+		private static _videoData: VideoData;
 
 		/**
 		 * This function can be seen as the main entry point of the application.
@@ -18,16 +20,17 @@ module Player {
 
 			App._userSettingsManager = new UserSettingsManager();
 
-			App._videoJSManager = new VideoJSManager(App.userConfig);
-			App._videoJSManager.init(() => {
-				App._userSettingsManager.player = App.player;
-			});
-
 			var reader = new Camtasia2JsonReader();
-			reader.read('videos/demo.json', (videoData: VideoData) => {
+			reader.read(App.VIDEO_BASE_PATH + 'demo.json', (videoData: VideoData) => {
 				videoData.invalidate();
+				App._videoData = videoData;
+
+				App._videoJSManager = new VideoJSManager(App.userConfig, App.videoData);
+				App._videoJSManager.init(() => {
+					App._userSettingsManager.player = App.player;
+				});
 			}, (error: Exception) => {
-				alert(error);
+				console.log(error.toString());
 			});
 		}
 
@@ -36,11 +39,23 @@ module Player {
 		}
 
 		public static get player(): VideoJSPlayer {
+			var manager = App._videoJSManager.player;
+			if (manager === null)
+				console.error('The videojs player is not initialized yet.');
+
 			var player = App._videoJSManager.player;
 			if (player === null)
 				console.error('The videojs player is not initialized yet.');
 
 			return player;
+		}
+
+		public static get videoData(): VideoData {
+			var videoData = App._videoData;
+			if (videoData === null)
+				console.error('The video data has not been loaded yet.');
+
+			return videoData;
 		}
 	}
 }
