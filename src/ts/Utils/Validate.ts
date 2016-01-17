@@ -61,13 +61,29 @@ module Player {
 			});
 		}
 
-		public static languageIndexedValidatables(indexedItems: LanguageIndexed<Validatable>, indexedPropertyName: string) {
+		public static languageIndexedValidatable(indexedItems: LanguageIndexed<Validatable>, indexedPropertyName: string) {
 			$.each(indexedItems, (language: string, item: Validatable) => {
 				try {
 					Validate.languageCode(language, 'language');
 					item.invalidate();
 				} catch (e) {
 					throw new ValidationException(indexedPropertyName, `In "${indexedPropertyName}" the item with language code "${language}" is invalid. See inner exception for details.`, e);
+				}
+			});
+		}
+
+		public static languageIndexedValidatables(indexedItems: LanguageIndexed<Validatable[]>, indexedPropertyName: string) {
+			$.each(indexedItems, (language: string, items: Validatable[]) => {
+				var i = 0;
+				try {
+					Validate.languageCode(language, 'language');
+
+					items.forEach((item: Validatable) => {
+						item.invalidate();
+						i++;
+					});
+				} catch (e) {
+					throw new ValidationException(indexedPropertyName, `In "${indexedPropertyName}" the item ${i} with language code "${language}" is invalid. See inner exception for details.`, e);
 				}
 			});
 		}

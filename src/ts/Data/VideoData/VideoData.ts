@@ -14,14 +14,14 @@ module Player {
 		public poster: string;
 		public titles: LanguageIndexed<string>;
 		public descriptions: LanguageIndexed<string>;
-		public media: LanguageIndexed<MediumData>;
-		public authorNotes: LanguageIndexed<AuthorNoteData>;
+		public media: LanguageIndexed<MediumData[]>;
+		public authorNotes: LanguageIndexed<AuthorNoteData[]>;
 		public captionSettings: CaptionSettingsData;
-		public captions: LanguageIndexed<CaptionData>;
-		public categories: LanguageIndexed<CategoryData>;
-		public chapters: LanguageIndexed<ChapterData>;
+		public captions: LanguageIndexed<CaptionData[]>;
+		public categories: LanguageIndexed<CategoryData[]>;
+		public chapters: LanguageIndexed<ChapterData[]>;
 		public overlaySettings: OverlaySettingsData;
-		public overlays: LanguageIndexed<OverlayData>;
+		public overlays: LanguageIndexed<OverlayData[]>;
 		public authCam: AuthCamData;
 
 		public invalidate(): void {

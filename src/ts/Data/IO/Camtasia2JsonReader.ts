@@ -52,12 +52,7 @@ module Player {
 			result.descriptions = <LanguageIndexed<string>>{};
 			jsonData.meta.descriptions.forEach((item: any) => result.descriptions[item.lang] = item.description);
 
-			if (jsonData.media === undefined)
-				throw new Exception('"media" is undefined.');
-			if (jsonData.media.digital === undefined)
-				throw new Exception('"media.digital" is undefined.');
-			result.media = <LanguageIndexed<MediumData>>{};
-			jsonData.media.digital.forEach((item: any) => result.media[item.lang] = $.extend(new MediumData(), item));
+			result.media = Camtasia2JsonReader.mediaFromJsonData(jsonData);
 
 			result.captionSettings = Camtasia2JsonReader.captionSettingsFromJsonData(jsonData);
 			result.captions = Camtasia2JsonReader.captionsFromJsonData(jsonData);
@@ -75,6 +70,24 @@ module Player {
 			return result;
 		}
 
+		private static mediaFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<MediumData[]> {
+			if (jsonData.media === undefined)
+				throw new Exception('"media" is undefined.');
+			if (jsonData.media.digital === undefined)
+				throw new Exception('"media.digital" is undefined.');
+
+			var mediaData = <LanguageIndexed<MediumData[]>>{};
+			jsonData.media.digital.forEach((item: any) => {
+				var mediaDataArray = mediaData[item.lang];
+				if (mediaDataArray === undefined)
+					mediaData[item.lang] = mediaDataArray = [];
+
+				mediaDataArray.push(<MediumData>$.extend(new MediumData(), item));
+			});
+
+			return mediaData;
+		};
+
 		private static captionSettingsFromJsonData(jsonData: Camtasia2JsonObject): CaptionSettingsData {
 			if (jsonData.captionSettings === undefined)
 				throw new Exception('"captionSettings" is undefined.');
@@ -87,59 +100,75 @@ module Player {
 			return captionSettingsData;
 		};
 
-		private static captionsFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<CaptionData> {
+		private static captionsFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<CaptionData[]> {
 			if (jsonData.captions === undefined)
 				throw new Exception('"captions" is undefined.');
 
-			var captionsData = <LanguageIndexed<CaptionData>>{};
+			var captionsData = <LanguageIndexed<CaptionData[]>>{};
 			jsonData.captions.forEach((item: any) => {
+				var captionDataArray = captionsData[item.lang];
+				if (captionDataArray === undefined)
+					captionsData[item.lang] = captionDataArray = [];
+
 				var captionData = <CaptionData>$.extend(new CaptionData(), item);
 				captionData.end = captionData.begin + captionData.dur;
 
-				captionsData[item.lang] = captionData;
+				captionDataArray.push(captionData);
 			});
 
 			return captionsData;
 		};
 
-		private static categoriesFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<CategoryData> {
+		private static categoriesFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<CategoryData[]> {
 			if (jsonData.categories === undefined)
 				throw new Exception('"categories" is undefined.');
 
-			var categoriesData = <LanguageIndexed<CategoryData>>{};
+			var categoriesData = <LanguageIndexed<CategoryData[]>>{};
 			jsonData.categories.forEach((item: any) => {
+				var categoryDataArray = categoriesData[item.lang];
+				if (categoryDataArray === undefined)
+					categoriesData[item.lang] = categoryDataArray = [];
+
 				var categoryData = <CategoryData>$.extend(new CategoryData(), item);
 				categoryData.end = categoryData.begin + categoryData.dur;
 
-				categoriesData[item.lang] = categoryData;
+				categoryDataArray.push(categoryData);
 			});
 
 			return categoriesData;
 		};
 
-		private static authorNotesFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<AuthorNoteData> {
+		private static authorNotesFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<AuthorNoteData[]> {
 			if (jsonData.authorNotes === undefined)
 				throw new Exception('"authorNotes" is undefined.');
 
-			var authorNotesData = <LanguageIndexed<AuthorNoteData>>{};
+			var authorNotesData = <LanguageIndexed<AuthorNoteData[]>>{};
 			jsonData.authorNotes.forEach((item: any) => {
+				var authorDataArray = authorNotesData[item.lang];
+				if (authorDataArray === undefined)
+					authorNotesData[item.lang] = authorDataArray = [];
+
 				var authorNoteData = <AuthorNoteData>$.extend(new AuthorNoteData(), item);
 				if (item.dur === undefined)
 					authorNoteData.dur = 0;
 
 				authorNoteData.end = authorNoteData.begin + authorNoteData.dur;
-				authorNotesData[item.lang] = authorNoteData;
+				authorDataArray.push(authorNoteData);
 			});
 
 			return authorNotesData;
 		};
 
-		private static chaptersFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<ChapterData> {
+		private static chaptersFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<ChapterData[]> {
 			if (jsonData.chapters === undefined)
 				throw new Exception('"chapters" is undefined.');
 
-			var chaptersData = <LanguageIndexed<ChapterData>>{};
+			var chaptersData = <LanguageIndexed<ChapterData[]>>{};
 			jsonData.chapters.forEach((item: any) => {
+				var chapterDataArray = chaptersData[item.lang];
+				if (chapterDataArray === undefined)
+					chaptersData[item.lang] = chapterDataArray = [];
+
 				var chapterData = <ChapterData>$.extend(new ChapterData(), item);
 
 				if (item.additionals === undefined)
@@ -157,18 +186,22 @@ module Player {
 				}
 				item.additionals.forEach((item: any) => chapterData.additionals[item.lang] = $.extend(new CategoryData(), item));
 
-				chaptersData[item.lang] = chapterData;
+				chapterDataArray.push(chapterData);
 			});
 
 			return chaptersData;
 		};
 
-		private static overlaysFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<OverlayData> {
+		private static overlaysFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<OverlayData[]> {
 			if (jsonData.overlays === undefined)
 				throw new Exception('"overlays" is undefined.');
 
-			var overlaysData = <LanguageIndexed<OverlayData>>{};
+			var overlaysData = <LanguageIndexed<OverlayData[]>>{};
 			jsonData.overlays.forEach((item: any) => {
+				var overlayDataArray = overlaysData[item.lang];
+				if (overlayDataArray === undefined)
+					overlaysData[item.lang] = overlayDataArray = [];
+
 				var overlayData = <OverlayData>$.extend(new OverlayData(), item);
 				overlayData.action = Camtasia2JsonReader.stringOverlayActionMappings.value[item.action.toLowerCase()];
 				if (overlayData.action === OverlayAction.OpenLink)
@@ -185,7 +218,7 @@ module Player {
 				overlayData.rotateTransform = Camtasia2JsonReader.vector3FromJsonArray(item.rotateTransform);
 				overlayData.shearTransform = Camtasia2JsonReader.vector3FromJsonArray(item.shearTransform);
 
-				overlaysData[item.lang] = overlayData;
+				overlayDataArray.push(overlayData);
 			});
 
 			return overlaysData;
@@ -201,8 +234,14 @@ module Player {
 			authCamData.rotateTransform = Camtasia2JsonReader.vector3FromJsonArray(jsonData.authCam.rotateTransform);
 			authCamData.shearTransform = Camtasia2JsonReader.vector3FromJsonArray(jsonData.authCam.shearTransform);
 
-			authCamData.media = <LanguageIndexed<MediumData>>{};
-			jsonData.authCam.media.forEach((item: any) => authCamData.media[item.lang] = $.extend(new MediumData(), item));
+			authCamData.media = <LanguageIndexed<MediumData[]>>{};
+			jsonData.authCam.media.forEach((item: any) => {
+				var mediaDataArray = authCamData.media[item.lang];
+				if (mediaDataArray === undefined)
+					authCamData.media[item.lang] = mediaDataArray = [];
+
+				mediaDataArray.push($.extend(new MediumData(), item));
+			});
 
 			return authCamData;
 		};

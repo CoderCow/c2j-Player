@@ -1,6 +1,6 @@
 module Player {
 	'use strict';
-	export class MediumData implements Validatable {
+	export class MediumData implements Validatable, VideoJSSource {
 		public src: string;
 		public type: string;
 		public lang: string;
