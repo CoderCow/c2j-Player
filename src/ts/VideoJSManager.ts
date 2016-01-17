@@ -48,20 +48,62 @@ module Player {
 				media.push(<VideoJSSource>{ src: App.VIDEO_BASE_PATH + medium.src, type: medium.type }));
 
 			this.player.src(media);
+
+			this.setupChapters(languageCode);
 		}
 
+		private setupChapters(languageCode: string) {
+			var chapterData = this._videoData.chapters[languageCode];
+			var textTrack = <VideoJSTextTrack>this.player.addTextTrack('chapters', 'chapters: ' + languageCode, languageCode);
+
+			chapterData.forEach((chapter: ChapterData) => {
+				var cue = new VTTCue(chapter.begin, chapter.end, chapter.title);
+				textTrack.addCue(cue);
+			});
+		};
+
 		public setupSubtitles() {
+			this.setupSubtitleSettings();
+
 			$.each(this._videoData.captions, (languageCode: string, captions: CaptionData[]) => {
 				var textTrack = <VideoJSTextTrack>this.player.addTextTrack('captions', languageCode, languageCode);
 
-				for (var i = 0; i < captions.length; i++) {
-					var caption = captions[i];
-
+				captions.forEach((caption: CaptionData) => {
 					var cue = new VTTCue(caption.begin, caption.end, caption.content);
 					textTrack.addCue(cue);
-				}
+				});
 			});
 		}
+
+		// TODO: rewrite textTrackSettings and textTrackDisplay components for proper subtitle display
+		private setupSubtitleSettings() {
+			var textTrackSettings = <VideoJSTextTrackSettings>{};
+			var c2jCaptionSettings = this._videoData.captionSettings;
+
+			var color = c2jCaptionSettings.foregroundColor;
+			textTrackSettings.color = [0, color[0], color[1], color[2]];
+
+			color = c2jCaptionSettings.backgroundColor;
+			textTrackSettings.backgroundColor = [0, color[0], color[1], color[2]];
+
+			textTrackSettings.fontFamily = c2jCaptionSettings.fontName;
+			textTrackSettings.textOpacity = 1;
+			textTrackSettings.windowOpacity = 0;
+			textTrackSettings.fontPercent = 1;
+			textTrackSettings.windowColor = [0, 0, 0, 0];
+
+			if (this._videoData.captionSettings.isBackgroundEnabled)
+				textTrackSettings.backgroundOpacity = c2jCaptionSettings.opacity;
+			else
+				textTrackSettings.backgroundOpacity = 0;
+
+			var videoJsTextTrackSettingsComponent = <any>this._player.getChild('textTrackSettings');
+			videoJsTextTrackSettingsComponent.getValues = () => {
+				return textTrackSettings;
+			};
+			var videoJsTextTrackDisplayComponent = <any>this._player.getChild('textTrackDisplay');
+			videoJsTextTrackDisplayComponent.updateDisplay();
+		};
 
 		public get player(): VideoJSPlayer {
 			return this._player;

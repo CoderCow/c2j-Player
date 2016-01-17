@@ -212,6 +212,18 @@ interface VideoJSTextTrackCueList {
 	getCueById(id: string): VTTCue;
 }
 
+interface VideoJSTextTrackSettings {
+	backgroundOpacity: number;
+  textOpacity: number;
+  windowOpacity: number;
+  edgeStyle: string;
+  fontFamily: string;
+  color: number[];
+  backgroundColor: number[];
+  windowColor: number[];
+  fontPercent: number;
+}
+
 declare class VTTCue {
 	public constructor(startTime: number, endTime: number, text: string);
 

@@ -93,8 +93,6 @@ module Player {
 				throw new Exception('"captionSettings" is undefined.');
 
 			var captionSettingsData = $.extend(new CaptionSettingsData(), jsonData.captionSettings);
-			captionSettingsData.backgroundColor = Camtasia2JsonReader.cssColorFromJsonArray(jsonData.captionSettings.backgroundColor);
-			captionSettingsData.foregroundColor = Camtasia2JsonReader.cssColorFromJsonArray(jsonData.captionSettings.foregroundColor);
 			captionSettingsData.alignment = Camtasia2JsonReader.stringVAlignmentMappings.value[jsonData.captionSettings.alignment.toLowerCase()];
 
 			return captionSettingsData;
