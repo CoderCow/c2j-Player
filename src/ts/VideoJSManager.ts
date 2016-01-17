@@ -35,6 +35,7 @@ module Player {
 				_this._player.volume(_this._userSettings.volume);
 
 				_this.setVideoLanguage(_this._videoData.defaultLang);
+				_this.setupSubtitles();
 
 				initCompleted();
 			});
@@ -49,8 +50,17 @@ module Player {
 			this.player.src(media);
 		}
 
-		public setSubtitleLanguage(languageCode: string) {
+		public setupSubtitles() {
+			$.each(this._videoData.captions, (languageCode: string, captions: CaptionData[]) => {
+				var textTrack = <VideoJSTextTrack>this.player.addTextTrack('captions', languageCode, languageCode);
 
+				for (var i = 0; i < captions.length; i++) {
+					var caption = captions[i];
+
+					var cue = new VTTCue(caption.begin, caption.end, caption.content);
+					textTrack.addCue(cue);
+				}
+			});
 		}
 
 		public get player(): VideoJSPlayer {

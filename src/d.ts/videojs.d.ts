@@ -185,12 +185,66 @@ interface VideoJSPlayer extends VideoJSComponent {
 	isAudio(): boolean;
 	networkState(): number;
 	readyState(): number;
-	textTracks(): any[];
+	textTracks(): VideoJSTextTrack[];
 	remoteTextTracks(): any[];
 	remoteTextTrackEls(): HTMLTrackElement[];
-	addTextTrack(kind: string, label: string, language: string): boolean;
+	addTextTrack(kind: string, label: string, language: string): VideoJSTextTrack|boolean;
 	addRemoteTextTrack(options: any): boolean;
 	removeRemoteTextTrack(track: any): boolean;
+}
+
+interface VideoJSTextTrack {
+	kind: string; // 'subtitles'
+	label: string;
+	language: string;
+	id: number;
+	mode: string; // 'hidden', 'shown', 'disabled'
+	cues: VideoJSTextTrackCueList;
+	activeCues: VideoJSTextTrackCueList;
+
+	addCue(cue: VTTCue): void;
+	removeCue(cue: VTTCue): void;
+}
+
+interface VideoJSTextTrackCueList {
+	length: number;
+
+	getCueById(id: string): VTTCue;
+}
+
+declare class VTTCue {
+	public constructor(startTime: number, endTime: number, text: string);
+
+	public id: string;
+	public startTime: number;
+	public endTime: number;
+	public text: string;
+	public region: VTTRegion;
+	public pauseOnExit: boolean;
+	public snapToLines: boolean;
+	public line: number|string; // can also be 'auto'
+	public position: number; // 0 - 100
+	public positionAlign: string; // 'start', 'middle', 'end', 'left', 'right'
+	public size: number; // 0 - 100
+	public align: string; // 'start', 'middle', 'end', 'left', 'right'
+	public lineAlign: string; // 'start', 'middle', 'end', 'left', 'right'
+	public vertical: string; // can be '', 'lr', 'rl'
+	public scroll: string; // can be '' or 'up'
+
+	public getCueAsHTML(): Element;
+}
+
+declare class VTTRegion {
+	public constructor();
+
+	public width: number; // 0 - 100
+	public height: number; // 0 - 100
+	public lines: number;
+	public regionAnchorX: number;
+	public regionAnchorY: number;
+	public viewportAnchorX: number;
+	public viewportAnchorY: number;
+	public scroll: string; // can be '' or 'up'
 }
 
 interface VideoJSComponentOptions {
