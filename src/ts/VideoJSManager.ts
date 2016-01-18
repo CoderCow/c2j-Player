@@ -51,6 +51,7 @@ module Player {
 			this.player.src(media);
 
 			this.setupChapters(languageCode);
+			this.setupAuthorNotes(languageCode);
 		}
 
 		private setupTimeDisplay() {
@@ -76,6 +77,14 @@ module Player {
 				textTrack.addCue(cue);
 			});*/
 		};
+
+		private setupAuthorNotes(languageCode: string) {
+			var authorNoteData = this._videoData.authorNotes[languageCode];
+
+			authorNoteData.forEach((authorNote: AuthorNoteData) => {
+				this._player.controlBar.progressControl.seekBar.addChild(new SeekBarNotesMarkerComponent(this._player, this._videoData, authorNote));
+			});
+		}
 
 		private setupSubtitles() {
 			this.setupSubtitleSettings();

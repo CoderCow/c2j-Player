@@ -25,5 +25,11 @@
   }, {
     "name": "comments",
     "svg": "material-design-icons/ic_chat_48px.svg"
+  }, {
+    "name": "file",
+    "svg": "fontawesome/file.svg"
+  }, {
+    "name": "file-text",
+    "svg": "fontawesome/file-text.svg"
   }]
 }
