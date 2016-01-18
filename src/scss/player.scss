@@ -1,0 +1,22 @@
+$primary-foreground-color: #d75;
+
+.video-js {
+	font-size: 15px;
+
+	color: $primary-foreground-color;
+}
+
+// center big play button
+.vjs-big-play-button {
+	$big-play-width: 3em;
+	$big-play-height: 1.5em;
+
+	line-height: $big-play-height;
+	height: $big-play-height;
+	width: $big-play-width;
+
+	left: 50%;
+	top: 50%;
+	margin-left: -($big-play-width / 2);
+	margin-top: -($big-play-height / 2);
+}
