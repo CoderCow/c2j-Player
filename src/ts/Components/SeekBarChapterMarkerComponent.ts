@@ -15,11 +15,9 @@ module Player {
 		}
 
 		public createEl(tagName: string, properties?: any, attributes?: any) {
-			return super.createEl(undefined, {
-				className: 'seek-bar-marker vjs-icon-circle'
-			}, {
-				title: (this._chapterData.tooltip !== '' ? this._chapterData.tooltip : this._chapterData.title)
-			});
+			return $(TemplateUtils.renderSynch('Components/SeekBarChapterMarker', {
+				title: this.localize('Chapter: ') + (this._chapterData.tooltip !== '' ? this._chapterData.tooltip : this._chapterData.title)
+			}))[0];
 		}
 
 		public handleClick(event: Event) {
