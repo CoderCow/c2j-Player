@@ -34,6 +34,7 @@ module Player {
 				// TODO: Remove when VideoJSOptions.defaultVolume works again..
 				_this._player.volume(_this._userSettings.volume);
 
+				_this.setupTimeDisplay();
 				_this.setVideoLanguage(_this._videoData.defaultLang);
 				_this.setupSubtitles();
 
@@ -52,11 +53,19 @@ module Player {
 			this.setupChapters(languageCode);
 		}
 
+		private setupTimeDisplay() {
+			var timeComponent = this._player.controlBar.addChild(new CurrentTimeComponent(this._player));
+			$('.vjs-volume-menu-button').after(timeComponent.el());
+
+			var currentTimeDisplayComponent = this._player.controlBar.currentTimeDisplay;
+			currentTimeDisplayComponent.dispose();
+		}
+
 		private setupChapters(languageCode: string) {
 			var chapterData = this._videoData.chapters[languageCode];
 
 			chapterData.forEach((chapter: ChapterData) => {
-				this.player.controlBar.progressControl.seekBar.addChild(new SeekBarChapterMarkerComponent(this._player, this._videoData, chapter));
+				this._player.controlBar.progressControl.seekBar.addChild(new SeekBarChapterMarkerComponent(this._player, this._videoData, chapter));
 			});
 
 			// Uncomment to enable the video.js chapter menu (which seems buggy atm)
@@ -68,7 +77,7 @@ module Player {
 			});*/
 		};
 
-		public setupSubtitles() {
+		private setupSubtitles() {
 			this.setupSubtitleSettings();
 
 			$.each(this._videoData.captions, (languageCode: string, captions: CaptionData[]) => {

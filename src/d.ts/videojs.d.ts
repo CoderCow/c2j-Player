@@ -191,6 +191,7 @@ interface VideoJSPlayer extends VideoJSComponent {
 	addTextTrack(kind: string, label: string, language: string): VideoJSTextTrack|boolean;
 	addRemoteTextTrack(options: any): boolean;
 	removeRemoteTextTrack(track: any): boolean;
+	getCache(): any;
 }
 
 interface VideoJSTextTrack {
@@ -645,6 +646,8 @@ interface VideoJSStatic extends VideoJSEventSubject {
 	options: VideoJSOptions;
 
 	(id: string|Element, options?: VideoJSOptions, ready?: () => void): VideoJSPlayer;
+
+	formatTime(seconds: number, guide?: number): string;
 
 	getPlayers(): VideoJSPlayer[];
 
