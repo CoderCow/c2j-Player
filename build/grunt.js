@@ -44,6 +44,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', ['debug']);
 	grunt.registerTask('release', ['clean', 'ts:release', 'sass:release', 'dust:release', 'makefont', 'uglify:release', 'copy:release']);
 	grunt.registerTask('debug', ['clean', 'ts:debug', 'sass:debug', 'dust:debug', 'makefont', 'copy:release']);
-	grunt.registerTask('debugging', ['watch']);
+	grunt.registerTask('debugging', ['debug', 'watch']);
 	grunt.registerTask('validate', ['scsslint', 'tslint']);
 };

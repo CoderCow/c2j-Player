@@ -58,6 +58,6 @@ This project also provides several preconfigured project run configurations. Som
 for JavaScript debugging.
 
 The general development cycle should be
+* Run the Debugging Grunt configuration once.
 * Run the Debug JavaScript configuration once (in debugging mode, bug icon).
-* Run the Debugging Grunt configuration once normally (in non-debug mode, arrow icon).
 * From now on: edit files in src, save and refresh browser.
