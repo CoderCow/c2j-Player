@@ -7,7 +7,7 @@ $primary-foreground-color: #d75;
 }
 
 // center big play button
-.vjs-big-play-button {
+.video-js .vjs-big-play-button {
 	$big-play-width: 3em;
 	$big-play-height: 1.5em;
 
@@ -19,4 +19,16 @@ $primary-foreground-color: #d75;
 	top: 50%;
 	margin-left: -($big-play-width / 2);
 	margin-top: -($big-play-height / 2);
+}
+
+.video-js .vjs-current-time {
+	display: block;
+}
+
+.video-js .vjs-remaining-time {
+	display: none;
+}
+
+.video-js .vjs-play-progress:before {
+	z-index: 10;
 }
