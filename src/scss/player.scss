@@ -30,5 +30,5 @@ $primary-foreground-color: #d75;
 }
 
 .video-js .vjs-play-progress:before {
-	z-index: 10;
+	display: none;
 }
