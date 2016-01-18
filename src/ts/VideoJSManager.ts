@@ -54,12 +54,18 @@ module Player {
 
 		private setupChapters(languageCode: string) {
 			var chapterData = this._videoData.chapters[languageCode];
-			var textTrack = <VideoJSTextTrack>this.player.addTextTrack('chapters', 'chapters: ' + languageCode, languageCode);
 
 			chapterData.forEach((chapter: ChapterData) => {
+				this.player.controlBar.progressControl.seekBar.addChild(new SeekBarChapterMarkerComponent(this._player, this._videoData, chapter));
+			});
+
+			// Uncomment to enable the video.js chapter menu (which seems buggy atm)
+			//var textTrack = <VideoJSTextTrack>this.player.addTextTrack('chapters', 'chapters: ' + languageCode, languageCode);
+
+			/*chapterData.forEach((chapter: ChapterData) => {
 				var cue = new VTTCue(chapter.begin, chapter.end, chapter.title);
 				textTrack.addCue(cue);
-			});
+			});*/
 		};
 
 		public setupSubtitles() {

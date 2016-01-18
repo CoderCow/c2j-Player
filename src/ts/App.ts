@@ -64,4 +64,5 @@ $(document).ready(Player.App.main);
 
 // This is some black magic in order to allow TypeScript to resolve the video.js classes so that we can
 // inherit from these classes and stuff.
+(<any>window).VideoJSComponent = videojs.getComponent('Component');
 (<any>window).VideoJSButton = videojs.getComponent('Button');

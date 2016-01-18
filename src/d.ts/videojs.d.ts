@@ -40,7 +40,7 @@ interface VideoJSSource {
 }
 
 interface VideoJSPlayer extends VideoJSComponent {
-	controlBar: VideoJSComponent;
+	controlBar: any;
 
 	/**
 	 * player's constructor function
@@ -537,7 +537,7 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	 * @param options Options, including options to be passed to children of the child.
 	 * @return The child component name.
 	 */
-	public addChild(childName: string, options?: VideoJSComponentOptions): VideoJSComponent;
+	//public addChild(childName: string, options?: VideoJSComponentOptions): VideoJSComponent;
 
 	/**
 	 * Adds a child component inside this component
@@ -602,7 +602,7 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	/**
 	 * Get the component's DOM element.
 	 */
-	public el(): Element;
+	public el(): any;
 
 	/**
 	 * Return the component's DOM element where children are inserted.
