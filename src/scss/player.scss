@@ -4,32 +4,32 @@ $primary-foreground-color: #d75;
 	font-size: 15px;
 
 	color: $primary-foreground-color;
-}
 
-// center big play button
-.video-js .vjs-big-play-button {
-	$big-play-width: 3em;
-	$big-play-height: 1.5em;
+	// center big play button
+	.vjs-big-play-button {
+		$big-play-width: 3em;
+		$big-play-height: 1.5em;
 
-	line-height: $big-play-height;
-	height: $big-play-height;
-	width: $big-play-width;
+		line-height: $big-play-height;
+		height: $big-play-height;
+		width: $big-play-width;
 
-	left: 50%;
-	top: 50%;
-	margin-left: -($big-play-width / 2);
-	margin-top: -($big-play-height / 2);
-}
+		left: 50%;
+		top: 50%;
+		margin-left: -($big-play-width / 2);
+		margin-top: -($big-play-height / 2);
+	}
 
-.video-js .vjs-current-time {
-	display: block;
-	width: 6em;
-}
+	.vjs-current-time {
+		display: block;
+		width: 6em;
+	}
 
-.video-js .vjs-remaining-time {
-	display: none;
-}
+	.vjs-remaining-time {
+		display: none;
+	}
 
-.video-js .vjs-play-progress:before {
-	display: none;
+	.vjs-play-progress:before {
+		display: none;
+	}
 }
