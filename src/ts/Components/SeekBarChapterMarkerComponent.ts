@@ -11,6 +11,7 @@ module Player {
 			super.el().style.left = ((chapterData.begin / videoData.dur) * 100) + '%';
 			this.on('tap', this.handleClick);
       this.on('click', this.handleClick);
+			this.on('mouseup', this.handleClick);
 		}
 
 		public createEl(tagName: string, properties?: any, attributes?: any) {
@@ -21,8 +22,8 @@ module Player {
 			});
 		}
 
-		public handleClick() {
-			alert("Marker was clicked!");
+		public handleClick(event: Event) {
+			this.player_.currentTime(this._chapterData.begin);
 		}
 
 		public get chapterData(): ChapterData {

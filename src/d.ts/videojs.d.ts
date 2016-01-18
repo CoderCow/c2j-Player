@@ -336,6 +336,8 @@ interface VideoJSEventSubject {
  * Events: 'dispose',
  */
 declare class VideoJSComponent implements VideoJSEventSubject {
+	protected player_: VideoJSPlayer;
+
 	/**
 	 * @param player Main Player
 	 * @param options Object of option names and values
