@@ -9,7 +9,6 @@ module Player {
 		private _userSettings: UserSettings;
 		private _player: VideoJSPlayer;
 		private _videoData: VideoData;
-		private testPlugin: TestPlugin;
 		private _noteMarkers: SeekBarNotesMarkerComponent[];
 
 		public constructor(userSettings: UserSettings, videoData: VideoData) {
@@ -20,7 +19,6 @@ module Player {
 
 		public init(initCompleted: () => void): void {
 			this._player = null;
-			this.testPlugin = new TestPlugin();
 
 			var videojsOptions = <VideoJSOptions>{};
 			videojsOptions.defaultVolume = this._userSettings.volume;
