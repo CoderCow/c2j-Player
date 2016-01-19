@@ -168,8 +168,7 @@
     "displayOnScreen" : false
   }, {
     "lang" : "de",
-    "begin" : 185.6,
-    "dur" : 12.2,
+    "begin" : 81.3,
     "title" : "Zooming Hints",
     "tooltip" : "",
     "content" : "<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">Best quality is achieved by zooming to a scale of 100%. For more best-practices on zooming, see:</span></p>\r\n<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\"><a href=\"https://www.techsmith.com/tutorial-camtasia-8-zooming-misunderstood-screencasting-quality.html\">Zooming: The Often Misunderstood Half-Holy Grail of Screencasting Quality</a>.</span><span style=\"color: #000000; font-size: 14pt; font-family: Arial\"></span></p>\r\n",

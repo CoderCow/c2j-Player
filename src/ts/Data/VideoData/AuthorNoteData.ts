@@ -1,6 +1,6 @@
 module Player {
 	'use strict';
-	export class AuthorNoteData implements Validatable {
+	export class AuthorNoteData implements NoteData, Validatable {
 		public begin: number;
 		public dur: number;
 		public end: number;

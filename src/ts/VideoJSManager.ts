@@ -10,10 +10,12 @@ module Player {
 		private _player: VideoJSPlayer;
 		private _videoData: VideoData;
 		private testPlugin: TestPlugin;
+		private _noteMarkers: SeekBarNotesMarkerComponent[];
 
 		public constructor(userSettings: UserSettings, videoData: VideoData) {
 			this._userSettings = userSettings;
 			this._videoData = videoData;
+			this._noteMarkers = [];
 		}
 
 		public init(initCompleted: () => void): void {
@@ -84,10 +86,22 @@ module Player {
 		};
 
 		private setupAuthorNotes(languageCode: string) {
-			var authorNoteData = this._videoData.authorNotes[languageCode];
+			var authorNotes = this._videoData.authorNotes[languageCode];
 
-			authorNoteData.forEach((authorNote: AuthorNoteData) => {
-				this._player.controlBar.progressControl.seekBar.addChild(new SeekBarNotesMarkerComponent(this._player, this._videoData, authorNote));
+			authorNotes.forEach((authorNote: AuthorNoteData) => {
+				if (authorNote.displayInTimeline) {
+					var existingMarkerAtAboutTheSamePosition = this._noteMarkers.firstOrUndefined((existingMarker: SeekBarNotesMarkerComponent) =>
+						(authorNote.begin >= existingMarker.time - 4 && authorNote.end <= existingMarker.time + 4));
+
+					if (existingMarkerAtAboutTheSamePosition !== undefined) {
+						existingMarkerAtAboutTheSamePosition.addNote(authorNote);
+					} else {
+						var noteMarkerComponent = new SeekBarNotesMarkerComponent(this._player, this._videoData, authorNote);
+						this._noteMarkers.push(noteMarkerComponent);
+
+						this._player.controlBar.progressControl.seekBar.addChild(noteMarkerComponent);
+					}
+				}
 			});
 		}
 
