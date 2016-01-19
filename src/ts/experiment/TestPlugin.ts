@@ -18,6 +18,7 @@ Player
               LoadProgressBar
               PlayProgressBar
               SeekHandle
+              MouseTimeDisplay
         VolumeControl
             VolumeBar
                 VolumeLevel

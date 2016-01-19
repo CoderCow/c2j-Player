@@ -1,1 +1,1 @@
-<div class="seek-bar-marker vjs-icon-circle" title="{title}"></div>
+<div class="seek-bar-marker vjs-icon-circle" data-mouse-text="{mouseText}"></div>

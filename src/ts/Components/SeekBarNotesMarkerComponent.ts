@@ -16,8 +16,8 @@ module Player {
 		}
 
 		public createEl(tagName: string, properties?: any, attributes?: any) {
-			return $(TemplateUtils.renderSynch('Components/SeekBarMultiMarker', {
-				//title: this.localize('Chapter: ') + (this._chapterData.tooltip !== '' ? this._chapterData.tooltip : this._chapterData.title)
+			return $(TemplateUtils.renderSynch('Components/SeekBarNotesMarker', {
+				mouseText: '1 ' + this.localize('author note')
 			}))[0];
 		}
 

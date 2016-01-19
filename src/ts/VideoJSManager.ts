@@ -60,6 +60,11 @@ module Player {
 
 			var currentTimeDisplayComponent = this._player.controlBar.currentTimeDisplay;
 			currentTimeDisplayComponent.dispose();
+
+			var mouseTimeDisplayComponent = this._player.controlBar.progressControl.seekBar.mouseTimeDisplay;
+			mouseTimeDisplayComponent.dispose();
+
+			var mouseTimeDisplayComponent = this._player.controlBar.progressControl.seekBar.addChild(new MouseTimeDisplayComponent(this._player, this._videoData));
 		}
 
 		private setupChapters(languageCode: string) {

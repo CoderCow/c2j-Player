@@ -29,7 +29,14 @@ $primary-foreground-color: #d75;
 		display: none;
 	}
 
-	.vjs-play-progress:before {
+	.vjs-play-progress::before {
 		display: none;
+	}
+
+	.vjs-progress-holder .vjs-mouse-display::after {
+		top: inherit;
+		padding-bottom: 0.5em;
+		bottom: 1.4em;
+		max-width: 12em;
 	}
 }

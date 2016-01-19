@@ -16,7 +16,7 @@ module Player {
 
 		public createEl(tagName: string, properties?: any, attributes?: any) {
 			return $(TemplateUtils.renderSynch('Components/SeekBarChapterMarker', {
-				title: this.localize('Chapter: ') + (this._chapterData.tooltip !== '' ? this._chapterData.tooltip : this._chapterData.title)
+				mouseText: this._chapterData.title
 			}))[0];
 		}
 
