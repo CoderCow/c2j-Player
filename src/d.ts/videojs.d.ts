@@ -262,16 +262,17 @@ declare class VTTRegion {
 
 interface VideoJSComponentOptions {
 	id?: number;
-	el?: Element;
+	el?: HTMLElement;
 	name?: string;
 	initChildren?: boolean;
 	reportTouchActivity?: boolean;
 	children?: VideoJSComponent|string[];
+	createEl?: boolean;
 }
 
 interface VideoJSChildComponentOptions {
 	id?: number|(() => string);
-	el?: Element|(() => Element);
+	el?: HTMLElement|(() => HTMLElement);
 }
 
 interface VideoJSEventSubject {

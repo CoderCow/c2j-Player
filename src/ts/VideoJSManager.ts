@@ -58,13 +58,7 @@ module Player {
 			var timeComponent = this._player.controlBar.addChild(new CurrentTimeComponent(this._player));
 			$('.vjs-volume-menu-button').after(timeComponent.el());
 
-			var currentTimeDisplayComponent = this._player.controlBar.currentTimeDisplay;
-			currentTimeDisplayComponent.dispose();
-
-			var mouseTimeDisplayComponent = this._player.controlBar.progressControl.seekBar.mouseTimeDisplay;
-			mouseTimeDisplayComponent.dispose();
-
-			var mouseTimeDisplayComponent = this._player.controlBar.progressControl.seekBar.addChild(new MouseTimeDisplayComponent(this._player, this._videoData));
+			this._player.controlBar.progressControl.seekBar.addChild(new MouseTimeDisplayComponent(this._player, this._videoData));
 		}
 
 		private setupChapters(languageCode: string) {
