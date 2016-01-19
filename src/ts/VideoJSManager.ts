@@ -24,8 +24,7 @@ module Player {
 			videojsOptions.defaultVolume = this._userSettings.volume;
 			videojsOptions.poster = App.VIDEO_BASE_PATH + this._videoData.poster;
 			videojsOptions.controls = true;
-			videojsOptions.width = 1280;
-			videojsOptions.height = 528;
+			videojsOptions.fluid = true;
 
 			var _this = this;
 			videojs(VideoJSManager.VIDEOJS_ID, videojsOptions, function() {
