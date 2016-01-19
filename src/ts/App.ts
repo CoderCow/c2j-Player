@@ -15,8 +15,18 @@ module Player {
 				window['RELEASE'] = false;
 				window['DEBUG'] = true;
 			}
-			if (DEBUG)
+			if (DEBUG) {
 				dust.debugLevel = "WARN";
+
+				// Register F4 key to pause JavaScript execution.
+				// This is especially useful if you want to analyze DOM or CSS that shows up during
+				// special mouse events only.
+				$(window).keydown((e: KeyboardEvent) => {
+					if (e.keyCode == 115)
+						debugger;
+					}
+				);
+			}
 
 			App._userSettingsManager = new UserSettingsManager();
 
