@@ -79,21 +79,28 @@ module Player {
 		private setupAuthorNotes(languageCode: string) {
 			var authorNotes = this._videoData.authorNotes[languageCode];
 
-			authorNotes.forEach((authorNote: AuthorNoteData) => {
-				if (authorNote.displayInTimeline) {
-					var existingMarkerAtAboutTheSamePosition = this._noteMarkers.firstOrUndefined((existingMarker: SeekBarNotesMarkerComponent) =>
-						(authorNote.begin >= existingMarker.time - 4 && authorNote.end <= existingMarker.time + 4));
+			authorNotes.forEach((authorNote: AuthorNoteData) => this.setupAuthorNote(authorNote));
+		}
 
-					if (existingMarkerAtAboutTheSamePosition !== undefined) {
-						existingMarkerAtAboutTheSamePosition.addNote(authorNote);
-					} else {
-						var noteMarkerComponent = new SeekBarNotesMarkerComponent(this._player, this._videoData, authorNote);
-						this._noteMarkers.push(noteMarkerComponent);
+		private setupAuthorNote(authorNote: AuthorNoteData) {
+			if (authorNote.displayInTimeline) {
+				var existingMarkerAtAboutTheSamePosition = this._noteMarkers.firstOrUndefined((existingMarker: SeekBarNotesMarkerComponent) =>
+					(authorNote.begin >= existingMarker.time - 4 && authorNote.end <= existingMarker.time + 4));
 
-						this._player.controlBar.progressControl.seekBar.addChild(noteMarkerComponent);
-					}
+				if (existingMarkerAtAboutTheSamePosition !== undefined) {
+					existingMarkerAtAboutTheSamePosition.addNote(authorNote);
+				} else {
+					var noteMarkerComponent = new SeekBarNotesMarkerComponent(this._player, this._videoData, authorNote);
+					this._noteMarkers.push(noteMarkerComponent);
+
+					this._player.controlBar.progressControl.seekBar.addChild(noteMarkerComponent);
 				}
-			});
+			}
+		}
+
+		public addAuthorNote(authorNote: AuthorNoteData) {
+			this._videoData.authorNotes[authorNote.lang].push(authorNote);
+			this.setupAuthorNote(authorNote);
 		}
 
 		private setupSubtitles() {

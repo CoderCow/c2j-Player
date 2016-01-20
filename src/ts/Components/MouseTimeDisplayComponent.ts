@@ -2,6 +2,7 @@ module Player {
 	'use strict';
 	export class MouseTimeDisplayComponent extends VideoJSComponent {
 		private _videoData: VideoData;
+		private _isHidden: boolean;
 
 		public constructor(player: VideoJSPlayer, videoData: VideoData) {
 			super(player, {});
@@ -25,15 +26,24 @@ module Player {
 	  }
 
 	  update(newTime: number, position: number, pointElement: any) {
-		  var tooltipString: string;
-		  if (pointElement !== undefined) {
+		  var shouldShowMouseText = (pointElement.getAttribute("data-hide-mouse-text") === null);
+		  if (pointElement !== undefined && shouldShowMouseText) {
+			  var tooltipString: string;
 				tooltipString = pointElement.getAttribute("data-mouse-text");
 			  if (tooltipString === null)
 			    tooltipString = videojs.formatTime(newTime, this.player_.duration());
-		  }
 
-		  this.el().setAttribute('data-current-time', tooltipString);
-	    this.el().style.left = position + 'px';
+			  this.el().setAttribute('data-current-time', tooltipString);
+	      this.el().style.left = position + 'px';
+
+			  if (this._isHidden) {
+			    $(this.el()).removeClass('vjs-hidden');
+				  this._isHidden = false;
+			  }
+		  } else if (!this._isHidden) {
+			  $(this.el()).addClass('vjs-hidden');
+			  this._isHidden = true;
+		  }
 	  }
 
 	  calculateDistance(event: MouseEvent) {

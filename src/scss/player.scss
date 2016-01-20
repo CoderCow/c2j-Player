@@ -1,6 +1,6 @@
 $primary-foreground-color: #d75;
 
-.video-js {
+#videojs {
 	font-size: 15px;
 
 	color: $primary-foreground-color;
@@ -33,10 +33,20 @@ $primary-foreground-color: #d75;
 		display: none;
 	}
 
-	.vjs-progress-holder .vjs-mouse-display::after {
-		top: inherit;
-		padding-bottom: 0.5em;
-		bottom: 1.4em;
-		max-width: 12em;
+	.vjs-progress-holder {
+		.vjs-mouse-display::after {
+			top: inherit;
+			font-size: 1em;
+			padding-bottom: 0.5em;
+			bottom: 1.4em;
+			max-width: 12em;
+		}
+	}
+
+	.vjs-progress-control:hover {
+		.vjs-progress-holder {
+			// Disables the seek bar enlarge on hover effect
+			font-size: 1em;
+		}
 	}
 }

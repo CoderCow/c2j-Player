@@ -1,13 +1,30 @@
-.seek-bar-marker {
-	color: #0f0;
-	width: 2.5em;
-	font-size: 0.3em;
-	margin-left: -1em;
-	position: absolute;
-	z-index: 1;
-}
+#videojs {
+	.seek-bar-marker {
+		color: #0f0;
+		width: 2.5em;
+		font-size: 0.3em;
+		margin-left: -1em;
+		position: absolute;
+		z-index: 1;
 
-.seek-bar-marker.note-marker {
-	font-size: 0.9em;
-	top: -1.3em;
+		&.note-marker {
+			font-size: 0.9em;
+			width: 1.5em;
+			top: -1.6em;
+			padding-top: 0.3em;
+			padding-bottom: 2em;
+		}
+
+		&:hover .vjs-menu {
+			display: none;
+		}
+
+		&:hover.marker-pressed .vjs-menu {
+			display: block;
+		}
+
+		.vjs-menu .vjs-menu-content {
+			bottom: 1.7em;
+		}
+	}
 }

@@ -339,6 +339,7 @@ interface VideoJSEventSubject {
  */
 declare class VideoJSComponent implements VideoJSEventSubject {
 	protected player_: VideoJSPlayer;
+	protected contentEl_: any;
 
 	/**
 	 * @param player Main Player
@@ -533,7 +534,7 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	 */
 	public createEl(tagName?: string, properties?: any, attributes?: any): void;
 
-	public localize(string: string): void;
+	public localize(string: string): string;
 
 	/**
 	 * Adds a child component inside this component
@@ -612,7 +613,7 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	 * Return the component's DOM element where children are inserted.
 	 * Will either be the same as el() or a new element defined in createEl().
 	 */
-	public contentEl(): Element;
+	public contentEl(): any;
 
 	/**
 	 * Dispose of the component and all child components
@@ -629,15 +630,38 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	//public off(target: VideoJSComponent|Element, eventName: string|string[], handler: () => void): VideoJSComponent;
 
 	public trigger(eventName: string|Event|Object, hash?: any): VideoJSComponent;
+
+	public lockShowing(): void;
+	public unlockShowing(): void;
 }
 
 declare class VideoJSButton extends VideoJSComponent {
 	public controlText(): string;
 	public controlText(text: string): VideoJSButton;
-	public handleClick(): void;
+	public handleClick(event: Event): void;
 	public handleFocus(): void;
 	public handleKeyPress(event: KeyboardEvent): void;
 	public handleBlur(): void;
+}
+
+declare class VideoJSMenuButton extends VideoJSButton {
+	protected buttonPressed_: boolean;
+	public menu: VideoJSMenu;
+	public items: any[];
+
+	public createMenu(): void;
+	public createItems(items: any[]): any[];
+	public update(): void;
+	public pressButton(): void;
+	public unpressButton(): void;
+}
+
+declare class VideoJSMenuItem extends VideoJSButton {
+	public selected(isSelected: boolean): void;
+}
+
+declare class VideoJSMenu extends VideoJSComponent {
+	public addItem(component: VideoJSComponent): void;
 }
 
 interface VideoJSTech extends VideoJSComponent {}

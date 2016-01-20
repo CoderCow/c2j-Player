@@ -76,3 +76,6 @@ $(document).ready(Player.App.main);
 // inherit from these classes and stuff.
 (<any>window).VideoJSComponent = videojs.getComponent('Component');
 (<any>window).VideoJSButton = videojs.getComponent('Button');
+(<any>window).VideoJSMenuButton = videojs.getComponent('MenuButton');
+(<any>window).VideoJSMenuItem = videojs.getComponent('MenuItem');
+(<any>window).VideoJSMenu = videojs.getComponent('Menu');
