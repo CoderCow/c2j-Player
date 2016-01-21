@@ -1,15 +1,39 @@
 module Player {
 	'use strict';
 	export class MarkerMenuComponent extends VideoJSMenu {
+		private static _originalInactivityTimeout: number;
+		private _hasCapturedMouse: boolean;
+
 		public constructor(player: VideoJSPlayer, linkedMenuButton: VideoJSMenuButton) {
 			super(player, {});
 
+			this._hasCapturedMouse = false;
+
+			// Gonna need this to disable the inactivity timeout while the menu is opened.
+			MarkerMenuComponent._originalInactivityTimeout = player.options_.inactivityTimeout;
+
 			this.on('click', EventUtils.noImmediatePropagationAndPreventDefaultHandler);
+			this.on('mouseover', (event: MouseEvent) => {
+				if (!this._hasCapturedMouse) {
+					this.player_.reportUserActivity();
+
+					// The player shall not become inactive while the user is viewing this menu.
+					this.player_.options_.inactivityTimeout = 0;
+					this._hasCapturedMouse = true;
+				}
+			});
 			this.on('mouseout', (event: MouseEvent) => {
-				var element = $(document.elementFromPoint(event.x, event.y));
-				var mouseMovedOverMenu = (element.closest('.vjs-menu')[0] === this.el());
-				if (!mouseMovedOverMenu)
-					linkedMenuButton.unpressButton();
+				if (this._hasCapturedMouse) {
+					var element = $(document.elementFromPoint(event.x, event.y));
+					var mouseMovedOverMenu = (element.closest('.vjs-menu')[0] === this.el());
+					if (!mouseMovedOverMenu)
+						linkedMenuButton.unpressButton();
+
+					// Reset the timeout, so that the player can become inactive again.
+					this.player_.options_.inactivityTimeout = MarkerMenuComponent._originalInactivityTimeout;
+					this.player_.reportUserActivity();
+					this._hasCapturedMouse = false;
+				}
 			});
 
 			// Don't delegate events to the seekbar.
@@ -22,6 +46,10 @@ module Player {
 
 			return element[0];
 		}
+
+		public addItem(component: VideoJSComponent) {
+	    this.addChild(component);
+	  }
 	}
 }
 

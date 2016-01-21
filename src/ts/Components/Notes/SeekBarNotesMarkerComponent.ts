@@ -47,6 +47,14 @@ module Player {
 			$(this.menu.el()).find('.vjs-menu-title').text(title);
 		}
 
+		public pressButton() {
+			super.pressButton();
+
+			// Because this must be called after a user interaction has happened.
+			if (!ClipboardUtils.isCopySupported())
+				$(this.el()).find('.note-copy-button').addClass('vjs-hidden');
+		}
+
 		public get notes(): NoteData[] {
 			return this._notes;
 		}

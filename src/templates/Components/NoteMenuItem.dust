@@ -1,1 +1,16 @@
-<div></div>
+<li class="vjs-menu-item">
+	<div class="note-title">
+		{title}
+		<div class="note-buttons">
+			<div class="note-goto-button vjs-icon-cog" title="{gotoButtonHint}"></div>
+			{! The copy button will get class 'vjs-hidden', if the Clipboard API is not available.
+			   It will also get the 'copy-failed' or 'copy-succeeded' classes accordingly. !}
+			<div class="note-copy-button vjs-icon-cog" title="{copyButtonHint}"></div>
+			<div class="note-collapse-button vjs-icon-cog"></div>
+		</div>
+	</div>
+	<div class="note-content">
+		{! Content can contain p, b, i, span elements (as provided by Camtasia2Json) !}
+		{content|s}
+	</div>
+</li>

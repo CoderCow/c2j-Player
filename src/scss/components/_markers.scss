@@ -13,6 +13,36 @@
 			top: -1.6em;
 			padding-top: 0.3em;
 			padding-bottom: 2em;
+
+			.vjs-menu {
+				width: 25em;
+
+				li {
+					text-transform: initial;
+					-webkit-user-select: initial;
+					user-select: initial;
+				}
+			}
+
+			.vjs-menu-item {
+				text-align: left;
+			}
+
+			.note-title {
+
+			}
+
+			.note-buttons {
+				float: right;
+			}
+
+			.note-buttons div {
+				display: inline;
+			}
+
+			.note-content {
+
+			}
 		}
 
 		&:hover .vjs-menu {

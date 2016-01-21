@@ -41,6 +41,7 @@ interface VideoJSSource {
 
 interface VideoJSPlayer extends VideoJSComponent {
 	controlBar: any;
+	options_: VideoJSOptions;
 
 	/**
 	 * player's constructor function
@@ -192,6 +193,7 @@ interface VideoJSPlayer extends VideoJSComponent {
 	addRemoteTextTrack(options: any): boolean;
 	removeRemoteTextTrack(track: any): boolean;
 	getCache(): any;
+	reportUserActivity(event?: Event): void;
 }
 
 interface VideoJSTextTrack {
