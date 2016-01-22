@@ -41,7 +41,12 @@ Please complete the following steps to setup your development environment for th
 
 **debug**: Builds the project to "dist" for debugging purposes.
 **release**: Builds the project to "dist" for distribution.
+
 **debugging**: Builds the project to "dist" for debugging purposes and continuously rebuilds required files as they are changed in "src".
+
+**webserver**: Starts a webserver on port 63343 (one number above IntelliJ's default Webserver). If you're not doing any JavaScript debugging,
+switch to this webserver because, unlike the IntelliJ server, it supports 206 partial HTTP requests which allows for proper video playback in Chrome.
+
 **validate**: Runs all linters on source files.
 
 # Icons and Font Generation #
@@ -58,6 +63,8 @@ This project also provides several preconfigured project run configurations. Som
 for JavaScript debugging.
 
 The general development cycle should be
-* Run the Debugging Grunt configuration once.
+* Run the Debug Webserver Grunt configuration and keep it running.
+* Run the Debugging Grunt configuration and keep it running.
 * Run the Debug JavaScript configuration once (in debugging mode, bug icon).
 * From now on: edit files in src, save and refresh browser.
+* If you need proper video playback in Chrome, switch to port 63343. There will be no JavaScript debug support from within IntelliJ on this port though.

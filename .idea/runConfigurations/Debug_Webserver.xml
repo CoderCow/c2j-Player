@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Debug Webserver" type="js.build_tools.grunt" factoryName="Grunt.js" singleton="false">
+    <gruntfile value="$PROJECT_DIR$/Gruntfile.js" />
+    <tasks>
+      <task value="webserver" />
+    </tasks>
+    <envs />
+    <force value="false" />
+    <verbose value="false" />
+    <method />
+  </configuration>
+</component>
