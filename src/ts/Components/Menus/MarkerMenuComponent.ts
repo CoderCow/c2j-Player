@@ -3,11 +3,13 @@ module Player {
 	export class MarkerMenuComponent extends VideoJSMenu {
 		private static _originalInactivityTimeout: number;
 		private _hasCapturedMouse: boolean;
+		private _linkedMenuButton: VideoJSMenuButton;
 
 		public constructor(player: VideoJSPlayer, linkedMenuButton: VideoJSMenuButton) {
 			super(player, {});
 
 			this._hasCapturedMouse = false;
+			this._linkedMenuButton = linkedMenuButton;
 
 			// Gonna need this to disable the inactivity timeout while the menu is opened.
 			MarkerMenuComponent._originalInactivityTimeout = player.options_.inactivityTimeout;
@@ -27,7 +29,7 @@ module Player {
 					var element = $(document.elementFromPoint(event.x, event.y));
 					var mouseMovedOverMenu = (element.closest('.vjs-menu')[0] === this.el());
 					if (!mouseMovedOverMenu)
-						linkedMenuButton.unpressButton();
+						this._linkedMenuButton.unpressButton();
 
 					// Reset the timeout, so that the player can become inactive again.
 					this.player_.options_.inactivityTimeout = MarkerMenuComponent._originalInactivityTimeout;
@@ -49,6 +51,9 @@ module Player {
 
 		public addItem(component: VideoJSComponent) {
 	    this.addChild(component);
+
+			$(component.el()).find("[data-close-menu='true']").click(() =>
+				this._linkedMenuButton.unpressButton());
 	  }
 	}
 }

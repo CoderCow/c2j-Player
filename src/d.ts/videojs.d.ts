@@ -341,7 +341,7 @@ interface VideoJSEventSubject {
  */
 declare class VideoJSComponent implements VideoJSEventSubject {
 	protected player_: VideoJSPlayer;
-	protected contentEl_: any;
+	public contentEl_: any;
 
 	/**
 	 * @param player Main Player

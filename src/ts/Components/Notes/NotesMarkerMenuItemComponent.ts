@@ -7,17 +7,30 @@ module Player {
 			this._note = note;
 
 			super(player, {});
+
+			VideoJSUtils.appendChildrenKeepParent(this, () => {
+				var elementToCopy = $(this.el()).find('.note-content')[0];
+				this.addChild(new CopyToClipboardButtonComponent(this.player_, {
+					el: $(this.el()).find('.note-copy-button')[0]
+				}, elementToCopy));
+
+				var goToTime = this._note.begin;
+				this.addChild(new GoToPositionButtonComponent(this.player_, {
+					el: $(this.el()).find('.note-goto-button')[0]
+				}, goToTime));
+			});
 		}
 
 		public createEl(tagName: string, properties?: any, attributes?: any) {
+			// TODO: format content like _blank on all <a>, make beautiful anchors with a symbol, convert links to <a>'s, format code etc.
 			var el = $(TemplateUtils.renderSynch('Components/NoteMenuItem', {
 				title: this._note.title,
 				content: this._note.content,
-				gotoButtonHint: this.localize('Goto this Position'),
+				gotoButtonHint: this.localize('Go to this Position'),
 				copyButtonHint: this.localize('Copy to Clipboard')
 			}));
 
-			el.find('.note-goto-button').click(() => {
+			/*el.find('.note-goto-button').click(() => {
 				this.player_.currentTime(this._note.begin);
 			});
 
@@ -25,25 +38,15 @@ module Player {
 			copyButton.click(() => {
 				var contentElement = $(this.el()).find('.note-content');
 
-				var result: boolean = ClipboardUtils.copyElementContent(contentElement[0]);
-				if (result) {
-					copyButton.addClass('copy-failed');
-					copyButton.removeClass('copy-succeeded');
-				} else {
-					copyButton.addClass('copy-succeeded');
-					copyButton.removeClass('copy-failed');
-				}
 
-				copyButton.one('mouseout', () => {
-					copyButton.removeClass('copy-succeeded');
-					copyButton.removeClass('copy-failed');
-				});
-			});
+			});*/
 
 			return el[0];
 		}
 
-		public handleClick() {}
+		public handleClick(event: Event) {
+			event.stopPropagation();
+		}
 	}
 }
 
