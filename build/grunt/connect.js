@@ -1,4 +1,4 @@
-// A task remove all files in the specified folders.
+// A task to start a connect webserver.
 module.exports = function(grunt, shared) {
 	return {
 		debug: {
