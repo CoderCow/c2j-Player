@@ -35,6 +35,7 @@ module Player {
 		public position: string;
 		public action: OverlayAction;
 		public actionParams: ActionParamsData;
+		public pauseAtEnd: boolean;
 		public waitForAction: boolean;
 		public closeOnAction: boolean;
 		public closeButton: boolean;
@@ -63,6 +64,7 @@ module Player {
 			Validate.value(this.actionParams, 'actionParams', false, true);
 			if (this.actionParams !== null)
 				Validate.validatable(this.actionParams, 'actionParams');
+			Validate.value(this.pauseAtEnd, 'pauseAtEnd');
 			Validate.value(this.waitForAction, 'waitForAction');
 			Validate.value(this.closeOnAction, 'closeOnAction');
 			Validate.value(this.closeButton, 'closeButton');

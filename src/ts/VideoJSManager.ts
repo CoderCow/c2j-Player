@@ -5,11 +5,17 @@ module Player {
 		 * Id of the <video> tag to replace.
 		 */
 		public static VIDEOJS_ID = 'videojs';
+		private static MEDIA_TYPE_PRIORITIES: { [type: string]: number } = {
+			'video/mp4': 1,
+			'video/ogg': 2,
+			'video/webm': 3 // FireFox cannot handle webm too well.
+		};
 
 		private _userSettings: UserSettings;
 		private _player: VideoJSPlayer;
 		private _videoData: VideoData;
 		private _noteMarkers: SeekBarNotesMarkerComponent[];
+		private _overlayManager: OverlayManager;
 
 		public constructor(userSettings: UserSettings, videoData: VideoData) {
 			this._userSettings = userSettings;
@@ -22,6 +28,7 @@ module Player {
 
 			var videojsOptions = <VideoJSOptions>{};
 			videojsOptions.defaultVolume = this._userSettings.volume;
+			// TODO: only prepend base path when a relative url is given here!
 			videojsOptions.poster = App.VIDEO_BASE_PATH + this._videoData.poster;
 			videojsOptions.controls = true;
 			videojsOptions.fluid = true;
@@ -43,6 +50,9 @@ module Player {
 
 		public setVideoLanguage(languageCode: string) {
 			var availableMedia = this._videoData.media[languageCode];
+			availableMedia.sort((m1: MediumData, m2: MediumData) =>
+				VideoJSManager.MEDIA_TYPE_PRIORITIES[m1.type] - VideoJSManager.MEDIA_TYPE_PRIORITIES[m2.type]);
+
 			var media: VideoJSSource[] = [];
 			availableMedia.forEach((medium: MediumData) =>
 				media.push(<VideoJSSource>{ src: App.VIDEO_BASE_PATH + medium.src, type: medium.type }));
@@ -51,6 +61,7 @@ module Player {
 
 			this.setupChapters(languageCode);
 			this.setupAuthorNotes(languageCode);
+			this.setupOverlays(languageCode);
 		}
 
 		private setupTimeDisplay() {
@@ -114,6 +125,13 @@ module Player {
 					textTrack.addCue(cue);
 				});
 			});
+		}
+
+		private setupOverlays(languageCode: string) {
+			$.each(this._videoData.overlays, (language: string, overlays: OverlayData[]) =>
+				overlays.sort((a: OverlayData, b: OverlayData) => a.begin - b.begin));
+
+			this._overlayManager = new OverlayManager(this._player, this._videoData, languageCode);
 		}
 
 		// TODO: rewrite textTrackSettings and textTrackDisplay components for proper subtitle display
