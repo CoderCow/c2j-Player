@@ -1,18 +1,22 @@
 #videojs {
 	.seek-bar-marker {
-		color: #0f0;
+		color: #ddd;
 		width: 2.5em;
-		font-size: 0.3em;
+		top: -0.15em;
+		font-size: 0.4em;
 		margin-left: -1em;
 		position: absolute;
 		z-index: 1;
+		text-shadow: -1.5px 0 #000, 0 1.5px #000, 1.5px 0 #000, 0 -1.5px #000;
 
 		&.note-marker {
+			color: #ff6;
 			font-size: 0.9em;
 			width: 1.5em;
 			top: -1.6em;
 			padding-top: 0.3em;
 			padding-bottom: 2em;
+			text-shadow: none;
 
 			.vjs-menu {
 				width: 25em;
@@ -34,10 +38,10 @@
 
 			.note-buttons {
 				float: right;
-			}
 
-			.note-buttons div {
-				display: inline;
+				div {
+					display: inline;
+				}
 			}
 
 			.note-content {

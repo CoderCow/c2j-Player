@@ -1,0 +1,93 @@
+$primary-foreground-color: #fff;
+
+#videojs {
+	font-size: 13.5px;
+
+	color: $primary-foreground-color;
+
+	// center big play button
+	.vjs-big-play-button {
+		$big-play-width: 3em;
+		$big-play-height: 1.5em;
+
+		line-height: $big-play-height;
+		height: $big-play-height;
+		width: $big-play-width;
+
+		left: 50%;
+		top: 50%;
+		margin-left: -($big-play-width / 2);
+		margin-top: -($big-play-height / 2);
+	}
+
+	.vjs-control-bar {
+		background: rgba(0, 0, 0, 0.7);
+	}
+
+	.vjs-control {
+		width: 3.5em;
+
+		&::before {
+			font-size: 2.3em;
+			line-height: 1.37;
+		}
+	}
+
+	.vjs-menu-button-inline {
+		&:before {
+			width: inherit;
+		}
+
+		&:hover {
+			width: 8em;
+		}
+
+		&:hover::before {
+			left: -1.1em;
+		}
+
+		.vjs-menu {
+			left: 1em;
+		}
+	}
+
+	.vjs-current-time {
+		display: block;
+		width: 6em;
+	}
+
+	.vjs-remaining-time {
+		display: none;
+	}
+
+	.vjs-play-progress {
+		background: #ce5045;
+
+		&::before, &::after {
+			display: none;
+		}
+	}
+
+	.vjs-progress-holder {
+		background: rgba(255, 255, 255, 0.3);
+
+		.vjs-mouse-display::after {
+			top: inherit;
+			font-size: 1em;
+			padding-bottom: 0.5em;
+			bottom: 1.4em;
+			max-width: 12em;
+		}
+	}
+
+	.vjs-load-progress {
+		background: rgba(255, 255, 255, 0.5);
+	}
+
+	.vjs-progress-control:hover {
+		.vjs-progress-holder {
+			// Disables the seek bar enlarge on hover effect
+			font-size: 1em;
+		}
+	}
+}

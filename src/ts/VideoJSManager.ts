@@ -5,10 +5,11 @@ module Player {
 		 * Id of the <video> tag to replace.
 		 */
 		public static VIDEOJS_ID = 'videojs';
+		// TODO: make configurable
 		private static MEDIA_TYPE_PRIORITIES: { [type: string]: number } = {
 			'video/mp4': 1,
 			'video/ogg': 2,
-			'video/webm': 3 // FireFox cannot handle webm too well.
+			'video/webm': 3 // Firefox cannot handle webm too well.
 		};
 
 		private _userSettings: UserSettings;
@@ -40,6 +41,7 @@ module Player {
 				// TODO: Remove when VideoJSOptions.defaultVolume works again..
 				_this._player.volume(_this._userSettings.volume);
 
+				_this.setupPanes();
 				_this.setupTimeDisplay();
 				_this.setVideoLanguage(_this._videoData.defaultLang);
 				_this.setupSubtitles();
@@ -64,6 +66,10 @@ module Player {
 			this.setupOverlays(languageCode);
 		}
 
+		private setupPanes() {
+			this._player.addChild(new TopPaneComponent(this._player, this._videoData.titles[this._videoData.defaultLang]));
+		}
+
 		private setupTimeDisplay() {
 			var timeComponent = this._player.controlBar.addChild(new CurrentTimeComponent(this._player));
 			$('.vjs-volume-menu-button').after(timeComponent.el());
@@ -72,11 +78,13 @@ module Player {
 		}
 
 		private setupChapters(languageCode: string) {
-			var chapterData = this._videoData.chapters[languageCode];
+			var chapters = this._videoData.chapters[languageCode];
+			chapters.sort((c1: ChapterData, c2: ChapterData) => c1.begin - c2.begin);
 
-			chapterData.forEach((chapter: ChapterData) => {
-				this._player.controlBar.progressControl.seekBar.addChild(new SeekBarChapterMarkerComponent(this._player, this._videoData, chapter));
-			});
+			// note: excluding the first chapter
+			for (var i = 1; i < chapters.length; i++) {
+				this._player.controlBar.progressControl.seekBar.addChild(new SeekBarChapterMarkerComponent(this._player, this._videoData, chapters[i]));
+			}
 
 			// Uncomment to enable the video.js chapter menu (which seems buggy atm)
 			//var textTrack = <VideoJSTextTrack>this.player.addTextTrack('chapters', 'chapters: ' + languageCode, languageCode);
