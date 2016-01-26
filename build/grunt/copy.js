@@ -33,12 +33,6 @@ module.exports = function(grunt, shared) {
 				cwd: 'src/font',
 				src: '**/*.*',
 				dest: 'dist/font/'
-			},
-			{
-				expand: true,
-				cwd: 'node_modules/video.js/dist/lang',
-				src: '**/*.*',
-				dest: 'dist/lang/'
 			}]
 		},
 		html: {
