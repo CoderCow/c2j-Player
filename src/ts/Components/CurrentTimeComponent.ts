@@ -12,7 +12,7 @@ module Player {
 
 		public createEl(tagName: string, properties?: any, attributes?: any) {
 			var div = $(TemplateUtils.renderSynch('Components/CurrentTime', {
-				currentTimeString: this.localize('Current Time')
+				currentTimeString: this.localize('Time')
 			}));
 			this._currentTimeElement = div.find('.video-current-time');
 			this._durationTimeElement = div.find('.video-duration-time');

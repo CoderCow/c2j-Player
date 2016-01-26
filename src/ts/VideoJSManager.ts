@@ -123,10 +123,19 @@ module Player {
 		}
 
 		private setupSubtitles() {
+			var languageCodeTable = __getLanguageCodeTable();
 			this.setupSubtitleSettings();
 
 			$.each(this._videoData.captions, (languageCode: string, captions: CaptionData[]) => {
-				var textTrack = <VideoJSTextTrack>this.player.addTextTrack('captions', languageCode, languageCode);
+				var languageName = languageCodeTable[languageCode.toLowerCase()];
+				if (languageName !== undefined) {
+					languageName = this._player.localize(languageName) + ' (' + languageName + ')';
+				} else {
+					console.warn(`Language code ${languageCode} could not be resolved into a language name.`);
+					languageName = languageCode;
+				}
+
+				var textTrack = <VideoJSTextTrack>this.player.addTextTrack('captions', languageName, languageCode);
 
 				captions.forEach((caption: CaptionData) => {
 					var cue = new VTTCue(caption.begin, caption.end, caption.content);
