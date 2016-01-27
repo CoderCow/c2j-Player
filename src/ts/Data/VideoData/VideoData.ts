@@ -95,6 +95,11 @@ module Player {
 
 		private getByLanguage<T>(languageIndexedObject: LanguageIndexed<T>, languageCode: string): T {
 			var items = languageIndexedObject[languageCode];
+			if (items === undefined) {
+				// There might not be data for 'en-us' available, but maybe for 'en' at least.
+				var primaryLanguage = languageCode.substr(0, 2);
+				items = languageIndexedObject[primaryLanguage];
+			}
 			if (items === undefined)
 				items = languageIndexedObject[this.defaultLang];
 			if (items === undefined)

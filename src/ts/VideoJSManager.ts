@@ -50,7 +50,7 @@ module Player {
 				// TODO: Remove when VideoJSOptions.defaultVolume works again..
 				_this._player.volume(_this._userSettings.volume);
 
-				var initalLanguage = _this._videoData.defaultLang;
+				var initalLanguage = _this._player.language();
 				_this.setMediaLanguage(initalLanguage);
 
 				_this.setupPanes(initalLanguage);
