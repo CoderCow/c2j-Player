@@ -43,7 +43,7 @@ module Player {
 		}
 
 		public createEl() {
-			var element = $(TemplateUtils.renderSynch('Components/SeekBarMarkerMenu', {}));
+			var element = $(TemplateUtils.renderSynch('Components/Menus/SeekBarMarkerMenu', {}));
 			this.contentEl_ = element.find('.vjs-menu-content')[0];
 
 			return element[0];

@@ -1,0 +1,63 @@
+<div class="vjs-menu language-menu" title="">
+	<div class="title">{title}</div>
+
+	{#audio}
+	<div class="audio">
+		<label class="label">
+			{label}
+
+			{?isJustOne}
+			{! there's always at least one item available !}
+			<span class="single value" title="{noOtherLanguagesAvailableHint}">{selectables[0].label}</span>
+			{:else}
+			<select class="multi value">
+				{! 'selected' attribute will be added by code as appropriate !}
+				{#selectables}
+				<option value="{code}">{label}</option>
+				{/selectables}
+			</select>
+			{/isJustOne}
+		</label>
+	</div>
+	{/audio}
+
+	{#extras}
+	<div class="extras">
+		<label class="label">
+			{label}
+
+			{?isJustOne}
+			{! there's always at least a 'none' item available !}
+			<span class="single value" title="{noOtherLanguagesAvailableHint}">{selectables[0].label}</span>
+			{:else}
+			<select class="multi value">
+				{! 'selected' attribute will be added by code as appropriate !}
+				{#selectables}
+				<option value="{code}">{label}</option>
+				{/selectables}
+			</select>
+			{/isJustOne}
+		</label>
+	</div>
+	{/extras}
+
+	{#subtitle}
+	<div class="subtitle">
+		<label class="label">
+			{label}
+
+			{?isJustOne}
+			{! there's always at least a 'none' item available !}
+			<span class="single value" title="{noOtherLanguagesAvailableHint}">{selectables[0].label}</span>
+			{:else}
+			<select class="multi value">
+				{! 'selected' attribute will be added by code as appropriate !}
+				{#selectables}
+				<option value="{code}">{label}</option>
+				{/selectables}
+			</select>
+			{/isJustOne}
+		</label>
+	</div>
+	{/subtitle}
+</div>

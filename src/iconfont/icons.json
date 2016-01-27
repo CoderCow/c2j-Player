@@ -31,5 +31,8 @@
   }, {
     "name": "file-text",
     "svg": "fontawesome/file-text.svg"
+  }, {
+    "name": "language",
+    "svg": "custom/language.svg"
   }]
 }

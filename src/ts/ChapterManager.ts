@@ -24,7 +24,7 @@ module Player {
 
 			// note: excluding the first chapter
 			this._markers = [];
-			this._markers.length = chapters.length - 1;;
+			this._markers.length = chapters.length - 1;
 			for (var i = 1; i < chapters.length; i++) {
 				var marker = new SeekBarChapterMarkerComponent(this._player, this._videoData, chapters[i])
 

@@ -1,0 +1,22 @@
+#videojs {
+	.language-button {
+		.language-menu {
+			background: rgba(43, 51, 63, 0.7);
+			left: -12em;
+			bottom: 1.5em;
+			width: 19em;
+			height: 8em;
+			max-height: inherit;
+			text-align: left;
+
+			div {
+				padding: 0.4em;
+			}
+
+			.value {
+				display: inline-block;
+				float: right;
+			}
+		}
+	}
+}

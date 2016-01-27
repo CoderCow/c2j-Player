@@ -159,6 +159,32 @@
         "tooltip" : ""
       } ]
     } ]
+  }, {
+    "id" : 552,
+    "lang" : "en",
+    "title" : "Recording with SmartFocus",
+    "begin" : 60,
+    "dur" : 93,
+    "videoType" : "digital",
+    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes how to configure Camtasia to record your videos and auto applying SmartFocus to them.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
+    "category" : 323,
+    "tooltip" : "How to Configure Camtasia to Record With SmartFocus",
+    "tags" : "record recording using auto",
+    "charts" : [ ],
+    "additionals" : [ ]
+  }, {
+    "id" : 720,
+    "lang" : "en",
+    "title" : "Manual Animations",
+    "begin" : 278.7,
+    "dur" : 59.7,
+    "videoType" : "digital",
+    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes how manual SmartFocus animations are added to your clips.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
+    "category" : 379,
+    "tooltip" : "How to Add Manual SmartFocus Animations",
+    "tags" : "add setup configure new create put define",
+    "charts" : [ ],
+    "additionals" : [ ]
   } ],
   "authorNotes" : [ {
     "lang" : "de",
@@ -210,251 +236,6 @@
     "begin" : 9.2,
     "dur" : 7.43,
     "content" : "sehr viel kleineren Auflösungen zu erkennen… z.B. auf einem Mobilgerät oder einer Webseite.\nHier kann das SmartFocus Feature von Camtasia abhilfe leisten. "
-  }, {
-    "lang" : "de",
-    "begin" : 17.13,
-    "dur" : 6.3,
-    "content" : "SmartFocus automatically predicts where to zoom in during your \nvideo to make it easier to see things on your screen. "
-  }, {
-    "lang" : "de",
-    "begin" : 23.93,
-    "dur" : 6.27,
-    "content" : "All this happens behind the scenes during recording, as \nSmartFocus analyzes the position of your mouse cursor, which \nwindows "
-  }, {
-    "lang" : "de",
-    "begin" : 30.7,
-    "dur" : 8.33,
-    "content" : "are active, and when text is entered. SmartFocus then uses this \ndata to add zoom animations to your timeline in the editor. "
-  }, {
-    "lang" : "de",
-    "begin" : 39.53,
-    "dur" : 5.47,
-    "content" : "One important thing to note is that SmartFocus will only work with \n.trec or .camrec recording files. "
-  }, {
-    "lang" : "de",
-    "begin" : 45.5,
-    "dur" : 7.23,
-    "content" : "It will not work when saving your recordings to the AVI format, or \nwith other video formats that can be imported into Camtasia \nStudio. "
-  }, {
-    "lang" : "de",
-    "begin" : 53.23,
-    "dur" : 6.6,
-    "content" : "You can still manually zoom and pan with other video formats but \nthe SmartFocus data just won’t be present. "
-  }, {
-    "lang" : "de",
-    "begin" : 60.33,
-    "dur" : 6.84,
-    "content" : "Let’s take a look at how SmartFocus is applied, and then how \neasy it is to edit and add new zoom animations. "
-  }, {
-    "lang" : "de",
-    "begin" : 67.67,
-    "dur" : 4.2,
-    "content" : "There are a few different ways you can apply SmartFocus \nanimations to your recording files. "
-  }, {
-    "lang" : "de",
-    "begin" : 72.37,
-    "dur" : 6,
-    "content" : "First, click the Zoom N Pan tab. Then, look for the SmartFocus \noptions. "
-  }, {
-    "lang" : "de",
-    "begin" : 78.87,
-    "dur" : 7.3,
-    "content" : "If you check “Apply SmartFocus to clips added,” Camtasia will \napply SmartFocus animations to any recording files added to the \ntimeline from "
-  }, {
-    "lang" : "de",
-    "begin" : 86.67,
-    "dur" : 8.63,
-    "content" : "here on out. If you click “Apply SmartFocus to selected clips,” \nSmartFocus animations will be applied to any recording files that \nare selected "
-  }, {
-    "lang" : "de",
-    "begin" : 95.8,
-    "dur" : 7.63,
-    "content" : "on the timeline. And if you click “Apply SmartFocus to timeline” \nCamtasia will apply SmartFocus animations to the recording files "
-  }, {
-    "lang" : "de",
-    "begin" : 103.93,
-    "dur" : 6.97,
-    "content" : "that are currently on your timeline. If you want SmartFocus \nanimations applied to your recording files every time you use \nstart a new "
-  }, {
-    "lang" : "de",
-    "begin" : 111.4,
-    "dur" : 11.47,
-    "content" : "project in Camtasia, go to Tools > Options, and then check “Apply \nSmartFocus to clips added.” "
-  }, {
-    "lang" : "de",
-    "begin" : 123.37,
-    "dur" : 5.13,
-    "content" : "When SmartFocus animations are applied, you’ll see this pop up \non the timeline. "
-  }, {
-    "lang" : "de",
-    "begin" : 129,
-    "dur" : 5.7,
-    "content" : "You will also see these blue visual animations that represent \nwhere SmartFocus was automatically applied. "
-  }, {
-    "lang" : "de",
-    "begin" : 135.2,
-    "dur" : 4.57,
-    "content" : "Their placement is predicted based on data collected during the \nrecording. "
-  }, {
-    "lang" : "de",
-    "begin" : 140.27,
-    "dur" : 6.63,
-    "content" : "You can position the playhead before any of the animations and \nplayback the video to see what happens in the canvas. "
-  }, {
-    "lang" : "de",
-    "begin" : 147.4,
-    "dur" : 5.43,
-    "content" : "Here, it looks like this zoom is focusing in on the calculator as the \nmouse pointer is clicking the keys. "
-  }, {
-    "lang" : "de",
-    "begin" : 153.33,
-    "dur" : 6.07,
-    "content" : "To reposition when the zoom happens during the video, click and \ndrag the animation on the timeline. "
-  }, {
-    "lang" : "de",
-    "begin" : 159.9,
-    "dur" : 8.8,
-    "content" : "It’s also very easy to make quick edits to an animation. Just \ndouble-click one of them and the Visual Properties tab opens. "
-  }, {
-    "lang" : "de",
-    "begin" : 169.2,
-    "dur" : 4.57,
-    "content" : "The Visual Properties gives you tons of control over how your \nmedia looks and appears in your video. "
-  }, {
-    "lang" : "de",
-    "begin" : 174.27,
-    "dur" : 3.6,
-    "content" : "This also includes editing your zoom animations. "
-  }, {
-    "lang" : "de",
-    "begin" : 178.37,
-    "dur" : 6.56,
-    "content" : "Adjust the scale of your zoom by dragging this slider and see the \nchanges instantly on the canvas. "
-  }, {
-    "lang" : "de",
-    "begin" : 185.43,
-    "dur" : 6.64,
-    "content" : "If you’re zooming in, targeting 100% is a good rule to follow \nbecause that’s where your video will be the clearest.  "
-  }, {
-    "lang" : "de",
-    "begin" : 192.57,
-    "dur" : 4.83,
-    "content" : "Anything over 100% may cause your video to look blurry or \npixelated. "
-  }, {
-    "lang" : "de",
-    "begin" : 197.9,
-    "dur" : 7.87,
-    "content" : "You can also adjust the opacity and other visual effects, but we’ll \ncover these more in the Visual Properties tutorial. "
-  }, {
-    "lang" : "de",
-    "begin" : 206.27,
-    "dur" : 7.9,
-    "content" : "Besides using the scale slider to adjust the zoom level, it’s also \npossible to grab one of the corners on the canvas to scale your \nvideo. "
-  }, {
-    "lang" : "de",
-    "begin" : 214.67,
-    "dur" : 4.36,
-    "content" : "You may need to change the percentage of view on the canvas \nusing this dropdown menu, "
-  }, {
-    "lang" : "de",
-    "begin" : 219.53,
-    "dur" : 4,
-    "content" : "or the scroll wheel on your mouse, to see more of your recorded \nvideo. "
-  }, {
-    "lang" : "de",
-    "begin" : 224.03,
-    "dur" : 5.3,
-    "content" : "Then just drag the recording to reposition what you want to show \ninside the preview area of the canvas. "
-  }, {
-    "lang" : "de",
-    "begin" : 229.83,
-    "dur" : 4.8,
-    "content" : "Anything outside of this video preview area will not show up in the \nproduced video. "
-  }, {
-    "lang" : "de",
-    "begin" : 235.13,
-    "dur" : 6,
-    "content" : "Once the video is zoomed into this new location, it will remain \nthere until it either reaches the end of the clip or another "
-  }, {
-    "lang" : "de",
-    "begin" : 241.63,
-    "dur" : 6.67,
-    "content" : "animation. Let’s play back the video just before this next \nanimation to see what happens. "
-  }, {
-    "lang" : "de",
-    "begin" : 248.8,
-    "dur" : 5.43,
-    "content" : "Now the focus is on the Notepad document and everything else \nis not visible in the video. "
-  }, {
-    "lang" : "de",
-    "begin" : 254.73,
-    "dur" : 7.3,
-    "content" : "Again, if this animation needed to be edited, just double-click it \nand make the changes within the Visual Properties tab. "
-  }, {
-    "lang" : "de",
-    "begin" : 262.53,
-    "dur" : 8.8,
-    "content" : "To remove any, or all, existing animations from a clip, right-click \none of them and either choose delete, or delete all visual \nanimations.  "
-  }, {
-    "lang" : "de",
-    "begin" : 271.83,
-    "dur" : 6.47,
-    "content" : "If you have multiple clips on the timeline, you will have to delete \nall visual animations separately from those clips. "
-  }, {
-    "lang" : "de",
-    "begin" : 278.8,
-    "dur" : 7.63,
-    "content" : "To add a visual animation manually, first, select the media and \nposition the playhead where you want to add the animation. "
-  }, {
-    "lang" : "de",
-    "begin" : 286.93,
-    "dur" : 5.94,
-    "content" : "If you don’t have any media selected on the timeline, you will see \nthis message in the Visual Properties Tab. "
-  }, {
-    "lang" : "de",
-    "begin" : 293.37,
-    "dur" : 8.56,
-    "content" : "So, with the media selected, click the Add animation button. If you \nlike keyboard shortcuts, the hotkey “Z” will also work... "
-  }, {
-    "lang" : "de",
-    "begin" : 302.43,
-    "dur" : 5,
-    "content" : "but again, the media must be selected on the timeline in order to \nadd an animation. "
-  }, {
-    "lang" : "de",
-    "begin" : 307.93,
-    "dur" : 6.77,
-    "content" : "You can resize and reposition the video on the canvas so that it \nshows exactly what you want at this point in the video. "
-  }, {
-    "lang" : "de",
-    "begin" : 315.2,
-    "dur" : 5.57,
-    "content" : "As an alternative, you can also reposition the level of zoom from \nwithin the Zoom-n-Pan tab. "
-  }, {
-    "lang" : "de",
-    "begin" : 321.27,
-    "dur" : 6.8,
-    "content" : "Whatever is placed inside this selection rectangle on the left gets \ndisplayed in the video at this point in time."
-  }, {
-    "lang" : "de",
-    "begin" : 328.57,
-    "dur" : 4.4,
-    "content" : "Now it’s up to you to decide if you want SmartFocus to help guide \nyou with when to zoom and pan,"
-  }, {
-    "lang" : "de",
-    "begin" : 333.47,
-    "dur" : 4.43,
-    "content" : "or take over the control yourself and add the visual animations \nmanually."
-  }, {
-    "lang" : "de",
-    "begin" : 338.4,
-    "dur" : 5.27,
-    "content" : "The next tutorial in this series will show you how to cut out or \nremove unwanted media on the timeline."
-  }, {
-    "lang" : "de",
-    "begin" : 344.17,
-    "dur" : 4.6,
-    "content" : "If you have any feedback for us, please follow this link to a short \nsurvey."
   }, {
     "lang" : "en",
     "begin" : 2.1,
@@ -800,6 +581,34 @@
   }, {
     "id" : 1498,
     "lang" : "de",
+    "begin" : 344.8,
+    "dur" : 5.2,
+    "content" : "",
+    "isCopyableContent" : false,
+    "style" : "Inhaltslos",
+    "position" : "Standard",
+    "action" : "link",
+    "actionParams" : {
+      "href" : "http://techsmith.qualtrics.com/SE/?SID=SV_5mwLlz0UQZhIqag",
+      "inNewWindow" : true
+    },
+    "pauseAtEnd" : false,
+    "waitForAction" : false,
+    "closeOnAction" : false,
+    "closeButton" : false,
+    "forceVisibility" : true,
+    "translateTransform" : [ -6.48, 10.39, 0 ],
+    "rotateTransform" : [ 0, 0, 0 ],
+    "shearTransform" : [ 0, 0, 0 ],
+    "w" : 49.5,
+    "h" : 13.25,
+    "opacity" : 1,
+    "fadeInDuration" : 0.1,
+    "fadeOutDuration" : 0.07,
+    "tooltip" : "Help us improve our tutorial videos."
+  }, {
+    "id" : 1498,
+    "lang" : "en",
     "begin" : 344.8,
     "dur" : 5.2,
     "content" : "",

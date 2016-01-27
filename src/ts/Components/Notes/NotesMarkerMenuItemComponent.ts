@@ -23,7 +23,7 @@ module Player {
 
 		public createEl(tagName: string, properties?: any, attributes?: any) {
 			// TODO: format content like _blank on all <a>, make beautiful anchors with a symbol, convert links to <a>'s, format code etc.
-			var el = $(TemplateUtils.renderSynch('Components/NoteMenuItem', {
+			var el = $(TemplateUtils.renderSynch('Components/Menus/NoteMenuItem', {
 				title: this._note.title,
 				content: this._note.content,
 				gotoButtonHint: this.localize('Go to this Position'),

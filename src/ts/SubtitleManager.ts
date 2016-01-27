@@ -2,28 +2,19 @@ module Player {
 	'use strict';
 	export class SubtitleManager {
 		private _player: VideoJSPlayer;
-		private _videoData: VideoData;
+		private _videoJSManager: VideoJSManager;
 
-		public constructor(player: VideoJSPlayer, videoData: VideoData, initialLanguage: string) {
+		public constructor(player: VideoJSPlayer, videoJSManager: VideoJSManager) {
 			this._player = player;
-			this._videoData = videoData;
+			this._videoJSManager = videoJSManager;
 
-			var languageCodeTable = __getLanguageCodeTable();
 			this.setupSubtitleSettings();
 
-			$.each(this._videoData.captions, (languageCode: string, captions: CaptionData[]) => {
+			$.each(videoJSManager.videoData.captions, (languageCode: string, captions: CaptionData[]) => {
 				// Sort captions by their beginning time.
 				captions.sort((a: CaptionData, b: CaptionData) => a.begin - b.begin);
 
-				var languageName = languageCodeTable[languageCode.toLowerCase()];
-				if (languageName !== undefined) {
-					languageName = this._player.localize(languageName) + ' (' + languageName + ')';
-				} else {
-					console.warn(`Language code ${languageCode} could not be resolved into a language name.`);
-					languageName = languageCode;
-				}
-
-				var textTrack = <VideoJSTextTrack>this._player.addTextTrack('captions', languageName, languageCode);
+				var textTrack = <VideoJSTextTrack>this._player.addTextTrack('captions', languageCode, languageCode);
 
 				captions.forEach((caption: CaptionData) =>
 					textTrack.addCue(new VTTCue(caption.begin, caption.end, caption.content)));
@@ -32,6 +23,8 @@ module Player {
 
 		public setLanguage(languageCode: string) {
 			var tracks = this._player.textTracks();
+			if (languageCode !== null)
+				languageCode = languageCode.toLowerCase();
 
 			for (var i = 0; i < tracks.length; i++) {
 				var track = tracks[i];
@@ -48,7 +41,7 @@ module Player {
 		// TODO: rewrite textTrackSettings and textTrackDisplay components for proper subtitle display
 		private setupSubtitleSettings() {
 			var textTrackSettings = <VideoJSTextTrackSettings>{};
-			var c2jCaptionSettings = this._videoData.captionSettings;
+			var c2jCaptionSettings = this._videoJSManager.videoData.captionSettings;
 
 			var color = c2jCaptionSettings.foregroundColor;
 			textTrackSettings.color = [0, color[0], color[1], color[2]];
@@ -62,7 +55,7 @@ module Player {
 			textTrackSettings.fontPercent = 1;
 			textTrackSettings.windowColor = [0, 0, 0, 0];
 
-			if (this._videoData.captionSettings.isBackgroundEnabled)
+			if (this._videoJSManager.videoData.captionSettings.isBackgroundEnabled)
 				textTrackSettings.backgroundOpacity = c2jCaptionSettings.opacity;
 			else
 				textTrackSettings.backgroundOpacity = 0;
@@ -73,6 +66,6 @@ module Player {
 			};
 			var videoJsTextTrackDisplayComponent = <any>this._player.getChild('textTrackDisplay');
 			videoJsTextTrackDisplayComponent.updateDisplay();
-		};
+		}
 	}
 }

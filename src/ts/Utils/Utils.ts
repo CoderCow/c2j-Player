@@ -9,12 +9,6 @@ interface String {
 	endsWith(suffix: string): boolean;
 }
 
-interface Array<T> {
-	firstOrUndefined(predicate: (item: T) => boolean): T;
-	any(predicate: (item: T) => boolean): boolean;
-	all(predicate: (item: T) => boolean): boolean;
-}
-
 if (typeof String.prototype.format !== 'function') {
 	String.prototype.format = function(...args: any[]): string {
 		if (args === undefined)
@@ -42,32 +36,6 @@ if (typeof String.prototype.startsWith !== 'function') {
 if (typeof String.prototype.endsWith !== 'function') {
 	String.prototype.endsWith = function (value: string): boolean {
     return (this.slice(-value.length) == value);
-  };
-}
-
-if (typeof Array.prototype.firstOrUndefined !== 'function') {
-	Array.prototype.firstOrUndefined = function (predicate: (item: any) => boolean): any {
-    for (var i = 0; i < this.length; i++)
-      if (this[i] !== undefined && predicate(this[i]))
-        return this[i];
-
-		return undefined;
-  };
-}
-
-if (typeof Array.prototype.any !== 'function') {
-	Array.prototype.any = function (predicate: (item: any) => boolean): boolean {
-    return (this.firstOrUndefined(predicate) !== undefined);
-  };
-}
-
-if (typeof Array.prototype.all !== 'function') {
-	Array.prototype.all = function (predicate: (item: any) => boolean): boolean {
-    for (var i = 0; i < this.length; i++)
-      if (this[i] !== undefined && !predicate(this[i]))
-        return false;
-
-		return true;
   };
 }
 

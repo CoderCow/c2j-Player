@@ -3,7 +3,7 @@ module Player {
 	export class AuthorNotesManager {
 		private _player: VideoJSPlayer;
 		private _videoData: VideoData;
-		private _authorNoteMarkers: SeekBarNotesMarkerComponent[];
+		private _authorNoteMarkers: NotesMarkerComponent[];
 
 		public constructor(player: VideoJSPlayer, videoData: VideoData, initialLanguage: string) {
 			this._player = player;
@@ -23,7 +23,6 @@ module Player {
 				this.removeAllMarkers();
 
 			this._authorNoteMarkers = [];
-			this._authorNoteMarkers.length = authorNotes.length;
 			authorNotes.forEach((authorNote: AuthorNoteData) => this.setupAuthorNote(authorNote));
 		}
 
@@ -34,13 +33,13 @@ module Player {
 
 		private setupAuthorNote(authorNote: AuthorNoteData) {
 			if (authorNote.displayInTimeline) {
-				var existingMarkerAtAboutTheSamePosition = this._authorNoteMarkers.firstOrUndefined((existingMarker: SeekBarNotesMarkerComponent) =>
+				var existingMarkerAtAboutTheSamePosition = this._authorNoteMarkers.firstOrUndefined((existingMarker: NotesMarkerComponent) =>
 					(authorNote.begin >= existingMarker.time - 4 && authorNote.end <= existingMarker.time + 4));
 
 				if (existingMarkerAtAboutTheSamePosition !== undefined) {
 					existingMarkerAtAboutTheSamePosition.addNote(authorNote);
 				} else {
-					var noteMarkerComponent = new SeekBarNotesMarkerComponent(this._player, this._videoData, authorNote);
+					var noteMarkerComponent = new NotesMarkerComponent(this._player, this._videoData, authorNote);
 					this._authorNoteMarkers.push(noteMarkerComponent);
 
 					this._player.controlBar.progressControl.seekBar.addChild(noteMarkerComponent);
@@ -49,7 +48,7 @@ module Player {
 		}
 
 		public removeAllMarkers() {
-			this._authorNoteMarkers.forEach((marker: SeekBarNotesMarkerComponent) => marker.dispose());
+			this._authorNoteMarkers.forEach((marker: NotesMarkerComponent) => marker.dispose());
 			this._authorNoteMarkers = [];
 		}
 	}

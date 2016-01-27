@@ -1,0 +1,10 @@
+<div class="language-button vjs-button vjs-control vjs-menu-button vjs-menu-button-popup vjs-icon-language"
+	   tabindex="0"
+	   title="{label}"
+	   role="button"
+	   aria-haspopup="true"
+	   aria-live="polite"
+	   aria-label="{label}"
+	   aria-pressed="false">
+
+</div>

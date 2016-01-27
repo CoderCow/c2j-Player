@@ -16,6 +16,7 @@ module Player {
 		private _player: VideoJSPlayer;
 		private _videoData: VideoData;
 		private _topPane: TopPaneComponent;
+		private _languageMenu: LanguageMenuComponent;
 		private _chapterManager: ChapterManager;
 		private _subtitleManager: SubtitleManager;
 		private _authorNotesManager: AuthorNotesManager;
@@ -26,6 +27,7 @@ module Player {
 			this._videoData = videoData;
 
 			this._topPane = null;
+			this._languageMenu = null;
 
 			this._chapterManager = null;
 			this._subtitleManager = null;
@@ -51,27 +53,19 @@ module Player {
 				_this._player.volume(_this._userSettings.volume);
 
 				var initalLanguage = _this._player.language();
+				_this.setupButtons();
 				_this.setMediaLanguage(initalLanguage);
-
-				_this.setupPanes(initalLanguage);
-				_this.setupTimeDisplay();
 
 				_this._chapterManager = new ChapterManager(_this._player, _this._videoData, initalLanguage);
 				_this._authorNotesManager = new AuthorNotesManager(_this._player, _this._videoData, initalLanguage);
 				_this._overlayManager = new OverlayManager(_this._player, _this._videoData, initalLanguage);
-				_this._subtitleManager = new SubtitleManager(_this._player, _this._videoData, initalLanguage);
+				_this._subtitleManager = new SubtitleManager(_this._player, _this);
+
+				_this.setupPanes(initalLanguage);
+				_this.setupTimeDisplay();
 
 				initCompleted();
 			});
-		}
-
-		public setTextLanguage(languageCode: string) {
-			this._topPane.setTitle(this._videoData.titleByLanguage(languageCode));
-
-			this._chapterManager.setLanguage(languageCode);
-			this._subtitleManager.setLanguage(languageCode);
-			this._authorNotesManager.setLanguage(languageCode);
-			this._overlayManager.setLanguage(languageCode);
 		}
 
 		private setupPanes(languageCode: string) {
@@ -81,14 +75,20 @@ module Player {
 			this._player.addChild(this._topPane);
 		}
 
-		private setupTimeDisplay() {
-			var timeComponent = this._player.controlBar.addChild(new CurrentTimeComponent(this._player));
-			$('.vjs-volume-menu-button').after(timeComponent.el());
+		private setupButtons() {
+			var languageButton = new LanguageButtonComponent(this._player, this._videoData);
+			var languageMenu = <LanguageMenuComponent>languageButton.menu;
 
-			this._player.controlBar.progressControl.seekBar.addChild(new MouseTimeDisplayComponent(this._player, this._videoData));
+			languageMenu.on('audioLanguageChanged', () => this.setMediaLanguage(languageMenu.selectedAudioLanguage));
+			languageMenu.on('extrasLanguageChanged', () => this.setExtrasLanguage(languageMenu.selectedExtrasLanguage));
+			languageMenu.on('subtitleLanguageChanged', () => this.setSubtitleLanguage(languageMenu.selectedSubtitleLanguage));
+			this._languageMenu = languageMenu;
+
+			this._player.controlBar.addChild(languageButton);
+			$(languageButton.el()).insertBefore('.vjs-fullscreen-control');
 		}
 
-		private setMediaLanguage(languageCode: string) {
+		public setMediaLanguage(languageCode: string) {
 			var availableMedia = this._videoData.mediaByLanguage(languageCode);
 			availableMedia.sort((m1: MediumData, m2: MediumData) =>
 				VideoJSManager.MEDIA_TYPE_PRIORITIES[m1.type] - VideoJSManager.MEDIA_TYPE_PRIORITIES[m2.type]);
@@ -98,10 +98,34 @@ module Player {
 				media.push(<VideoJSSource>{ src: App.VIDEO_BASE_PATH + medium.src, type: medium.type }));
 
 			this.player.src(media);
+			this._languageMenu.selectedAudioLanguage = languageCode;
+		}
+
+		public setExtrasLanguage(languageCode: string) {
+			this._chapterManager.setLanguage(languageCode);
+			this._authorNotesManager.setLanguage(languageCode);
+			this._overlayManager.setLanguage(languageCode);
+			this._languageMenu.selectedExtrasLanguage = languageCode;
+		}
+
+		public setSubtitleLanguage(languageCode: string) {
+			this._subtitleManager.setLanguage(languageCode);
+			this._languageMenu.selectedSubtitleLanguage = languageCode;
+		}
+
+		private setupTimeDisplay() {
+			var timeComponent = this._player.controlBar.addChild(new CurrentTimeComponent(this._player));
+			$('.vjs-volume-menu-button').after(timeComponent.el());
+
+			this._player.controlBar.progressControl.seekBar.addChild(new MouseTimeDisplayComponent(this._player, this._videoData));
 		}
 
 		public get player(): VideoJSPlayer {
 			return this._player;
+		}
+
+		public get videoData(): VideoData {
+			return this._videoData;
 		}
 	}
 }
