@@ -21,7 +21,7 @@ module Player {
 	    var newTime = this.calculateDistance(event) * duration;
 			var position = event.pageX - $(this.el().parentNode).offset().left;
 
-			var pointElement: any = document.elementFromPoint(event.x, event.y);
+			var pointElement: any = document.elementFromPoint(event.clientX, event.clientY);
 	    this.update(newTime, position, pointElement);
 	  }
 

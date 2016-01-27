@@ -16,7 +16,7 @@ module Player {
 		public handleClick(event: Event) {
 			// When the mouse leaves the button itself, it should switch to unpressed state.
 			this.one('mouseout', (event: MouseEvent) => {
-				var element = $(document.elementFromPoint(event.x, event.y));
+				var element = $(document.elementFromPoint(event.clientX, event.clientY));
 				var mouseMovedOverMenu = (element.closest('.vjs-menu')[0] === this.menu.el());
 				if (!mouseMovedOverMenu)
 	        this.unpressButton();
