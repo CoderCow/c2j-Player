@@ -186,7 +186,7 @@ interface VideoJSPlayer extends VideoJSComponent {
 	isAudio(): boolean;
 	networkState(): number;
 	readyState(): number;
-	textTracks(): VideoJSTextTrack[];
+	textTracks(): { [i: number]: VideoJSTextTrack; length: number };
 	remoteTextTracks(): any[];
 	remoteTextTrackEls(): HTMLTrackElement[];
 	addTextTrack(kind: string, label: string, language: string): VideoJSTextTrack|boolean;

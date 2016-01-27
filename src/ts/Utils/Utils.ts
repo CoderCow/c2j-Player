@@ -48,7 +48,7 @@ if (typeof String.prototype.endsWith !== 'function') {
 if (typeof Array.prototype.firstOrUndefined !== 'function') {
 	Array.prototype.firstOrUndefined = function (predicate: (item: any) => boolean): any {
     for (var i = 0; i < this.length; i++)
-      if (predicate(this[i]))
+      if (this[i] !== undefined && predicate(this[i]))
         return this[i];
 
 		return undefined;
@@ -64,7 +64,7 @@ if (typeof Array.prototype.any !== 'function') {
 if (typeof Array.prototype.all !== 'function') {
 	Array.prototype.all = function (predicate: (item: any) => boolean): boolean {
     for (var i = 0; i < this.length; i++)
-      if (!predicate(this[i]))
+      if (this[i] !== undefined && !predicate(this[i]))
         return false;
 
 		return true;

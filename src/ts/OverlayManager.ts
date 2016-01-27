@@ -5,7 +5,6 @@ module Player {
 		private _videoData: VideoData;
 		private _overlayContainer: JQuery;
 		private _overlays: OverlayComponent[];
-		private _visibleOverlays: { [id: number]: OverlayComponent };
 		private _lastPlayerOffsetWidth: number;
 		private _lastPlayerOffsetHeight: number;
 		/**
@@ -16,8 +15,7 @@ module Player {
 		public constructor(player: VideoJSPlayer, videoData: VideoData, initialLanguage: string) {
 			this._player = player;
 			this._videoData = videoData;
-			this._overlays = [];
-			this._visibleOverlays = [];
+			this._overlays = null;
 			this._pausingOverlay = null;
 			this._overlayContainer = $(TemplateUtils.renderSynch('Components/OverlayContainer', {}));
 			this._overlayContainer.insertAfter('.vjs-text-track-display');
@@ -36,18 +34,30 @@ module Player {
 		}
 
 		public setLanguage(languageCode: string) {
-			var overlays = this._videoData.overlays[languageCode];
+			var overlays = this._videoData.overlaysByLanguage(languageCode);
 
+			// Sort overlays by their beginning time.
+			overlays.sort((a: OverlayData, b: OverlayData) => a.begin - b.begin);
+
+			if (this._overlays !== null)
+				this.removeAllOverlays();
+
+			this._overlays = [];
 			this._overlays.length = overlays.length;
 			for (var i = 0; i < overlays.length; i++) {
 				if (this._overlays[i] !== undefined)
 					this._overlays[i].dispose();
 
-				this._overlays[i] = new Player.OverlayComponent(this._player, this._videoData, overlays[i]);
+				this._overlays[i] = new OverlayComponent(this._player, this._videoData, overlays[i]);
 				this._overlayContainer.append(this._overlays[i].el());
 			}
+		}
 
-			this._visibleOverlays = {};
+		public removeAllOverlays() {
+			this._overlays.forEach((overlay: OverlayComponent) => overlay.dispose());
+			this._overlays = [];
+
+			this._pausingOverlay = null;
 		}
 
 		public alignOverlays() {
@@ -80,7 +90,7 @@ module Player {
 		private player_timeupdate() {
 			var time = (this._player.scrubbing()) ? this._player.getCache().currentTime : this._player.currentTime();
 
-			// TODO: write a proper algorithm to find the relevant overlays
+			// TODO: write a proper algorithm to find the relevant overlays quickly
 			for (var i = 0; i < this._overlays.length; i++) {
 				var overlayComponent = this._overlays[i];
 

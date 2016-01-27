@@ -8,6 +8,10 @@ module Player {
 				}))[0]
 			});
 		}
+
+		public setTitle(newTitle: string) {
+			$(this.el()).find('.title').text(newTitle);
+		}
 	}
 }
 

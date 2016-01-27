@@ -60,5 +60,47 @@ module Player {
 			Validate.value(this.authCam, 'authCam');
 			Validate.validatable(this.authCam, 'authCam');
 		}
+
+		public titleByLanguage(languageCode: string): string {
+			return this.getByLanguage(this.titles, languageCode);
+		}
+
+		public descriptionByLanguage(languageCode: string): string {
+			return this.getByLanguage(this.descriptions, languageCode);
+		}
+
+		public mediaByLanguage(languageCode: string): MediumData[] {
+			return this.getByLanguage(this.media, languageCode);
+		}
+
+		public authorNotesByLanguage(languageCode: string): AuthorNoteData[] {
+			return this.getByLanguage(this.authorNotes, languageCode);
+		}
+
+		public captionsByLanguage(languageCode: string): CaptionData[] {
+			return this.getByLanguage(this.captions, languageCode);
+		}
+
+		public categoriesByLanguage(languageCode: string): CategoryData[] {
+			return this.getByLanguage(this.categories, languageCode);
+		}
+
+		public chaptersByLanguage(languageCode: string): ChapterData[] {
+			return this.getByLanguage(this.chapters, languageCode);
+		}
+
+		public overlaysByLanguage(languageCode: string): OverlayData[] {
+			return this.getByLanguage(this.overlays, languageCode);
+		}
+
+		private getByLanguage<T>(languageIndexedObject: LanguageIndexed<T>, languageCode: string): T {
+			var items = languageIndexedObject[languageCode];
+			if (items === undefined)
+				items = languageIndexedObject[this.defaultLang];
+			if (items === undefined)
+				console.error(`Metadata records for default language \"${languageCode}\" expected but not found.`);
+
+			return items;
+		}
 	}
 }
