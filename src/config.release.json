@@ -1,0 +1,10 @@
+{
+	"defaultVideoMetadataUrl": null,
+	"videoMetaBaseUrl": "videos/",
+	"videoMediaBaseUrl": "videos/",
+	"disallowFullscreen": false,
+	"enableSubtitleByDefault": false,
+	"disableAuthorNotes": false,
+	"disableOverlays": false,
+	"playerLanguage": null
+}

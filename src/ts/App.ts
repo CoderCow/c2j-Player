@@ -1,10 +1,11 @@
 module Player {
 	'use strict';
 	export class App {
-		public static VIDEO_BASE_PATH = 'videos/';
+		private static CONFIG_PATH = 'config.json';
+
 		private static _userSettingsManager: UserSettingsManager;
 		private static _videoJSManager: VideoJSManager;
-		private static _videoData: VideoData;
+		private static _playerConfig: PlayerConfig;
 
 		/**
 		 * This function can be seen as the main entry point of the application.
@@ -30,7 +31,22 @@ module Player {
 
 			App._userSettingsManager = new UserSettingsManager();
 
-			var reader = new Camtasia2JsonReader();
+			var configReader = new PlayerConfigReader();
+			configReader.read(App.CONFIG_PATH, (configData: PlayerConfig) => {
+				new GetParamHandler().handleGetParams(configData);
+				configData.invalidate();
+
+				App._playerConfig = configData;
+
+				App._videoJSManager = new VideoJSManager(App._playerConfig, App.userConfig, () => {
+					// TODO: improve this
+					App._userSettingsManager.player = App.player;
+				});
+			}, (error: Exception) => {
+				console.error(`Processing the player's config file has failed: ${error.toString()}`);
+			});
+
+			/*var reader = new Camtasia2JsonReader();
 			reader.read(App.VIDEO_BASE_PATH + 'demo.json', (videoData: VideoData) => {
 				videoData.invalidate();
 				App._videoData = videoData;
@@ -41,31 +57,23 @@ module Player {
 				});
 			}, (error: Exception) => {
 				console.log(error.toString());
-			});
+			});*/
 		}
 
 		public static get userConfig(): UserSettings {
 			return App._userSettingsManager.userSettings;
 		}
 
-		public static get player(): VideoJSPlayer {
-			var manager = App._videoJSManager.player;
-			if (manager === null)
-				console.error('The videojs player is not initialized yet.');
+		public static get playerConfig(): PlayerConfig {
+			return App._playerConfig;
+		}
 
+		public static get player(): VideoJSPlayer {
 			var player = App._videoJSManager.player;
 			if (player === null)
 				console.error('The videojs player is not initialized yet.');
 
 			return player;
-		}
-
-		public static get videoData(): VideoData {
-			var videoData = App._videoData;
-			if (videoData === null)
-				console.error('The video data has not been loaded yet.');
-
-			return videoData;
 		}
 	}
 }

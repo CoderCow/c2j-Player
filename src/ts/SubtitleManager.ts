@@ -4,13 +4,15 @@ module Player {
 		private _player: VideoJSPlayer;
 		private _videoJSManager: VideoJSManager;
 
-		public constructor(player: VideoJSPlayer, videoJSManager: VideoJSManager) {
+		public constructor(player: VideoJSPlayer, videoJSManager: VideoJSManager, initialLanguage: string = null) {
 			this._player = player;
 			this._videoJSManager = videoJSManager;
 
 			this.setupSubtitleSettings();
 
 			$.each(videoJSManager.videoData.captions, (languageCode: string, captions: CaptionData[]) => {
+				languageCode = normalizeLanguageCode(languageCode);
+
 				// Sort captions by their beginning time.
 				captions.sort((a: CaptionData, b: CaptionData) => a.begin - b.begin);
 
@@ -18,6 +20,9 @@ module Player {
 
 				captions.forEach((caption: CaptionData) =>
 					textTrack.addCue(new VTTCue(caption.begin, caption.end, caption.content)));
+
+				if (languageCode === initialLanguage)
+					textTrack.mode = 'showing';
 			});
 		}
 

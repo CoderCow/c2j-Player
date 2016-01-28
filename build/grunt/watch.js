@@ -21,6 +21,10 @@ module.exports = function(grunt, shared) {
 			files: 'src/*.html',
 			tasks: ['copy:html']
 		},
+		config: {
+			files: 'src/*.json',
+			tasks: ['copy:config']
+		},
 		img: {
 			files: 'img/**/*.*',
 			tasks: ['copy:img']
