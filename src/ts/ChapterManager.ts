@@ -3,7 +3,7 @@ module Player {
 	export class ChapterManager {
 		private _player: VideoJSPlayer;
 		private _videoData: VideoData;
-		private _markers: SeekBarChapterMarkerComponent[];
+		private _markers: ChapterMarkerComponent[];
 
 		public constructor(player: VideoJSPlayer, videoData: VideoData, initialLanguage: string) {
 			this._player = player;
@@ -26,7 +26,7 @@ module Player {
 			this._markers = [];
 			this._markers.length = chapters.length - 1;
 			for (var i = 1; i < chapters.length; i++) {
-				var marker = new SeekBarChapterMarkerComponent(this._player, this._videoData, chapters[i])
+				var marker = new ChapterMarkerComponent(this._player, this._videoData, chapters[i])
 
 				this._markers.push(marker);
 				this._player.controlBar.progressControl.seekBar.addChild(marker);
@@ -34,7 +34,7 @@ module Player {
 		}
 
 		public removeAllMarkers() {
-			this._markers.forEach((marker: SeekBarChapterMarkerComponent) => marker.dispose());
+			this._markers.forEach((marker: ChapterMarkerComponent) => marker.dispose());
 			this._markers = [];
 		}
 
