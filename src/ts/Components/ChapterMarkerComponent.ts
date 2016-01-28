@@ -1,6 +1,6 @@
 module Player {
 	'use strict';
-	export class SeekBarChapterMarkerComponent extends VideoJSComponent {
+	export class ChapterMarkerComponent extends VideoJSComponent {
 		private _chapterData: ChapterData;
 
 		public constructor(player: VideoJSPlayer, videoData: VideoData, chapterData: ChapterData) {
@@ -12,6 +12,7 @@ module Player {
 			this.on('tap', this.handleClick);
       this.on('click', this.handleClick);
 			this.on('mouseup', this.handleClick);
+			this.on('mousedown', this.handleMouseDown);
 		}
 
 		public createEl(tagName: string, properties?: any, attributes?: any) {
@@ -22,6 +23,11 @@ module Player {
 
 		public handleClick(event: Event) {
 			this.player_.currentTime(this._chapterData.begin);
+			event.stopImmediatePropagation();
+		}
+
+		public handleMouseDown(event: Event) {
+			event.stopImmediatePropagation();
 		}
 
 		public get chapterData(): ChapterData {
@@ -30,4 +36,4 @@ module Player {
 	}
 }
 
-videojs.registerComponent('SeekBarChapterMarkerComponent', Player.SeekBarChapterMarkerComponent);
+videojs.registerComponent('ChapterMarkerComponent', Player.ChapterMarkerComponent);
