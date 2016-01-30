@@ -53,6 +53,7 @@ module Player {
 			videojsOptions.poster = this.amendMediaUrl(this._videoData.poster);
 			videojsOptions.controls = true;
 			videojsOptions.fluid = true;
+			videojsOptions.playbackRates = [0.5, 1, 1.5, 2];
 			if (this._playerConfig.playerLanguage !== null)
 				videojsOptions.language = this._playerConfig.playerLanguage;
 			if (this._playerConfig.startPlaybackAt !== null)
