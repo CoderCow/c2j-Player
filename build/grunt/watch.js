@@ -36,6 +36,10 @@ module.exports = function(grunt, shared) {
 		fontgen: {
 			files: ['src/iconfont/**/*.*', 'build/iconfont/**/*.*'],
 			tasks: ['makefont']
+		},
+		build: {
+			files: ['build/dist/**/*.*'],
+			tasks: ['copy:debug']
 		}
 	}
 };
