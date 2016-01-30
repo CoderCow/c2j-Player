@@ -34,5 +34,8 @@
   }, {
     "name": "language",
     "svg": "custom/language.svg"
+  }, {
+    "name": "share",
+    "svg": "fontawesome/share-alt.svg"
   }]
 }
