@@ -26,6 +26,7 @@ $primary-foreground-color: #fff;
 
 	.vjs-control {
 		width: 3.5em;
+		transition: all 1s;
 
 		&::before {
 			font-size: 2.3em;
@@ -34,7 +35,7 @@ $primary-foreground-color: #fff;
 	}
 
 	.vjs-menu-button-inline {
-		&:before {
+		&::before {
 			width: inherit;
 		}
 
@@ -88,6 +89,15 @@ $primary-foreground-color: #fff;
 		.vjs-progress-holder {
 			// Disables the seek bar enlarge on hover effect
 			font-size: 1em;
+		}
+	}
+
+	&.vjs-user-inactive.vjs-fluid.vjs-playing {
+		.vjs-control-bar {
+			height: 0.6em;
+			opacity: inherit;
+			visibility: inherit;
+			transition: none;
 		}
 	}
 }

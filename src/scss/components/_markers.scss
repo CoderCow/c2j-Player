@@ -61,4 +61,16 @@
 			bottom: 1.7em;
 		}
 	}
+
+	&.vjs-user-inactive.vjs-playing {
+		.note-marker {
+			top: -1em;
+			text-shadow: -1.5px 0 #000, 0 1.5px #000, 1.5px 0 #000, 0 -1.5px #000;
+			transition: height,font-size 0.5s;
+
+			&.being-played {
+				font-size: 2em;
+			}
+		}
+	}
 }

@@ -2,11 +2,15 @@ module Player {
 	'use strict';
 	export class NotesMarkerComponent extends MenuMarkerComponent {
 		private _notes: NoteData[];
+		private _isBeingPlayed: boolean;
 
 		public constructor(player: VideoJSPlayer, videoData: VideoData, note: NoteData) {
 			this._notes = [note];
 
 			super(player, {}, videoData, note.begin);
+
+			this._isBeingPlayed = false;
+			this.player_.on('timeupdate', this.player_timeUpdate.bind(this));
 		}
 
 		public createEl() {
@@ -53,6 +57,18 @@ module Player {
 			// Because this must be called after a user interaction has happened.
 			if (!ClipboardUtils.isCopySupported())
 				$(this.el()).find('.note-copy-button').addClass('vjs-hidden');
+		}
+
+		private player_timeUpdate() {
+			var primaryNote = this._notes[0];
+			var time = this.player_.currentTime();
+
+			if (time >= primaryNote.begin - 4 && time <= primaryNote.end + 4) {
+				if (!this._isBeingPlayed)
+					$(this.el()).addClass('being-played');
+			} else if (this._isBeingPlayed) {
+				$(this.el()).removeClass('being-played');
+			}
 		}
 
 		public get notes(): NoteData[] {
