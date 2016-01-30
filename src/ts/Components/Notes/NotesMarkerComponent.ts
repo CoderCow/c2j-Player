@@ -64,10 +64,13 @@ module Player {
 			var time = this.player_.currentTime();
 
 			if (time >= primaryNote.begin - 4 && time <= primaryNote.end + 4) {
-				if (!this._isBeingPlayed)
+				if (!this._isBeingPlayed) {
 					$(this.el()).addClass('being-played');
+					this._isBeingPlayed = true;
+				}
 			} else if (this._isBeingPlayed) {
 				$(this.el()).removeClass('being-played');
+				this._isBeingPlayed = false;
 			}
 		}
 
