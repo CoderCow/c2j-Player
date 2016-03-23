@@ -1,12 +1,21 @@
 module Player {
 	'use strict';
-	export class CaptionData implements Validatable {
+	/**
+	 * Represents the data of caption (subtitle) text of the video metadata.
+	 */
+	export class CaptionData implements IValidatable {
+		/** Start time in seconds (decimal). */
 		public begin: number;
+		/** Duration time in seconds (decimal). */
 		public dur: number;
+		/** End time in seconds (decimal). */
 		public end: number;
+		/** HTML formatted content text. */
 		public content: string;
+		/** IETF language tag. */
 		public lang: string;
 
+		/** @inheritdoc */
 		public invalidate(): void {
 			Validate.number(this.begin, 'begin', 0);
 			Validate.number(this.dur, 'dur', 0);

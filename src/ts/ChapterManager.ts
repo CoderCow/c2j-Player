@@ -1,10 +1,14 @@
 module Player {
 	'use strict';
+	/**
+	 * Maintains multilingual chapters and their markers on the timeline.
+	 */
 	export class ChapterManager {
 		private _player: VideoJSPlayer;
 		private _videoData: VideoData;
 		private _markers: ChapterMarkerComponent[];
 
+		/** Initializes a new instance of this class. */
 		public constructor(player: VideoJSPlayer, videoData: VideoData, initialLanguage: string) {
 			this._player = player;
 			this._videoData = videoData;
@@ -13,6 +17,7 @@ module Player {
 			this.setLanguage(initialLanguage);
 		}
 
+		/** Removes all current chapters and applies those of the given language. */
 		public setLanguage(languageCode: string) {
 			var chapters = this._videoData.chaptersByLanguage(languageCode);
 
@@ -33,17 +38,18 @@ module Player {
 			}
 		}
 
+		/** Removes all chapter markers from the player's timeline. */
 		public removeAllMarkers() {
 			this._markers.forEach((marker: ChapterMarkerComponent) => marker.dispose());
 			this._markers = [];
 		}
-
-		// to enable the video.js chapter menu (which seems buggy atm)
-		//var textTrack = <VideoJSTextTrack>this.player.addTextTrack('chapters', 'chapters: ' + languageCode, languageCode);
-
-		/*chapterData.forEach((chapter: ChapterData) => {
-			var cue = new VTTCue(chapter.begin, chapter.end, chapter.title);
-			textTrack.addCue(cue);
-		});*/
 	}
 }
+
+// to enable the video.js chapter menu (which seems buggy atm)
+//var textTrack = <VideoJSTextTrack>this.player.addTextTrack('chapters', 'chapters: ' + languageCode, languageCode);
+
+/*chapterData.forEach((chapter: ChapterData) => {
+	var cue = new VTTCue(chapter.begin, chapter.end, chapter.title);
+	textTrack.addCue(cue);
+});*/

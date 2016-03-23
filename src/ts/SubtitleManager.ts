@@ -1,9 +1,13 @@
 module Player {
 	'use strict';
+	/**
+	 * Maintains multilingual subtitles.
+	 */
 	export class SubtitleManager {
 		private _player: VideoJSPlayer;
 		private _videoJSManager: VideoJSManager;
 
+		/** Initializes a new instance of this class. */
 		public constructor(player: VideoJSPlayer, videoJSManager: VideoJSManager, initialLanguage: string = null) {
 			this._player = player;
 			this._videoJSManager = videoJSManager;
@@ -26,6 +30,10 @@ module Player {
 			});
 		}
 
+		/**
+		 * Removes all current subtitles, adds all subtitle tracks of all available languages and enables the
+		 * track of the given language.
+		 */
 		public setLanguage(languageCode: string) {
 			var tracks = this._player.textTracks();
 			if (languageCode !== null)

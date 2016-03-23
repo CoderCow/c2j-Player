@@ -16,7 +16,7 @@ module Player {
 		public translateTransform: Vector3;
 		public rotateTransform: Vector3;
 		public shearTransform: Vector3;
-		public media: LanguageIndexed<MediumData[]>;
+		public media: LanguageDictionary<MediumData[]>;
 
 		public invalidate() {
 			Validate.number(this.begin, 'begin');

@@ -1,5 +1,8 @@
 module Player {
 	'use strict';
+	/**
+	 * Maintains a videojs instance and all extensions to it.
+	 */
 	export class VideoJSManager {
 		/**
 		 * Id of the <video> tag to replace.
@@ -12,17 +15,28 @@ module Player {
 			'video/webm': 3 // Firefox cannot handle webm too well.
 		};
 
+		/** Gets the current player configuration data. */
 		private _playerConfig: PlayerConfig;
+		/** Gets the current user settings (such as current volume, mute status etc.). */
 		private _userSettings: UserSettings;
+		/** The current videojs player instance. */
 		private _player: VideoJSPlayer;
+		/** Represents the video metadata (where data origin is a Camtasia2Json file). */
 		private _videoData: VideoData;
+		/** Represents the top pane of the player. */
 		private _topPane: TopPaneComponent;
+		/** Represents the language selection menu. */
 		private _languageMenu: LanguageMenuComponent;
+		/** Maintains multilingual chapters and their markers on the timeline. */
 		private _chapterManager: ChapterManager;
+		/** Maintains multilingual subtitles. */
 		private _subtitleManager: SubtitleManager;
+		/** Maintains multilingual author notes and their markers on the timeline. */
 		private _authorNotesManager: AuthorNotesManager;
+		/** Maintains multilingual overlays. */
 		private _overlayManager: OverlayManager;
 
+		/** Initializes a new instance of this class and reads the video metadata as configured in the playerConfig instance. */
 		public constructor(playerConfig: PlayerConfig, userSettings: UserSettings, initCompleted: () => void) {
 			this._playerConfig = playerConfig;
 			this._userSettings = userSettings;
@@ -45,12 +59,13 @@ module Player {
 				this.init(initCompleted));
 		}
 
+		/** Initializes the videojs player instance and applies all modifications. */
 		public init(initCompleted: () => void): void {
 			this._player = null;
 
 			var videojsOptions = <VideoJSOptions>{};
 			videojsOptions.defaultVolume = this._userSettings.volume;
-			videojsOptions.poster = this.amendMediaUrl(this._videoData.poster);
+			videojsOptions.poster = this.prependMediaUrl(this._videoData.poster);
 			videojsOptions.controls = true;
 			videojsOptions.fluid = true;
 			videojsOptions.playbackRates = [0.5, 1, 1.5, 2];
@@ -96,8 +111,9 @@ module Player {
 			});
 		}
 
+		/** Loads the video metadata from the given url and applies it. */
 		public useVideoData(fromUrl: string, loadCompleted: () => void) {
-			fromUrl = this.amendMediaUrl(fromUrl);
+			fromUrl = this.prependMediaUrl(fromUrl);
 
 			var reader = new Camtasia2JsonReader();
 			reader.read(fromUrl, (videoData: VideoData) => {
@@ -110,6 +126,7 @@ module Player {
 			});
 		}
 
+		/** Creates the custom top pane of the player. */
 		private setupPanes(languageCode: string) {
 			var title = this._videoData.titleByLanguage(languageCode);
 
@@ -117,6 +134,7 @@ module Player {
 			this._player.addChild(this._topPane);
 		}
 
+		/** Creates additional buttons in the bottom pane. */
 		private setupButtons() {
 			var languageButton = new LanguageButtonComponent(this._player, this._videoData);
 			var languageMenu = <LanguageMenuComponent>languageButton.menu;
@@ -130,6 +148,7 @@ module Player {
 			$(languageButton.el()).insertBefore('.vjs-fullscreen-control');
 		}
 
+		/** Sets the language of the played media to the given language. */
 		public setMediaLanguage(languageCode: string) {
 			var availableMedia = this._videoData.mediaByLanguage(languageCode);
 			availableMedia.sort((m1: MediumData, m2: MediumData) =>
@@ -137,7 +156,7 @@ module Player {
 
 			var media: VideoJSSource[] = [];
 			availableMedia.forEach((medium: MediumData) => {
-				var srcUrl = this.amendMediaUrl(medium.src);
+				var srcUrl = this.prependMediaUrl(medium.src);
 				media.push(<VideoJSSource>{ src: srcUrl, type: medium.type });
 			});
 
@@ -145,6 +164,7 @@ module Player {
 			this._languageMenu.selectedAudioLanguage = languageCode;
 		}
 
+		/** Sets the language of all extra content, such as author notes and overlays, to the given language. */
 		public setExtrasLanguage(languageCode: string) {
 			this._chapterManager.setLanguage(languageCode);
 			this._languageMenu.selectedExtrasLanguage = languageCode;
@@ -156,11 +176,13 @@ module Player {
 				this._overlayManager.setLanguage(languageCode);
 		}
 
+		/** Sets the subtitle language to the given language. */
 		public setSubtitleLanguage(languageCode: string) {
 			this._subtitleManager.setLanguage(languageCode);
 			this._languageMenu.selectedSubtitleLanguage = languageCode;
 		}
 
+		/** Creates the time display popup of the timeline. */
 		private setupTimeDisplay() {
 			var timeComponent = this._player.controlBar.addChild(new CurrentTimeComponent(this._player));
 			$('.vjs-volume-menu-button').after(timeComponent.el());
@@ -168,28 +190,33 @@ module Player {
 			this._player.controlBar.progressControl.seekBar.addChild(new MouseTimeDisplayComponent(this._player, this._videoData));
 		}
 
-		private amendMetadataUrl(url: string): string {
+		/** Prepends the given url with the video metadata base url, if configured. */
+		private preprendMetadataUrl(url: string): string {
 			if (!isAbsoluteUrl(url) && this._playerConfig.videoMetaBaseUrl !== null)
 				url = this._playerConfig.videoMetaBaseUrl + '/' + url;
 
 			return url;
 		}
 
-		private amendMediaUrl(url: string): string {
+		/** Prepends the given url with the video media base url, if configured. */
+		private prependMediaUrl(url: string): string {
 			if (!isAbsoluteUrl(url) && this._playerConfig.videoMediaBaseUrl !== null)
 				url = this._playerConfig.videoMediaBaseUrl + '/' + url;
 
 			return url;
 		}
 
+		/** Gets the current videojs player instance. */
 		public get player(): VideoJSPlayer {
 			return this._player;
 		}
 
+		/** Gets the current player configuration settings. */
 		public get playerConfig(): PlayerConfig {
 			return this._playerConfig;
 		}
 
+		/** Gets the current video metadata. */
 		public get videoData(): VideoData {
 			return this._videoData;
 		}

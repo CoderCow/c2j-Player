@@ -1,8 +1,9 @@
 module Player {
-	export enum VAlignment { Center, Left, Right }
-
 	'use strict';
-	export class CaptionSettingsData implements Validatable {
+	/**
+	 * Represents the data of a category of the video metadata.
+	 */
+	export class CaptionSettingsData implements IValidatable {
 		public fontName: string;
 		public backgroundColor: number[];
 		public foregroundColor: number[];
@@ -11,6 +12,7 @@ module Player {
 		public isBackgroundEnabled: boolean;
 		public isBackgroundOnlyAroundText: boolean;
 
+		/** @inheritdoc */
 		public invalidate() {
 			Validate.string(this.fontName, 'fontName');
 			Validate.value(this.backgroundColor, 'backgroundColor');

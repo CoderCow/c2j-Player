@@ -1,8 +1,10 @@
 module Player {
 	'use strict';
+	/** A menu item of a note marker menu. */
 	export class NotesMarkerMenuItemComponent extends VideoJSMenuItem {
 		private _note: AuthorNoteData;
 
+		/** Initializes a new instance of this class. */
 		public constructor(player: VideoJSPlayer, note: AuthorNoteData) {
 			this._note = note;
 
@@ -21,6 +23,7 @@ module Player {
 			});
 		}
 
+		/** @inheritdoc */
 		public createEl(tagName: string, properties?: any, attributes?: any) {
 			// TODO: format content like _blank on all <a>, make beautiful anchors with a symbol, convert links to <a>'s, format code etc.
 			var el = $(TemplateUtils.renderSynch('Components/Menus/NoteMenuItem', {
@@ -44,6 +47,7 @@ module Player {
 			return el[0];
 		}
 
+		/** @inheritdoc */
 		public handleClick(event: Event) {
 			event.stopPropagation();
 		}

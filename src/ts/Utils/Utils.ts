@@ -1,11 +1,15 @@
+/** Extension declarations to the JavaScript string type. */
 interface String {
 	/**
-	 * Returns a formatted version of this string by replacing {X} (where X is an index between zero and the arguments length) placeholders with the given argument.
+	 * Returns a formatted version of this string by replacing {X} (where X is an index
+	 * between zero and the arguments length) placeholders with the given arguments.
 	 *
 	 * @returns {String} The formatted string.
 	 */
 	format(...args: any[]): string;
+	/** Returns true if this string starts with the given string, otherwise false. */
 	startsWith(prefix: string): boolean;
+	/** Returns true if this string ends with the given string, otherwise false. */
 	endsWith(suffix: string): boolean;
 }
 
@@ -39,6 +43,10 @@ if (typeof String.prototype.endsWith !== 'function') {
   };
 }
 
+/**
+ * Parses a date string and returns a Date object. If no UTC time zone identifier is given in
+ * date string, it will be expected to be a UTC date.
+ */
 function parseDateUTC(dateString: string): Date {
 	'use strict';
 	// Turn date string into an UTC date string if necessary.
@@ -49,11 +57,16 @@ function parseDateUTC(dateString: string): Date {
 }
 
 var __absoluteUrlTester = new RegExp('^(?:[a-z]+:)?//', 'i');
-function isAbsoluteUrl(url: string) {
+/**
+ * Returns true if the given url is an absolute url (that is if the url contains a protocol name like http://someurl),
+ * otherwise false.
+ */
+function isAbsoluteUrl(url: string): boolean {
 	'use strict';
 	return __absoluteUrlTester.test(url);
 }
 
+/** Compares two language code strings, where "de" will be equal to "de-DE" etc. */
 function isEqualLanguageCode(codeA: string, codeB: string): boolean {
 	'use strict';
 

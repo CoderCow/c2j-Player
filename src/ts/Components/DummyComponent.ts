@@ -1,16 +1,17 @@
 module Player {
 	'use strict';
+	/**
+	 * A component to replace existing video.js components with, if they are required by the component model but not useful
+	 * to this player.
+	 */
 	export class DummyComponent extends VideoJSComponent {
+		/** Initializes a new instance of this class. */
 		public constructor(player: VideoJSPlayer) {
 			super(player, <VideoJSComponentOptions>{
 				createEl: false,
 				reportTouchActivity: false
 			});
 		}
-
-		/**public createEl(tagName: string, properties?: any, attributes?: any) {
-
-		}*/
 	}
 }
 

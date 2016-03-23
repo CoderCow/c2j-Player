@@ -1,20 +1,23 @@
 module Player {
 	'use strict';
+	/** A generic timeline marker with a deposited menu. */
 	export class MenuMarkerComponent extends VideoJSMenuButton {
+		/** Initializes a new instance of this class. */
 		public constructor(player: VideoJSPlayer, options: VideoJSComponentOptions, videoData: VideoData, time: number) {
 			super(player, options);
 
 			super.el().style.left = ((time / videoData.dur) * 100) + '%';
 			this.update();
 
-			// The seek bar shouldn't start playing at the position of this component.
+			// Stop event propagation, so that the seek bar (behind the marker) will not change the playback position.
 			this.on('mousedown', EventUtils.noImmediatePropagationHandler);
 			this.on('mouseup', EventUtils.noImmediatePropagationHandler);
 			this.on('touchstart', EventUtils.noImmediatePropagationHandler);
 		}
 
+		/** @inheritdoc */
 		public handleClick(event: Event) {
-			// When the mouse leaves the button itself, it should switch to unpressed state.
+			// When the mouse leaves the button itself, the button should switch to unpressed state.
 			this.one('mouseout', (event: MouseEvent) => {
 				var element = $(document.elementFromPoint(event.clientX, event.clientY));
 				var mouseMovedOverMenu = (element.closest('.vjs-menu')[0] === this.menu.el());
@@ -28,18 +31,21 @@ module Player {
 	      this.pressButton();
 		}
 
+		/** @inheritdoc */
 		public pressButton() {
 			super.pressButton();
 			$(this.el()).attr('data-hide-mouse-text', 'true');
 			$(this.el()).addClass('marker-pressed');
 		}
 
+		/** @inheritdoc */
 		public unpressButton() {
 			super.unpressButton();
 			$(this.el()).attr('data-hide-mouse-text', null);
 			$(this.el()).removeClass('marker-pressed');
 		}
 
+		/** @inheritdoc */
 		public createEl(tagName: string, properties?: any, attributes?: any) {
 			var el = $(TemplateUtils.renderSynch('Components/SeekBarNotesMarker', {}));
 			el.addClass('vjs-menu-button-popup');
@@ -47,6 +53,7 @@ module Player {
 			return el[0];
 		}
 
+		/** @inheritdoc */
 		public createMenu() {
 			var menu = new MarkerMenuComponent(this.player_, this);
 

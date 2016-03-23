@@ -1,11 +1,16 @@
 module Player {
 	'use strict';
+	/** Retrieves and reads json encoded player configuration files. */
 	export class PlayerConfigReader {
+		/**
+		 * Retrieves the json data from the given url and parses it into a PlayerConfig object.
+		 * @throws {Exception} When retrieving or parsing the config has failed.
+		 */
 		public read(jsonUrl: string, callback: (data: PlayerConfig) => void, errorCallback: (exception: Exception) => void) {
 			$.getJSON(jsonUrl).done((jsonObject: any) => {
 				var configData: PlayerConfig;
 				try {
-					configData = PlayerConfigReader.configDataFromJson(<PlayerConfigJsonObject>jsonObject);
+					configData = PlayerConfigReader.configDataFromJson(<IPlayerConfig>jsonObject);
 				} catch (e) {
 					errorCallback(e);
 				}
@@ -16,7 +21,8 @@ module Player {
 			});
 		}
 
-		private static configDataFromJson(jsonData: PlayerConfigJsonObject): PlayerConfig {
+		/** Creates a new PlayerConfig object from the given json data. */
+		private static configDataFromJson(jsonData: IPlayerConfig): PlayerConfig {
 			jsonData.defaultVideoMetadataUrl = PlayerConfigReader.correctedString(jsonData.defaultVideoMetadataUrl);
 			jsonData.videoMetaBaseUrl = PlayerConfigReader.correctedString(jsonData.videoMetaBaseUrl);
 			jsonData.videoMediaBaseUrl = PlayerConfigReader.correctedString(jsonData.videoMediaBaseUrl);
@@ -31,6 +37,10 @@ module Player {
 			return result;
 		}
 
+		/**
+		 * When the input string is an empty string or undefined, null is returned.
+		 * Otherwise the input string is returned.
+		 */
 		private static correctedString(input: string): string {
 			if (input === '')
 				return null;
@@ -38,6 +48,7 @@ module Player {
 			return PlayerConfigReader.correctedValue(input);
 		}
 
+		/** When the input value is undefined, null is returned. Otherwise the input value is returned. */
 		private static correctedValue(input: any): any {
 			if (input === undefined)
 				return null;

@@ -1,10 +1,12 @@
 module Player {
 	'use strict';
+	/** Represents a visual, interactible overlay. */
 	export class OverlayComponent extends VideoJSButton {
 		private _overlay: OverlayData;
 		private _isVisible: boolean;
 		private _isPausing: boolean;
 
+		/** Initializes a new instance of this class. */
 		public constructor(player: VideoJSPlayer, videoData: VideoData, overlay: OverlayData) {
 			this._overlay = overlay;
 
@@ -28,6 +30,7 @@ module Player {
 			this.hide();
 		}
 
+		/** @inheritdoc */
 		public createEl(tagName: string, properties?: any, attributes?: any) {
 			// TODO: format content like _blank on all <a>, make beautiful anchors with a symbol, convert links to <a>'s, format code etc.
 			return $(TemplateUtils.renderSynch('Components/Overlay', {
@@ -37,6 +40,7 @@ module Player {
 			}))[0];
 		}
 
+		/** @inheritdoc */
 		public handleClick() {
 			switch (this._overlay.action) {
 				case OverlayAction.GotoPos: {
@@ -65,6 +69,7 @@ module Player {
 			}
 		}
 
+		/** @inheritdoc */
 		public show(): VideoJSComponent {
 			super.show();
 			this._isVisible = true;
@@ -72,6 +77,7 @@ module Player {
 			return this;
 		}
 
+		/** @inheritdoc */
 		public hide(): VideoJSComponent {
 			super.hide();
 			this._isVisible = false;
@@ -79,18 +85,22 @@ module Player {
 			return this;
 		}
 
+		/** Gets the data which are visually represented by this overlay. */
 		public get overlay(): OverlayData {
 			return this._overlay;
 		}
 
+		/** Gets whether this overlay is currently visible or not. */
 		public get isVisible(): boolean {
 			return this._isVisible;
 		}
 
+		/** Gets whether this overlay is currently pausing the video or not. */
 		public get isPausing(): boolean {
 			return this._isPausing;
 		}
 
+		/** Sets whether this overlay is currently pausing the video or not. */
 		public set isPausing(value: boolean) {
 			if (value)
 				$(this.el()).addClass('is-pausing');

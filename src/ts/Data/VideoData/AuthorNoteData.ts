@@ -1,16 +1,25 @@
 module Player {
 	'use strict';
-	export class AuthorNoteData implements NoteData, Validatable {
+	/**
+	 * Represents the data of a author note of the video metadata.
+	 */
+	export class AuthorNoteData implements INoteData, IValidatable {
+		/** Start time in seconds (decimal). */
 		public begin: number;
+		/** Duration time in seconds (decimal). */
 		public dur: number;
+		/** End time in seconds (decimal). */
 		public end: number;
 		public title: string;
+		/** HTML formatted content text. */
 		public content: string;
+		/** IETF language tag. */
 		public lang: string;
 		public displayInTimeline: boolean;
 		public displayInChapters: boolean;
 		public displayOnScreen: boolean;
 
+		/** @inheritdoc */
 		public invalidate(): void {
 			Validate.number(this.begin, 'begin');
 			Validate.number(this.dur, 'dur');

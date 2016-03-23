@@ -2,9 +2,10 @@
 //   https://www.loc.gov/standards/iso639-2/php/code_list.php
 //   https://docs.google.com/spreadsheets/d/1rscLc4rSe3-wBvg_TtLf_m5PeHZALe_btXHKEl_zQY4
 
-interface LanguageCodeTable { [code: string]: string }
+interface ILanguageTagDictionary { [code: string]: string; }
 
-function __getLanguageCodeTable(): LanguageCodeTable {
+/** Gets a dictionary of language tags mapping to their corresponding language name in english. */
+function __getLanguageTagTable(): ILanguageTagDictionary {
 	return {
 		"af": "Afrikaans",
 		"ar": "Arabic",

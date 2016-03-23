@@ -1,30 +1,32 @@
-/// <reference path="../../Utils/Lazy.ts" />
+/// <reference path="../VideoData/VideoData.ts" />
+/// <reference path="../VideoData/OverlayData.ts" />
 
 module Player {
 	'use strict';
+	/** Retrieves and reads Camtasia2Json conform video metadata files. */
 	export class Camtasia2JsonReader {
-		private static COMPATIBLE_FILE_VERSIONS: { [version: string]: boolean } = { '1.0': true };
-		private static stringOverlayActionMappings = new Lazy<{ [action: string]: OverlayAction }>(() => {
-			return {
-				'none': OverlayAction.None,
-				'continue': OverlayAction.ContinueOnClick,
-				'goto': OverlayAction.GotoPos,
-				'link': OverlayAction.OpenLink
-			};
-		});
-		private static stringVAlignmentMappings = new Lazy<{ [alignment: string]: VAlignment }>(() => {
-			return {
-				'center': VAlignment.Center,
-				'left': VAlignment.Left,
-				'right': VAlignment.Right
-			};
-		});
+		private static COMPATIBLE_FILE_VERSIONS: { [version: string]: boolean } = { '1.1': true };
+		private static stringOverlayActionMappings: { [action: string]: OverlayAction } = {
+			'none': OverlayAction.None,
+			'continue': OverlayAction.ContinueOnClick,
+			'goto': OverlayAction.GotoPos,
+			'link': OverlayAction.OpenLink
+		};
+		private static stringVAlignmentMappings: { [alignment: string]: VAlignment } = {
+			'center': VAlignment.Center,
+			'left': VAlignment.Left,
+			'right': VAlignment.Right
+		};
 
+		/**
+		 * Retrieves the file at the given URL, parses it and calls the given callback function with the resulting VideoData object.
+		 * @throws {Exception} When the file could not be retrieved or parsing it has failed.
+		 */
 		public read(jsonUrl: string, callback: (data: VideoData) => void, errorCallback: (exception: Exception) => void) {
 			$.getJSON(jsonUrl).done((jsonObject: any) => {
 				var videoData: VideoData;
 				try {
-					videoData = Camtasia2JsonReader.videoDataFromJson(<Camtasia2JsonObject>jsonObject);
+					videoData = Camtasia2JsonReader.videoDataFromJson(<ICamtasia2JsonData>jsonObject);
 				} catch (e) {
 					errorCallback(e);
 				}
@@ -35,7 +37,8 @@ module Player {
 			});
 		}
 
-		private static videoDataFromJson(jsonData: Camtasia2JsonObject): VideoData {
+		/** Converts the given Camtasia2Json raw object into a VideoData object. */
+		private static videoDataFromJson(jsonData: ICamtasia2JsonData): VideoData {
 			if (!Camtasia2JsonReader.COMPATIBLE_FILE_VERSIONS[jsonData.meta.version])
 				console.warn(`Video metadata version "${jsonData.meta.version}" is not supported.`);
 
@@ -44,12 +47,12 @@ module Player {
 
 			if (jsonData.meta.titles === undefined)
 				throw new Exception('"meta.titles" is undefined.');
-			result.titles = <LanguageIndexed<string>>{};
+			result.titles = <LanguageDictionary<string>>{};
 			jsonData.meta.titles.forEach((item: any) => result.titles[item.lang] = item.title);
 
 			if (jsonData.meta.descriptions === undefined)
 				throw new Exception('"meta.descriptions" is undefined.');
-			result.descriptions = <LanguageIndexed<string>>{};
+			result.descriptions = <LanguageDictionary<string>>{};
 			jsonData.meta.descriptions.forEach((item: any) => result.descriptions[item.lang] = item.description);
 
 			result.media = Camtasia2JsonReader.mediaFromJsonData(jsonData);
@@ -70,13 +73,17 @@ module Player {
 			return result;
 		}
 
-		private static mediaFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<MediumData[]> {
+		/**
+		 * Converts the media part of the given Camtasia2Json raw object into MediumData objects stored in a language dictionary
+		 * with their language tags as keys.
+		 */
+		private static mediaFromJsonData(jsonData: ICamtasia2JsonData): LanguageDictionary<MediumData[]> {
 			if (jsonData.media === undefined)
 				throw new Exception('"media" is undefined.');
 			if (jsonData.media.digital === undefined)
 				throw new Exception('"media.digital" is undefined.');
 
-			var mediaData = <LanguageIndexed<MediumData[]>>{};
+			var mediaData = <LanguageDictionary<MediumData[]>>{};
 			jsonData.media.digital.forEach((item: any) => {
 				var mediaDataArray = mediaData[item.lang];
 				if (mediaDataArray === undefined)
@@ -88,21 +95,28 @@ module Player {
 			return mediaData;
 		};
 
-		private static captionSettingsFromJsonData(jsonData: Camtasia2JsonObject): CaptionSettingsData {
+		/**
+		 * Converts the caption settings part of the given Camtasia2Json raw object into a CaptionSettingsData object.
+		 */
+		private static captionSettingsFromJsonData(jsonData: ICamtasia2JsonData): CaptionSettingsData {
 			if (jsonData.captionSettings === undefined)
 				throw new Exception('"captionSettings" is undefined.');
 
 			var captionSettingsData = $.extend(new CaptionSettingsData(), jsonData.captionSettings);
-			captionSettingsData.alignment = Camtasia2JsonReader.stringVAlignmentMappings.value[jsonData.captionSettings.alignment.toLowerCase()];
+			captionSettingsData.alignment = Camtasia2JsonReader.stringVAlignmentMappings[jsonData.captionSettings.alignment.toLowerCase()];
 
 			return captionSettingsData;
 		};
 
-		private static captionsFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<CaptionData[]> {
+		/**
+		 * Converts the captions part of the given Camtasia2Json raw object into CaptionData objects stored in a language dictionary
+		 * with their language tags as keys.
+		 */
+		private static captionsFromJsonData(jsonData: ICamtasia2JsonData): LanguageDictionary<CaptionData[]> {
 			if (jsonData.captions === undefined)
 				throw new Exception('"captions" is undefined.');
 
-			var captionsData = <LanguageIndexed<CaptionData[]>>{};
+			var captionsData = <LanguageDictionary<CaptionData[]>>{};
 			jsonData.captions.forEach((item: any) => {
 				var captionDataArray = captionsData[item.lang];
 				if (captionDataArray === undefined)
@@ -117,11 +131,15 @@ module Player {
 			return captionsData;
 		};
 
-		private static categoriesFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<CategoryData[]> {
+		/**
+		 * Converts the categories part of the given Camtasia2Json raw object into CategoryData objects stored in a language
+		 * dictionary with their language tags as keys.
+		 */
+		private static categoriesFromJsonData(jsonData: ICamtasia2JsonData): LanguageDictionary<CategoryData[]> {
 			if (jsonData.categories === undefined)
 				throw new Exception('"categories" is undefined.');
 
-			var categoriesData = <LanguageIndexed<CategoryData[]>>{};
+			var categoriesData = <LanguageDictionary<CategoryData[]>>{};
 			jsonData.categories.forEach((item: any) => {
 				var categoryDataArray = categoriesData[item.lang];
 				if (categoryDataArray === undefined)
@@ -136,11 +154,15 @@ module Player {
 			return categoriesData;
 		};
 
-		private static authorNotesFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<AuthorNoteData[]> {
+		/**
+		 * Converts the author notes part of the given Camtasia2Json raw object into AuthorNoteData objects stored in a language
+		 * dictionary with their language tags as keys.
+		 */
+		private static authorNotesFromJsonData(jsonData: ICamtasia2JsonData): LanguageDictionary<AuthorNoteData[]> {
 			if (jsonData.authorNotes === undefined)
 				throw new Exception('"authorNotes" is undefined.');
 
-			var authorNotesData = <LanguageIndexed<AuthorNoteData[]>>{};
+			var authorNotesData = <LanguageDictionary<AuthorNoteData[]>>{};
 			jsonData.authorNotes.forEach((item: any) => {
 				var authorDataArray = authorNotesData[item.lang];
 				if (authorDataArray === undefined)
@@ -157,11 +179,15 @@ module Player {
 			return authorNotesData;
 		};
 
-		private static chaptersFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<ChapterData[]> {
+		/**
+		 * Converts the chapters part of the given Camtasia2Json raw object into ChapterData objects stored in a language dictionary
+		 * with their language tags as keys.
+		 */
+		private static chaptersFromJsonData(jsonData: ICamtasia2JsonData): LanguageDictionary<ChapterData[]> {
 			if (jsonData.chapters === undefined)
 				throw new Exception('"chapters" is undefined.');
 
-			var chaptersData = <LanguageIndexed<ChapterData[]>>{};
+			var chaptersData = <LanguageDictionary<ChapterData[]>>{};
 			jsonData.chapters.forEach((item: any) => {
 				var chapterDataArray = chaptersData[item.lang];
 				if (chapterDataArray === undefined)
@@ -190,18 +216,22 @@ module Player {
 			return chaptersData;
 		};
 
-		private static overlaysFromJsonData(jsonData: Camtasia2JsonObject): LanguageIndexed<OverlayData[]> {
+		/**
+		 * Converts the overlays part of the given Camtasia2Json raw object into OverlayData objects stored in a language dictionary
+		 * with their language tags as keys.
+		 */
+		private static overlaysFromJsonData(jsonData: ICamtasia2JsonData): LanguageDictionary<OverlayData[]> {
 			if (jsonData.overlays === undefined)
 				throw new Exception('"overlays" is undefined.');
 
-			var overlaysData = <LanguageIndexed<OverlayData[]>>{};
+			var overlaysData = <LanguageDictionary<OverlayData[]>>{};
 			jsonData.overlays.forEach((item: any) => {
 				var overlayDataArray = overlaysData[item.lang];
 				if (overlayDataArray === undefined)
 					overlaysData[item.lang] = overlayDataArray = [];
 
 				var overlayData = <OverlayData>$.extend(new OverlayData(), item);
-				overlayData.action = Camtasia2JsonReader.stringOverlayActionMappings.value[item.action.toLowerCase()];
+				overlayData.action = Camtasia2JsonReader.stringOverlayActionMappings[item.action.toLowerCase()];
 				if (overlayData.action === OverlayAction.OpenLink)
 					overlayData.actionParams = $.extend(new LinkActionParamsData(), item.actionParams);
 				else if (overlayData.action === OverlayAction.GotoPos)
@@ -222,7 +252,11 @@ module Player {
 			return overlaysData;
 		};
 
-		private static authCamFromJsonData(jsonData: Camtasia2JsonObject): AuthCamData {
+		/**
+		 * Converts the author cam part of the given Camtasia2Json raw object into AuthCamData objects stored in a language dictionary
+		 * with their language tags as keys.
+		 */
+		private static authCamFromJsonData(jsonData: ICamtasia2JsonData): AuthCamData {
 			if (jsonData.authCam === undefined)
 				throw new Exception('"authCam" is undefined.');
 
@@ -232,7 +266,7 @@ module Player {
 			authCamData.rotateTransform = Camtasia2JsonReader.vector3FromJsonArray(jsonData.authCam.rotateTransform);
 			authCamData.shearTransform = Camtasia2JsonReader.vector3FromJsonArray(jsonData.authCam.shearTransform);
 
-			authCamData.media = <LanguageIndexed<MediumData[]>>{};
+			authCamData.media = <LanguageDictionary<MediumData[]>>{};
 			jsonData.authCam.media.forEach((item: any) => {
 				var mediaDataArray = authCamData.media[item.lang];
 				if (mediaDataArray === undefined)
@@ -244,10 +278,12 @@ module Player {
 			return authCamData;
 		};
 
+		/** Creates a Vector3 object from the given array of 3 numbers. */
 		private static vector3FromJsonArray(jsonArray: number[]): Vector3 {
 			return new Vector3(jsonArray[0], jsonArray[1], jsonArray[2]);
 		}
 
+		/** Creates the function notation of a CSS rgba color from the given array of 4 numbers. */
 		private static cssColorFromJsonArray(jsonArray: number[]): string {
 			return 'rgba({0}, {1}, {2}, {3})'.format(jsonArray);
 		}

@@ -1,10 +1,15 @@
 module Player {
 	'use strict';
+	/**
+	 * A note marker placed on the player's timeline.
+	 * The marker may represent multiple notes by combining them in one menu.
+	 */
 	export class NotesMarkerComponent extends MenuMarkerComponent {
-		private _notes: NoteData[];
+		private _notes: INoteData[];
 		private _isBeingPlayed: boolean;
 
-		public constructor(player: VideoJSPlayer, videoData: VideoData, note: NoteData) {
+		/** Initializes a new instance of this class. */
+		public constructor(player: VideoJSPlayer, videoData: VideoData, note: INoteData) {
 			this._notes = [note];
 
 			super(player, {}, videoData, note.begin);
@@ -13,15 +18,18 @@ module Player {
 			this.player_.on('timeupdate', this.player_timeUpdate.bind(this));
 		}
 
+		/** @inheritdoc */
 		public createEl() {
 			return $(TemplateUtils.renderSynch('Components/SeekBarNotesMarker', {}))[0];
 		}
 
-		public addNote(note: NoteData) {
+		/** Adds new note data to this marker. This allows the marker to represent multiple notes at once. */
+		public addNote(note: INoteData) {
 			this._notes.push(note);
 			this.update();
 		}
 
+		/** @inheritdoc */
 		public createItems(items: any[]) {
 			if (items === undefined)
 				items = [];
@@ -32,6 +40,7 @@ module Player {
 			return items;
 		}
 
+		/** Updates the visual representation of the contained note data. */
 		public update() {
 			super.update();
 
@@ -51,14 +60,16 @@ module Player {
 			$(this.menu.el()).find('.vjs-menu-title').text(title);
 		}
 
+		/** @inheritdoc */
 		public pressButton() {
 			super.pressButton();
 
-			// Because this must be called after a user interaction has happened.
+			// This must be called after a user interaction has happened.
 			if (!ClipboardUtils.isCopySupported())
 				$(this.el()).find('.note-copy-button').addClass('vjs-hidden');
 		}
 
+		/** Visually highlights the marker when the video playback position is close to it. */
 		private player_timeUpdate() {
 			var primaryNote = this._notes[0];
 			var time = this.player_.currentTime();
@@ -74,10 +85,12 @@ module Player {
 			}
 		}
 
-		public get notes(): NoteData[] {
+		/** Gets the data which are visually represented by this marker. */
+		public get notes(): INoteData[] {
 			return this._notes;
 		}
 
+		/** Gets the video time this marker is placed at. */
 		public get time(): number {
 			return this._notes[0].begin;
 		}

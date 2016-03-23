@@ -1,6 +1,6 @@
 module Player {
 	'use strict';
-	export class PlayerConfig implements PlayerConfigJsonObject, Validatable {
+	export class PlayerConfig implements IPlayerConfig, IValidatable {
 		public videoMetadataUrl: string;
 		public defaultVideoMetadataUrl: string;
 		public startPlaybackAt: number;

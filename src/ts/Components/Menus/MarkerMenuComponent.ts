@@ -1,10 +1,12 @@
 module Player {
 	'use strict';
+	/** A menu of a marker representing any kind of menu items. */
 	export class MarkerMenuComponent extends VideoJSMenu {
 		private static _originalInactivityTimeout: number;
 		private _hasCapturedMouse: boolean;
 		private _linkedMenuButton: VideoJSMenuButton;
 
+		/** Initializes a new instance of this class. */
 		public constructor(player: VideoJSPlayer, linkedMenuButton: VideoJSMenuButton) {
 			super(player, {});
 
@@ -42,6 +44,7 @@ module Player {
 			this.on('mousemove', EventUtils.noImmediatePropagationHandler);
 		}
 
+		/** @inheritdoc */
 		public createEl() {
 			var element = $(TemplateUtils.renderSynch('Components/Menus/SeekBarMarkerMenu', {}));
 			this.contentEl_ = element.find('.vjs-menu-content')[0];
@@ -49,6 +52,7 @@ module Player {
 			return element[0];
 		}
 
+		/** Adds a new item to this menu. */
 		public addItem(component: VideoJSComponent) {
 	    this.addChild(component);
 

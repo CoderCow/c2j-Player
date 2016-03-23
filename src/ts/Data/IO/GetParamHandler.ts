@@ -2,9 +2,14 @@ module Player {
 	type GetParameterSet = { [param: string]: string[] };
 
 	'use strict';
+	/** Interprets the GET parameters in a URL and applies them to the player configuration. */
 	export class GetParamHandler {
 		private static _timeRegex = /^(?:([\d\.]+)m)?(?:([\d\.]+)s)?$/;
 
+		/**
+		 * Interprets the current GET parameters passed as part of the url and changes settings of the given PlayerConfig
+		 * object accordingly.
+		 */
 		public handleGetParams(playerConfigToUpdate: PlayerConfig) {
 			var parameterSet: GetParameterSet = GetParamHandler.getParamSet();
 
@@ -36,11 +41,16 @@ module Player {
 				playerConfigToUpdate.playerLanguage = value);
 		}
 
-		private static processStringsParam(paramName: string, parameterSet: GetParameterSet, allowEmptyString: boolean, process: (paramValue: string) => void) {
+		/**
+		 * Evaluates the parameter with the given name from the given parameter set as a string array in respect to the given conditions and then
+		 * calls the given process function with the interpreted parameter string array.
+		 * @param process Function called for further processing, passing the string array as the parameter value.
+		 */
+		private static processStringsParam(paramName: string, parameterSet: GetParameterSet, allowEmptyString: boolean, process: (paramValue: string[]) => void) {
 			if (!(paramName in parameterSet))
 				return;
 
-			var paramValues = parameterSet[paramName];
+			var paramValues: string[] = parameterSet[paramName];
 			if (!allowEmptyString) {
 				for (var i = 0; i < paramValues.length; i++) {
 					var paramValue = paramValues[i];
@@ -52,9 +62,14 @@ module Player {
 			}
 
 			if (paramValues.length > 0)
-				process(paramValue);
+				process(paramValues);
 		}
 
+		/**
+		 * Evaluates the parameter with the given name from the given parameter set as a string in respect to the given conditions and then
+		 * calls the given process function with the interpreted parameter string value.
+		 * @param process Function called for further processing, passing the string as the parameter value.
+		 */
 		private static processStringParam(paramName: string, parameterSet: GetParameterSet, allowEmptyString: boolean, process: (paramValue: string) => void) {
 			if (!(paramName in parameterSet))
 				return;
@@ -74,6 +89,11 @@ module Player {
 				process(paramValue);
 		}
 
+		/**
+		 * Evaluates the parameter with the given name from the given parameter set as a boolean in respect to the given conditions and then
+		 * calls the given process function with the interpreted parameter boolean value.
+		 * @param process Function called for further processing, passing the boolean as the parameter value.
+		 */
 		private static processBooleanParam(paramName: string, parameterSet: GetParameterSet, emptyValueMeansTrue: boolean, process: (paramValue: boolean) => void) {
 			if (!(paramName in parameterSet))
 				return;
@@ -109,9 +129,8 @@ module Player {
 		}
 
 		/**
-		 *
-		 * @param paramName
-		 * @param parameterSet
+		 * Evaluates the parameter with the given name from the given parameter set as a time value in respect to the given conditions and then
+		 * calls the given process function with the interpreted parameter number value.
 		 * @param process Function called for further processing, passing the number of parsed seconds as parameter.
 		 */
 		private static processTimeParam(paramName: string, parameterSet: GetParameterSet, process: (paramValue: number) => void) {
@@ -160,6 +179,11 @@ module Player {
 				process(totalSeconds);
 		}
 
+		/**
+		 * Creates a GetParamSet from the parameters provided in the URL the current page was loaded with.
+		 * Note that this function allows for passing multiple parameters with the same name, mapping the values to an array of
+		 * strings (e.g. ?a=val1&a=val2 would become GetParameterSet['a'] = ['val1', 'val2']).
+		 */
 		private static getParamSet(): GetParameterSet {
 			var result: GetParameterSet = {};
 
