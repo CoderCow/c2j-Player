@@ -37,5 +37,32 @@
   }, {
     "name": "share",
     "svg": "fontawesome/share-alt.svg"
+  }, {
+    "name": "clipboard",
+    "svg": "fontawesome/clipboard.svg"
+  }, {
+    "name": "minus",
+    "svg": "fontawesome/minus.svg"
+  }, {
+    "name": "minus-square",
+    "svg": "fontawesome/minus-square.svg"
+  }, {
+    "name": "minus-square-o",
+    "svg": "fontawesome/minus-square-o.svg"
+  }, {
+    "name": "plus",
+    "svg": "fontawesome/plus.svg"
+  }, {
+    "name": "plus-square",
+    "svg": "fontawesome/plus-square.svg"
+  }, {
+    "name": "plus-square-o",
+    "svg": "fontawesome/plus-square-o.svg"
+  }, {
+    "name": "play-circle",
+    "svg": "fontawesome/play-circle.svg"
+  }, {
+    "name": "play-circle-o",
+    "svg": "fontawesome/play-circle-o.svg"
   }]
 }
