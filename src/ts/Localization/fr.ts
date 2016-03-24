@@ -1,4 +1,4 @@
-// Extensions to videojs' German locale go here.
+// Extensions to videojs' locale go here.
 
 videojs.addLanguage("fr",{
 	"Afrikaans": "Afrikaans",

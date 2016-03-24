@@ -99,7 +99,7 @@ module Player {
 
 				// TODO bug: this will not auto select the language in the language menu
 				var initialSubtitleLanguage: string = null;
-				if (manager._playerConfig.enableSubtitleByDefault)
+				if (manager._playerConfig.enableSubtitlesByDefault)
 					initialSubtitleLanguage = initalLanguage;
 
 				manager._subtitleManager = new SubtitleManager(manager._player, manager, initialSubtitleLanguage);

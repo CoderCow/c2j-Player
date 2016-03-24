@@ -3,7 +3,7 @@
 	"videoMetaBaseUrl": "videos/",
 	"videoMediaBaseUrl": "videos/",
 	"disallowFullscreen": false,
-	"enableSubtitleByDefault": false,
+	"enableSubtitlesByDefault": false,
 	"disableAuthorNotes": false,
 	"disableOverlays": false,
 	"playerLanguage": null

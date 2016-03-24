@@ -35,7 +35,7 @@ module Player {
 				playerConfigToUpdate.disableOverlays = value);
 
 			GetParamHandler.processBooleanParam('fsubs', parameterSet, true, (value: boolean) =>
-				playerConfigToUpdate.enableSubtitleByDefault = value);
+				playerConfigToUpdate.enableSubtitlesByDefault = value);
 
 			GetParamHandler.processStringParam('playerlang', parameterSet, false, (value: string) =>
 				playerConfigToUpdate.playerLanguage = value);

@@ -27,7 +27,7 @@ module Player {
 			jsonData.videoMetaBaseUrl = PlayerConfigReader.correctedString(jsonData.videoMetaBaseUrl);
 			jsonData.videoMediaBaseUrl = PlayerConfigReader.correctedString(jsonData.videoMediaBaseUrl);
 			jsonData.disallowFullscreen = PlayerConfigReader.correctedValue(jsonData.disallowFullscreen);
-			jsonData.enableSubtitleByDefault = PlayerConfigReader.correctedValue(jsonData.enableSubtitleByDefault);
+			jsonData.enableSubtitlesByDefault = PlayerConfigReader.correctedValue(jsonData.enableSubtitlesByDefault);
 			jsonData.disableAuthorNotes = PlayerConfigReader.correctedValue(jsonData.disableAuthorNotes);
 			jsonData.disableOverlays = PlayerConfigReader.correctedValue(jsonData.disableOverlays);
 

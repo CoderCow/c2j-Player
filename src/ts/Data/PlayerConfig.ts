@@ -7,7 +7,7 @@ module Player {
 		public videoMetaBaseUrl: string;
 		public videoMediaBaseUrl: string;
 		public disallowFullscreen: boolean;
-		public enableSubtitleByDefault: boolean;
+		public enableSubtitlesByDefault: boolean;
 		public disableAuthorNotes: boolean;
 		public disableOverlays: boolean;
 		public playerLanguage: string;
@@ -19,8 +19,8 @@ module Player {
 			this.videoMetaBaseUrl = null;
 			this.videoMediaBaseUrl = null;
 
-			this.disallowFullscreen = true;
-			this.enableSubtitleByDefault = false;
+			this.disallowFullscreen = false;
+			this.enableSubtitlesByDefault = false;
 			this.disableAuthorNotes = false;
 			this.disableOverlays = false;
 			this.playerLanguage = null;
@@ -33,7 +33,7 @@ module Player {
 			Validate.string(this.videoMetaBaseUrl, 'videoMetaBaseUrl', null, null, false, true);
 			Validate.string(this.videoMediaBaseUrl, 'videoMediaBaseUrl', null, null, false, true);
 			Validate.value(this.disallowFullscreen, 'disallowFullscreen');
-			Validate.value(this.enableSubtitleByDefault, 'enableSubtitleByDefault');
+			Validate.value(this.enableSubtitlesByDefault, 'enableSubtitlesByDefault');
 			Validate.value(this.disableAuthorNotes, 'disableAuthorNotes');
 			Validate.value(this.disableOverlays, 'disableOverlays');
 			Validate.string(this.playerLanguage, 'playerLanguage', 1, null, false, true);

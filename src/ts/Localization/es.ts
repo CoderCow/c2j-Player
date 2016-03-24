@@ -1,4 +1,4 @@
-// Extensions to videojs' Spanish locale go here.
+// Extensions to videojs' locale go here.
 
 videojs.addLanguage("es",{
 	"Afrikaans": "Afrikaans",

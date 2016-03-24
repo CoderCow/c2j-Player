@@ -32,7 +32,7 @@ module Player {
 		 * native language.
 		 * This attribute is optional, it defaults to false.
 		 */
-		enableSubtitleByDefault: boolean;
+		enableSubtitlesByDefault: boolean;
 
 		/**
 		 * When set to true, author notes will be completely disabled.
