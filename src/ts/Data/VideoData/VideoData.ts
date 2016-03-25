@@ -67,8 +67,9 @@ module Player {
 			Validate.validatable(this.overlaySettings, 'overlaySettings');
 			Validate.value(this.overlays, 'overlays');
 			Validate.languageIndexedValidatables(this.overlays, 'overlays');
-			Validate.value(this.authCam, 'authCam');
-			Validate.validatable(this.authCam, 'authCam');
+			Validate.value(this.authCam, 'authCam', false, true);
+			if (this.authCam !== null)
+				Validate.validatable(this.authCam, 'authCam');
 		}
 
 		public titleByLanguage(languageTag: string): string {

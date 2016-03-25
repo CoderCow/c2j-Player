@@ -258,7 +258,7 @@ module Player {
 		 */
 		private static authCamFromJsonData(jsonData: ICamtasia2JsonData): AuthCamData {
 			if (jsonData.authCam === undefined)
-				throw new Exception('"authCam" is undefined.');
+				return null;
 
 			var authCamData = <AuthCamData>$.extend(new AuthCamData(), jsonData.authCam);
 			authCamData.end = authCamData.begin + authCamData.dur;
