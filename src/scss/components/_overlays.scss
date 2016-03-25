@@ -10,10 +10,15 @@
 		display: table-cell;
 		vertical-align: middle;
 		pointer-events: none;
+		overflow: hidden; // In case the content text doesn't fit.
 	}
 
 	.overlay {
 		border: 2px dashed #88F;
 		cursor: pointer;
+
+		p {
+			margin: 0;
+		}
 	}
 }
