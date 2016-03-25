@@ -122,3 +122,9 @@ body {
 .c2jp-hidden {
 	visibility: hidden;
 }
+
+.c2jp-disabled {
+	color: #999 !important;
+	cursor: default;
+	pointer-events: none;
+}

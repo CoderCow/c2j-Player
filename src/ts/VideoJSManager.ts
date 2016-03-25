@@ -162,6 +162,9 @@ module Player {
 
 			this._player.controlBar.addChild(languageButton);
 			$(languageButton.el()).insertBefore('.vjs-fullscreen-control');
+
+			if (this._playerConfig.disallowFullscreen)
+				$('.vjs-fullscreen-control').addClass('c2jp-disabled');
 		}
 
 		/** Sets the language of the played media to the given language. */
