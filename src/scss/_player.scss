@@ -1,8 +1,11 @@
 $primary-foreground-color: #fff;
 
-#videojs {
+body {
 	font-size: 13.5px;
+	margin: 0;
+}
 
+#videojs {
 	color: $primary-foreground-color;
 
 	// center big play button
@@ -100,4 +103,21 @@ $primary-foreground-color: #fff;
 			transition: none;
 		}
 	}
+}
+
+.player-error {
+	background: #000;
+	font-size: 1.4em;
+	color: #a00;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+.c2jp-hidden {
+	visibility: hidden;
 }

@@ -6,6 +6,7 @@ module Player {
 	export class App {
 		/** Path (relative URL) to the player's configuration file providing all the default settings. */
 		private static CONFIG_PATH = 'config.json';
+		private static CONSOLE_MESSAGE_PREFIX = '[C2J Player]';
 
 		/** Manages user settings (saved in the local storage of the browser). */
 		private static _userSettingsManager: UserSettingsManager;
@@ -47,12 +48,38 @@ module Player {
 
 				App._playerConfig = configData;
 
-				App._videoJSManager = new VideoJSManager(App._playerConfig, App.userConfig, () => {
-					App._userSettingsManager.player = App._videoJSManager.player;
-				});
+				try {
+					App._videoJSManager = new VideoJSManager(App._playerConfig, App.userConfig, (error: Exception) => {
+						if (error === null) {
+							App._userSettingsManager.player = App._videoJSManager.player;
+						} else {
+							App.fatalError('An error occurred while loading the video data. This video can not be played.'); // note: strings can not be localized as long as the videojs player isn't initialized.
+							App.consoleError(`${error.toString()}`);
+						}
+					});
+				} catch (error) {
+					App.fatalError('There were no video data provided - no video can be played.');
+					App.consoleError(`${error.toString()}`);
+				}
 			}, (error: Exception) => {
-				console.error(`Processing the player's config file has failed: ${error.toString()}`);
+				App.fatalError('This player is not correctly configured. The video can not be played.');
+				App.consoleError(`Processing the player's config file has failed: ${error.toString()}`);
 			});
+		}
+		
+		/** Displays the given fatal error message to the user and removes the player from the page. */
+		public static fatalError(message: string) {
+			var errorParagraph = $('.player-error');
+			errorParagraph.text(message);
+			errorParagraph.removeClass('c2jp-hidden');
+
+			var videoTag = $('.video-js');
+			videoTag.addClass('c2jp-hidden');
+		}
+
+		/** Displays the given message on the browser's console. */
+		public static consoleError(message: string) {
+			console.error(`${App.CONSOLE_MESSAGE_PREFIX} ${message}`);
 		}
 
 		/** Gets the current user settings (such as current volume, mute status etc.). */
