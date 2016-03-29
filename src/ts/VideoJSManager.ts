@@ -179,7 +179,12 @@ module Player {
 				media.push(<VideoJSSource>{ src: srcUrl, type: medium.type });
 			});
 
+			// Setting new source files will reset the playback position and pause the player, so got to preserve
+			// the time first and then start playback again.
+			var playbackPosition = this.player.currentTime();
 			this.player.src(media);
+			this.player.currentTime(playbackPosition);
+			this.player.play();
 			this._languageMenu.selectedAudioLanguage = languageCode;
 		}
 
