@@ -2,146 +2,172 @@
   "id" : 1,
   "meta" : {
     "version" : "1.1",
-    "generator" : "Camtasia to JSON v1.0 (2015-09-21)",
+    "generator" : "Camtasia to JSON v1.1 (2016-01-23)",
     "cat" : 1,
-    "dur" : 350,
+    "dur" : 353.5,
     "author" : "TechSmith",
     "date" : "2012-05-15",
-    "defaultLang" : "de",
+    "defaultLang" : "en",
     "contact" : "",
     "enableSocialShareButtons" : true,
     "socialShareUrl" : "https://www.techsmith.com/tutorial-camtasia-8-06-apply-smartfocus-zoom-pan.html",
     "tags" : "camtasia studio smart focus zoom pan zoom pan visual properties scaling animations tutorial techsmith",
     "poster" : "demo/poster.png",
     "titles" : [ {
-      "lang" : "de",
+      "lang" : "en",
       "title" : "Apply SmartFocus to Zoom and Pan"
+    }, {
+      "lang" : "de",
+      "title" : "SmartFocus für Zoom & Schwenk"
     } ],
     "descriptions" : [ {
-      "lang" : "de",
+      "lang" : "en",
       "description" : "A short tutorial video explaining the Smart Focus feature in TechSmith Camtasia Studio."
+    }, {
+      "lang" : "de",
+      "description" : "Ein kurzes Video das die SmartFocus Funktion von Camtasia Studio erläutert."
     } ]
   },
   "media" : {
     "digital" : [ {
-      "lang" : "de",
-      "type" : "video/webm",
-      "src" : "demo/video.webm"
-    }, {
-      "lang" : "de",
+      "lang" : "en",
       "type" : "video/mp4",
       "src" : "demo/video.mp4"
     }, {
-      "lang" : "de",
+      "lang" : "en",
+      "type" : "video/mp4",
+      "src" : "demo/video.webm"
+    }, {
+      "lang" : "en",
       "type" : "video/ogg",
       "src" : "demo/video.ogv"
+    }, {
+      "lang" : "de",
+      "type" : "video/mp4",
+      "src" : "demo/video-de.mp4"
     } ]
   },
   "categories" : [ {
-    "id" : 323,
-    "lang" : "de",
+    "id" : 544,
+    "lang" : "en",
     "title" : "Introduction and Recording",
     "begin" : 0,
     "dur" : 153,
     "description" : "",
     "tooltip" : ""
   }, {
-    "id" : 379,
-    "lang" : "de",
+    "id" : 599,
+    "lang" : "en",
     "title" : "Fine Tuning",
     "begin" : 153,
     "dur" : 196.83,
     "description" : "",
-    "tooltip" : "Configure, add and delete existing SmartFocus animations."
+    "tooltip" : "Manuall add, edit and delete SmartFocus animations."
+  }, {
+    "id" : 658,
+    "lang" : "de",
+    "title" : "Aufnahme mit SmartFocus",
+    "begin" : 0,
+    "dur" : 174.87,
+    "description" : "",
+    "tooltip" : ""
+  }, {
+    "id" : 713,
+    "lang" : "de",
+    "title" : "Feintuning",
+    "begin" : 174.87,
+    "dur" : 174.97,
+    "description" : "",
+    "tooltip" : "Manuelles Bearbeiten, Hinzufügen and Löschen von SmartFocus Animationen."
   } ],
   "chapters" : [ {
-    "id" : 440,
-    "lang" : "de",
+    "id" : 772,
+    "lang" : "en",
     "title" : "What is SmartFocus?",
     "begin" : 0,
     "dur" : 39.07,
     "videoType" : "digital",
     "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes what SmartFocus is and how you can use it to improve the user experience on mobile devices.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
-    "category" : 323,
+    "category" : 544,
     "tooltip" : "What Camtasia Studio SmartFocus is",
-    "tags" : "introduction explanation tutorial learn feature",
+    "tags" : "introduction description tutorial feature",
     "charts" : [ ],
     "additionals" : [ ]
   }, {
-    "id" : 496,
-    "lang" : "de",
+    "id" : 827,
+    "lang" : "en",
     "title" : "Media Format",
     "begin" : 39.07,
     "dur" : 20.93,
     "videoType" : "digital",
     "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes the recording formats where SmartFocus is automatically applied on.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
-    "category" : 323,
+    "category" : 544,
     "tooltip" : "When SmartFocus is Automatically Applied",
     "tags" : "formats record recording camrec trec files",
     "charts" : [ ],
     "additionals" : [ ]
   }, {
-    "id" : 552,
-    "lang" : "de",
+    "id" : 882,
+    "lang" : "en",
     "title" : "Recording with SmartFocus",
     "begin" : 60,
     "dur" : 93,
     "videoType" : "digital",
     "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes how to configure Camtasia to record your videos and auto applying SmartFocus to them.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
-    "category" : 323,
+    "category" : 544,
     "tooltip" : "How to Configure Camtasia to Record With SmartFocus",
-    "tags" : "record recording using auto",
+    "tags" : "record recording using auto setup config configure",
     "charts" : [ ],
     "additionals" : [ ]
   }, {
-    "id" : 608,
-    "lang" : "de",
+    "id" : 937,
+    "lang" : "en",
     "title" : "Editing Animations",
     "begin" : 153,
     "dur" : 108,
     "videoType" : "digital",
     "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes how recorded or existing SmartFocus animations are edited to fit your needs.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
-    "category" : 379,
+    "category" : 599,
     "tooltip" : "How to Edit Recorded SmartFocus Animations",
-    "tags" : "edit change config configure alter setup",
+    "tags" : "edit change config configure alter",
     "charts" : [ ],
     "additionals" : [ ]
   }, {
-    "id" : 664,
-    "lang" : "de",
+    "id" : 992,
+    "lang" : "en",
     "title" : "Removing Animations",
     "begin" : 261,
     "dur" : 17.7,
     "videoType" : "digital",
     "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes how SmartFocus animations can be removed from your videos.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
-    "category" : 379,
+    "category" : 599,
     "tooltip" : "How to Remove SmartFocus Animations",
     "tags" : "remove delete rid clear empty drop",
     "charts" : [ ],
     "additionals" : [ ]
   }, {
-    "id" : 720,
-    "lang" : "de",
+    "id" : 1047,
+    "lang" : "en",
     "title" : "Manual Animations",
     "begin" : 278.7,
     "dur" : 59.7,
     "videoType" : "digital",
     "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes how manual SmartFocus animations are added to your clips.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
-    "category" : 379,
+    "category" : 599,
     "tooltip" : "How to Add Manual SmartFocus Animations",
     "tags" : "add setup configure new create put define",
     "charts" : [ ],
     "additionals" : [ ]
   }, {
-    "id" : 778,
-    "lang" : "de",
+    "id" : 1104,
+    "lang" : "en",
     "title" : "Warp-Up",
     "begin" : 338.4,
     "dur" : 11.43,
     "videoType" : "digital",
     "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Wraps this topic up and gives information about the next video in the tutorial series.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
-    "category" : 379,
-    "tooltip" : "Next Video Information",
+    "category" : 599,
+    "tooltip" : "",
     "tags" : "",
     "charts" : [ ],
     "additionals" : [ {
@@ -160,59 +186,147 @@
       } ]
     } ]
   }, {
-    "id" : 552,
-    "lang" : "en",
-    "title" : "Recording with SmartFocus",
-    "begin" : 60,
-    "dur" : 93,
+    "id" : 1163,
+    "lang" : "de",
+    "title" : "Was ist SmartFocus?",
+    "begin" : 0,
+    "dur" : 44.07,
     "videoType" : "digital",
-    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes how to configure Camtasia to record your videos and auto applying SmartFocus to them.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
-    "category" : 323,
-    "tooltip" : "How to Configure Camtasia to Record With SmartFocus",
-    "tags" : "record recording using auto",
+    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Beschreibt die Funktion von SmartFocus und wie sie genutzt werden kann um das Benutzerelebnis auf Mobilgeräten zu verbessern.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
+    "category" : 658,
+    "tooltip" : "Was Camtasia Studio SmartFocus ist",
+    "tags" : "einführung beschreibung tutorial funktion",
     "charts" : [ ],
     "additionals" : [ ]
   }, {
-    "id" : 720,
-    "lang" : "en",
-    "title" : "Manual Animations",
-    "begin" : 278.7,
-    "dur" : 59.7,
+    "id" : 1218,
+    "lang" : "de",
+    "title" : "Medienformat",
+    "begin" : 44.07,
+    "dur" : 20.87,
     "videoType" : "digital",
-    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Describes how manual SmartFocus animations are added to your clips.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
-    "category" : 379,
-    "tooltip" : "How to Add Manual SmartFocus Animations",
-    "tags" : "add setup configure new create put define",
+    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Beschreibt die Aufnahmeformate bei denen SmartFocus Daten aufgezeichnet werden.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
+    "category" : 658,
+    "tooltip" : "Wann SmartFocus automatisch angewandt werden kann",
+    "tags" : "formate aufnahme camrec trec dateien",
+    "charts" : [ ],
+    "additionals" : [ ]
+  }, {
+    "id" : 1273,
+    "lang" : "de",
+    "title" : "Aufnehmen mit SmartFocus",
+    "begin" : 64.93,
+    "dur" : 109.93,
+    "videoType" : "digital",
+    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Beschreibt wie Camtasia so konfiguriert werden kann, dass SmartFocus Daten automatisch aufgezeichnet und angewandt werden.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
+    "category" : 658,
+    "tooltip" : "Camtasia für SmartFocus aufnahme konfigurieren",
+    "tags" : "aufnahme aufnehmen automatisch automatisiert einrichten einstellen konfigurieren",
+    "charts" : [ ],
+    "additionals" : [ ]
+  }, {
+    "id" : 1328,
+    "lang" : "de",
+    "title" : "Animationen bearbeiten",
+    "begin" : 174.87,
+    "dur" : 86.13,
+    "videoType" : "digital",
+    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Beschreibt wie aufgenommene oder vorhandene SmartFocus Animationen bearbeitet werden können.</span></p>\r\n",
+    "category" : 713,
+    "tooltip" : "Das Bearbeiten von SmartFocus Animationen",
+    "tags" : "bearbeiten ändern konfigurieren",
+    "charts" : [ ],
+    "additionals" : [ ]
+  }, {
+    "id" : 1383,
+    "lang" : "de",
+    "title" : "Animationen entfernen",
+    "begin" : 261,
+    "dur" : 45.9,
+    "videoType" : "digital",
+    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Beschreibt wie SmartFocus Animationen aus dem Video entfernt werden können.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
+    "category" : 713,
+    "tooltip" : "Entfernen von SmartFocus Animationen",
+    "tags" : "entfernen löschen",
+    "charts" : [ ],
+    "additionals" : [ ]
+  }, {
+    "id" : 1438,
+    "lang" : "de",
+    "title" : "Manuelle Animationen",
+    "begin" : 306.9,
+    "dur" : 31.5,
+    "videoType" : "digital",
+    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Beschreibt wie manuelle SmartFocus Animationen hinzugefügt werden.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
+    "category" : 713,
+    "tooltip" : "Wie SmartFocus Animationen manuell hinzugefügt werden",
+    "tags" : "hinzufügen einrichten erstellen definieren",
+    "charts" : [ ],
+    "additionals" : [ ]
+  }, {
+    "id" : 1495,
+    "lang" : "de",
+    "title" : "Abschluss",
+    "begin" : 338.4,
+    "dur" : 11.43,
+    "videoType" : "digital",
+    "description" : "<p class=\"default\"><span style=\"color: #000000; font-size: 12pt; font-family: Arial\">Schließt das Thema ab und gibt Informationen zu weiterführenden Videos.</span><span style=\"color: #000000; font-size: 8pt; font-family: Courier New\"></span></p>\r\n",
+    "category" : 713,
+    "tooltip" : "",
+    "tags" : "",
     "charts" : [ ],
     "additionals" : [ ]
   } ],
   "authorNotes" : [ {
-    "lang" : "de",
-    "begin" : 79.3,
-    "title" : "Hotkey to add Animations",
+    "lang" : "en",
+    "begin" : 185.6,
+    "dur" : 4.77,
+    "title" : "Zooming and Quality",
+    "tooltip" : "",
+    "content" : "<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">Best quality is achieved by zooming to a scale of</span><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\"><i>100%</i></span><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">.</span></p>\r\n",
+    "chapter" : 937,
+    "displayInTimeline" : true,
+    "displayInChapters" : true,
+    "displayOnScreen" : true
+  }, {
+    "lang" : "en",
+    "begin" : 300.97,
+    "title" : "Hotkey to Add Animations",
     "tooltip" : "",
     "content" : "<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">To add an animation quickly, the hotkey \"z\" can be used.</span><span style=\"color: #000000; font-size: 14pt; font-family: Arial\"></span></p>\r\n",
-    "chapter" : 552,
+    "chapter" : 1047,
     "displayInTimeline" : true,
     "displayInChapters" : false,
     "displayOnScreen" : false
   }, {
-    "lang" : "de",
-    "begin" : 81.3,
+    "lang" : "en",
+    "begin" : 185.6,
+    "dur" : 4.77,
     "title" : "Zooming Hints",
     "tooltip" : "",
-    "content" : "<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">Best quality is achieved by zooming to a scale of 100%. For more best-practices on zooming, see:</span></p>\r\n<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\"><a href=\"https://www.techsmith.com/tutorial-camtasia-8-zooming-misunderstood-screencasting-quality.html\">Zooming: The Often Misunderstood Half-Holy Grail of Screencasting Quality</a>.</span><span style=\"color: #000000; font-size: 14pt; font-family: Arial\"></span></p>\r\n",
-    "chapter" : 608,
+    "content" : "<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">For more best-practices on zooming, see:</span></p>\r\n<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\"><a href=\"https://www.techsmith.com/tutorial-camtasia-8-zooming-misunderstood-screencasting-quality.html\" target=\"_blank\">Zooming: The Often Misunderstood Half-Holy Grail of Screencasting Quality</a>.</span><span style=\"color: #000000; font-size: 14pt; font-family: Arial\"></span></p>\r\n",
+    "chapter" : 937,
     "displayInTimeline" : true,
     "displayInChapters" : true,
     "displayOnScreen" : true
   }, {
     "lang" : "de",
-    "begin" : 300.97,
-    "title" : "Hotkey to Add Animations",
+    "begin" : 197.8,
+    "dur" : 4.77,
+    "title" : "Zooming Hints",
     "tooltip" : "",
-    "content" : "<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">To add an animation quickly, the hotkey \"z\" can be used.</span><span style=\"color: #000000; font-size: 14pt; font-family: Arial\"></span></p>\r\n",
-    "chapter" : 720,
+    "content" : "<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">Die beste Bildqualität ist bei einer Zoomtiefe von 100% gegeben. Für mehr Informationen, siehe:</span></p>\r\n<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\"><a href=\"https://www.techsmith.de/tuotrial-camtasia-8-zoomen-richtig-anwenden.html\" target=\"_blank\">Zoomen richtig angewendet - die wichtigste Funktion beim Screencasting</a>.</span><span style=\"color: #000000; font-size: 14pt; font-family: Arial\"></span></p>\r\n",
+    "chapter" : 1328,
+    "displayInTimeline" : true,
+    "displayInChapters" : true,
+    "displayOnScreen" : true
+  }, {
+    "lang" : "de",
+    "begin" : 319.97,
+    "title" : "Hotkey um Animationen hinzuzufügen",
+    "tooltip" : "",
+    "content" : "<p class=\"default\"><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">Um eine Animation</span><span style=\"color: #000000; font-size: 18pt; font-family: Verdana\">schnell einzufügen</span><span style=\"color: #000000; font-size: 10pt; font-family: Verdana\">, kann die Hotkey \"z\" benutzt werden.</span><span style=\"color: #000000; font-size: 14pt; font-family: Arial\"></span></p>\r\n",
+    "chapter" : 1438,
     "displayInTimeline" : true,
     "displayInChapters" : false,
     "displayOnScreen" : false
@@ -227,16 +341,6 @@
     "isBackgroundOnlyAroundText" : true
   },
   "captions" : [ {
-    "lang" : "de",
-    "begin" : 2.1,
-    "dur" : 6.6,
-    "content" : "Wenn Sie im Vollbildmodus aufnehmen, oder in einer anderen hohen Auflösung, dann ist es manchmal schwierig die Details ihres Videos bei "
-  }, {
-    "lang" : "de",
-    "begin" : 9.2,
-    "dur" : 7.43,
-    "content" : "sehr viel kleineren Auflösungen zu erkennen… z.B. auf einem Mobilgerät oder einer Webseite.\nHier kann das SmartFocus Feature von Camtasia abhilfe leisten. "
-  }, {
     "lang" : "en",
     "begin" : 2.1,
     "dur" : 6.6,
@@ -491,14 +595,254 @@
     "begin" : 344.17,
     "dur" : 4.6,
     "content" : "If you have any feedback for us, please follow this link to a short \nsurvey."
+  }, {
+    "lang" : "de",
+    "begin" : 2.1,
+    "dur" : 6.6,
+    "content" : "Wenn Sie im Vollbildmodus aufnehmen oder große \nAufnahmedimensionen verwenden, dann sind die Details \nmanchmal nicht so gut Sichtbar. "
+  }, {
+    "lang" : "de",
+    "begin" : 9.2,
+    "dur" : 7.43,
+    "content" : "Besonders wenn das Video in kleineren Abmessungen für die \nWeitergabe im Internet oder zur Ansicht auf Mobilgeräten \nproduziert wird."
+  }, {
+    "lang" : "de",
+    "begin" : 17.13,
+    "dur" : 8.87,
+    "content" : "In solchen Fällen ist Smart Focus sehr nützlich. Smart Focus \nberechnet automatisch die optimalen Zoompunkte in einem \nVideo, damit die Zuschauer alles bestens sehen können."
+  }, {
+    "lang" : "de",
+    "begin" : 26.5,
+    "dur" : 10.23,
+    "content" : "Das passiert schon während der Aufnahme im Hintergrund. \nSmart Focus analysiert die Position des Cursors, welche Fenster \naktiv sind und wo Texteingaben gemacht werden."
+  }, {
+    "lang" : "de",
+    "begin" : 37.23,
+    "dur" : 6.37,
+    "content" : "Aus diesen Dateien werden dann die besten Zoompunkte \nerechnet und dann automatisch auf der Timeline im Editor \neingefügt."
+  }, {
+    "lang" : "de",
+    "begin" : 44.1,
+    "dur" : 7.23,
+    "content" : "Es ist wichtig zu wissen, dass Smart Focus nur mit den \nCamtasia Aufnahmedateien, den .tref und den .camrec Dateien, \nfunktioniert."
+  }, {
+    "lang" : "de",
+    "begin" : 51.83,
+    "dur" : 9.07,
+    "content" : "Wenn Sie ihre Aufnahmen im AVI Format machen oder Videoclips \nin anderen Formaten importieren, dann werden keine \nautomatischen Zoompunkte errechnet."
+  }, {
+    "lang" : "de",
+    "begin" : 61.4,
+    "dur" : 9.57,
+    "content" : "Sie können dann immer noch die Zoompunkte manuell setzen, \nich zeige Ihnen jetzt einmal wie einfach Smart Focus auf einen \nClip angewendet werden kann, und wie leicht neue "
+  }, {
+    "lang" : "de",
+    "begin" : 71.47,
+    "dur" : 2.8,
+    "content" : "Zoomanimationen in ein Video integriert werden können."
+  }, {
+    "lang" : "de",
+    "begin" : 74.77,
+    "dur" : 12,
+    "content" : "Klicken Sie auf den Tab \"Zoom und Schwenk\". Hier unten sehen \nSie die Optionen für Smart Focus. Wenn Sie die Option \"Smart \nFocus auf hinzugefügte Clips anwenden\" aktivieren, dann "
+  }, {
+    "lang" : "de",
+    "begin" : 87.27,
+    "dur" : 7.6,
+    "content" : "werden ab sofort automatisch Smart Focus Animationen auf alle \nAufnahmedateien angewendet, die Sie auf die Timeline ziehen."
+  }, {
+    "lang" : "de",
+    "begin" : 95.37,
+    "dur" : 9.26,
+    "content" : "Und wenn Sie auf \"SmartFocus auf ausgewählte Clips \nanwenden\" klicken, dann werden die Smart Focus Animationen \nnur auf die auf der Timeline ausgewählten Clips angewendet."
+  }, {
+    "lang" : "de",
+    "begin" : 105.13,
+    "dur" : 9.57,
+    "content" : "SmartFocus auf Timeline anwenden bedeuted, dass die \nSmartFocus animation auf allen Clips, die sich momentan auf \nder Timeline befinden, angewendet werden."
+  }, {
+    "lang" : "de",
+    "begin" : 115.2,
+    "dur" : 13.7,
+    "content" : "Wenn Sie möchten, dass SmartFocus Animationen automatisch \nin jedem neuen Projekt auf die Aufnahmedatei angewendet \nwerden, dann gehen Sie zu Tools, Optionen"
+  }, {
+    "lang" : "de",
+    "begin" : 129.4,
+    "dur" : 6.13,
+    "content" : "und aktivieren Sie \"SmartFocus auf hinzugefügte Clips \nanwenden\"."
+  }, {
+    "lang" : "de",
+    "begin" : 136.03,
+    "dur" : 3.94,
+    "content" : "Diese Meldung erscheint immer, wenn SmartFocus auf die \nTimeline angewendet wird."
+  }, {
+    "lang" : "de",
+    "begin" : 140.47,
+    "dur" : 6.9,
+    "content" : "Diese blauen visuellen Animationen repräsentieren alle Stellen, \nauf die SmartFocus automatisch angewendet wurde."
+  }, {
+    "lang" : "de",
+    "begin" : 147.87,
+    "dur" : 3.26,
+    "content" : "Die Platzierung wurde aufgrund der gesammelten \nAufnahmedaten berechnet."
+  }, {
+    "lang" : "de",
+    "begin" : 151.63,
+    "dur" : 8,
+    "content" : "Sie können die Suchleiste kurz vor einer Animation positionieren \nund dann das Video abspielen, um auf der Leinwand zu sehen \nwas genau passiert."
+  }, {
+    "lang" : "de",
+    "begin" : 160.13,
+    "dur" : 6.97,
+    "content" : "Hier sieht es so aus, als wenn der Rechner vergrößert wird, \nwährend der Mauszeiger auf die Tasten klickt."
+  }, {
+    "lang" : "de",
+    "begin" : 167.6,
+    "dur" : 6.83,
+    "content" : "Um die Zoomposition zu Ändern, können Sie einfach die \nAnimation anklicken und auf eine andere Stelle auf der Timeline \nziehen."
+  }, {
+    "lang" : "de",
+    "begin" : 174.93,
+    "dur" : 6.67,
+    "content" : "Animationen können sehr einfach bearbeitet werden. Ein \nDoppelklick auf eine Animation öffnet den Tab für die visuellen \nEigenschaften."
+  }, {
+    "lang" : "de",
+    "begin" : 182.1,
+    "dur" : 6.63,
+    "content" : "Hier haben Sie alles unter kontrolle und können bestimmen, wie \nIhre Medienelemente im Video aussehen und erscheinen."
+  }, {
+    "lang" : "de",
+    "begin" : 189.23,
+    "dur" : 5.77,
+    "content" : "Der Zoomgrad kann mit diesem Schieberegler bestimmt \nwerden. Die Änderungen sind sofort auf der Leinwand sichtbar."
+  }, {
+    "lang" : "de",
+    "begin" : 195.5,
+    "dur" : 13.83,
+    "content" : "Bei der Verwendung von Zoom auf der Timeline, sollten wir die \n100 prozent Marke anpeilen. Alles das über 100% hinausgeht \nkann pixelig oder verschwommen aussehen."
+  }, {
+    "lang" : "de",
+    "begin" : 209.83,
+    "dur" : 8.64,
+    "content" : "Hier kann auch die Deckkraft bestimmt werden, sowie andere \nvisuelle Effekte. Mehr dazu lernen Sie in unserem Tutorial über \ndie visuellen Eigenschaften von Medienclips."
+  }, {
+    "lang" : "de",
+    "begin" : 218.97,
+    "dur" : 4.56,
+    "content" : "Statt den Schieberegler zu benutzen, kann man auch eine der \nEcken auf die gewünschte Größe ziehen."
+  }, {
+    "lang" : "de",
+    "begin" : 224.03,
+    "dur" : 8.94,
+    "content" : "Manchmal kann es notwendig sein, die Prozentansicht der \nLeinwand mit diesem Drop-Down Menü oder mit dem Mausrad \nzu ändern, damit mehr von der Originalaufnahme zu sehen ist."
+  }, {
+    "lang" : "de",
+    "begin" : 233.47,
+    "dur" : 4,
+    "content" : "Bewegen Sie die Aufnahme auf der Leinwand so, dass der \ngewünschte Ausschnitt in der Vorschau sichtbar wird."
+  }, {
+    "lang" : "de",
+    "begin" : 237.97,
+    "dur" : 5.06,
+    "content" : "Alles was sich außerhalb des Vorschaubereichs befindet, wird \nim produzierten Video nicht sichtbar sein."
+  }, {
+    "lang" : "de",
+    "begin" : 243.53,
+    "dur" : 6.9,
+    "content" : "Das Video bleibt in dieser neuen Position, bis das Ende des \nClips erreicht wird oder eine andere Animation beginnt."
+  }, {
+    "lang" : "de",
+    "begin" : 250.93,
+    "dur" : 7.54,
+    "content" : "Schauen wir uns das Video einmal ab diesem Punkt, kurz vor der \nnächsten Animation an, um zu sehen was genau passiert..."
+  }, {
+    "lang" : "de",
+    "begin" : 258.97,
+    "dur" : 7.33,
+    "content" : "Jetzt ist das Notepad Dokument im Blickpunkt, auch hier gilt: \nwenn Sie diese Animation bearbeiten wollen, genügt ein \nDoppelklick und Sie können auf dem Tab"
+  }, {
+    "lang" : "de",
+    "begin" : 266.8,
+    "dur" : 2.63,
+    "content" : "\"Visuelle Eigenschaften\" Änderungen machen."
+  }, {
+    "lang" : "de",
+    "begin" : 269.93,
+    "dur" : 5.17,
+    "content" : "Was ist, wenn Sie SmartFocus nicht benutzen und alle \nZoompunkte manuell setzen wollen? Auch das ist kein problem."
+  }, {
+    "lang" : "de",
+    "begin" : 275.6,
+    "dur" : 3.1,
+    "content" : "Ich zeige Ihnen zuerst, wie Sie SmartFocus deaktivieren können."
+  }, {
+    "lang" : "de",
+    "begin" : 279.2,
+    "dur" : 7.43,
+    "content" : "Klicken Sie auf das Tab \"Zoom und Schwenk\" und deaktivieren \nSie das Kästchen neben dieser Option: SmartFocus auf \nhinzugefügte Clips anwenden."
+  }, {
+    "lang" : "de",
+    "begin" : 287.13,
+    "dur" : 4.6,
+    "content" : "Jetzt werden keine automatischen Zoomanimationen mehr auf \nneue Clips angewendet."
+  }, {
+    "lang" : "de",
+    "begin" : 292.23,
+    "dur" : 8,
+    "content" : "Um alle Animationen auf einem Clip zu entfernen, machen Sie \neinen rechten Mausklick auf einen Clip und wählen Sie entweder \n\"Löschen\" oder \"Alle visuellen Animationen löschen\"."
+  }, {
+    "lang" : "de",
+    "begin" : 300.73,
+    "dur" : 5.84,
+    "content" : "Wenn Sie mehere Clips auf der Timeline haben, dann müssten \nSie dies für jeden Clip tun."
+  }, {
+    "lang" : "de",
+    "begin" : 307.07,
+    "dur" : 7.93,
+    "content" : "Um eine visuelle Animation manuell einzufügen, wählen Sie \nzuerst einen Medienclip aus und positionieren Sie dann die \nSuchleiste auf der gewünschten Stelle. "
+  }, {
+    "lang" : "de",
+    "begin" : 315.5,
+    "dur" : 4.17,
+    "content" : "Nach der korrekten Auswahl klicken Sie dann auf die Schaltfläche \n\"Animation einfügen\". "
+  }, {
+    "lang" : "de",
+    "begin" : 320.17,
+    "dur" : 4,
+    "content" : "Wenn Sie gerne mit Kurztasten arbeiten, können Sie auch \neinfach auf \"z\" drücken."
+  }, {
+    "lang" : "de",
+    "begin" : 324.67,
+    "dur" : 8.4,
+    "content" : "Sie können wieder die Position und größe des Videos auf der \nLeinwand verändern, sodass Sie genau das im Blick haben, was \nan dieser Stelle im Video zu sehen sein soll."
+  }, {
+    "lang" : "de",
+    "begin" : 333.57,
+    "dur" : 5.5,
+    "content" : "Es liegt also bei Ihnen ob Sie SmartFocus hilfreich finden, oder \nlieber alle Zoompunkte manuell einfügen."
+  }, {
+    "lang" : "de",
+    "begin" : 339.57,
+    "dur" : 5.43,
+    "content" : "Das nächste Video dieser Serie erklärt, wie Callouts helfen die \nZuschauer auf wichtige Bereiche hinzuweisen."
+  }, {
+    "lang" : "de",
+    "begin" : 345.5,
+    "dur" : 3.73,
+    "content" : "Wenn Sie Feedback für uns haben, dann klicken Sie auf diesen \nLink zu einer kurzen Umfrage."
+  }, {
+    "lang" : "de",
+    "begin" : 349.73,
+    "dur" : 1.8,
+    "content" : "Danke"
   } ],
   "overlaySettings" : {
     "isEnabledByDefault" : true,
     "isSwitchable" : true
   },
   "overlays" : [ {
-    "id" : 1270,
-    "lang" : "de",
+    "id" : 2063,
+    "lang" : "en",
     "begin" : 54.5,
     "dur" : 3.77,
     "content" : "",
@@ -524,8 +868,8 @@
     "fadeOutDuration" : 0.07,
     "tooltip" : "Click here to jump to the chapter for manually adding animations."
   }, {
-    "id" : 1326,
-    "lang" : "de",
+    "id" : 2119,
+    "lang" : "en",
     "begin" : 339.07,
     "dur" : 10.83,
     "content" : "",
@@ -552,62 +896,7 @@
     "fadeOutDuration" : 0.07,
     "tooltip" : "Next Tutorial: Cut Unwanted Media on the Timeline"
   }, {
-    "id" : 1442,
-    "lang" : "de",
-    "begin" : 48.93,
-    "dur" : 3.77,
-    "content" : "",
-    "isCopyableContent" : false,
-    "style" : "Inhaltslos",
-    "position" : "Standard",
-    "action" : "goto",
-    "actionParams" : {
-      "gotoPos" : 287.63
-    },
-    "pauseAtEnd" : false,
-    "waitForAction" : false,
-    "closeOnAction" : false,
-    "closeButton" : false,
-    "forceVisibility" : true,
-    "translateTransform" : [ -18.63, 12.9, 19.99 ],
-    "rotateTransform" : [ 0.75, 0.35, 0.51 ],
-    "shearTransform" : [ 0, 0, 0 ],
-    "w" : 29.25,
-    "h" : 27.75,
-    "opacity" : 1,
-    "fadeInDuration" : 0.1,
-    "fadeOutDuration" : 0.07,
-    "tooltip" : "Click here to jump to the chapter for manually adding animations."
-  }, {
-    "id" : 1498,
-    "lang" : "de",
-    "begin" : 344.8,
-    "dur" : 5.2,
-    "content" : "",
-    "isCopyableContent" : false,
-    "style" : "Inhaltslos",
-    "position" : "Standard",
-    "action" : "link",
-    "actionParams" : {
-      "href" : "http://techsmith.qualtrics.com/SE/?SID=SV_5mwLlz0UQZhIqag",
-      "inNewWindow" : true
-    },
-    "pauseAtEnd" : false,
-    "waitForAction" : false,
-    "closeOnAction" : false,
-    "closeButton" : false,
-    "forceVisibility" : true,
-    "translateTransform" : [ -6.48, 10.39, 0 ],
-    "rotateTransform" : [ 0, 0, 0 ],
-    "shearTransform" : [ 0, 0, 0 ],
-    "w" : 49.5,
-    "h" : 13.25,
-    "opacity" : 1,
-    "fadeInDuration" : 0.1,
-    "fadeOutDuration" : 0.07,
-    "tooltip" : "Help us improve our tutorial videos."
-  }, {
-    "id" : 1498,
+    "id" : 2179,
     "lang" : "en",
     "begin" : 344.8,
     "dur" : 5.2,
@@ -634,6 +923,62 @@
     "fadeInDuration" : 0.1,
     "fadeOutDuration" : 0.07,
     "tooltip" : "Help us improve our tutorial videos."
+  }, {
+    "id" : 2239,
+    "lang" : "de",
+    "begin" : 341.13,
+    "dur" : 8.93,
+    "content" : "",
+    "isCopyableContent" : false,
+    "style" : "Inhaltslos",
+    "position" : "Standard",
+    "action" : "link",
+    "actionParams" : {
+      "href" : "https://www.techsmith.com/tutorial-camtasia-8-07-cut-media-timeline.html",
+      "inNewWindow" : false
+    },
+    "pauseAtEnd" : true,
+    "waitForAction" : false,
+    "closeOnAction" : false,
+    "closeButton" : false,
+    "forceVisibility" : true,
+    "translateTransform" : [ -9.73, -5.5, 0 ],
+    "rotateTransform" : [ 0, 0, 0 ],
+    "shearTransform" : [ 0, 0, 0 ],
+    "w" : 43,
+    "h" : 13,
+    "opacity" : 1,
+    "fadeInDuration" : 0.1,
+    "fadeOutDuration" : 0.07,
+    "tooltip" : "Next Tutorial: Cut Unwanted Media on the Timeline"
+  }, {
+    "id" : 2299,
+    "lang" : "de",
+    "begin" : 341.23,
+    "dur" : 8.93,
+    "content" : "",
+    "isCopyableContent" : false,
+    "style" : "Inhaltslos",
+    "position" : "Standard",
+    "action" : "link",
+    "actionParams" : {
+      "href" : "http://techsmith.qualtrics.com/SE/?SID=SV_5mwLlz0UQZhIqag",
+      "inNewWindow" : true
+    },
+    "pauseAtEnd" : false,
+    "waitForAction" : false,
+    "closeOnAction" : false,
+    "closeButton" : false,
+    "forceVisibility" : true,
+    "translateTransform" : [ -5.34, 22.71, 0 ],
+    "rotateTransform" : [ 0, 0, 0 ],
+    "shearTransform" : [ 0, 0, 0 ],
+    "w" : 51.75,
+    "h" : 11.5,
+    "opacity" : 1,
+    "fadeInDuration" : 0.1,
+    "fadeOutDuration" : 0.07,
+    "tooltip" : "Help us improve our tutorial videos."
   } ],
   "authCam" : {
     "begin" : 0,
@@ -642,9 +987,9 @@
     "isMoveable" : true,
     "isResizable" : true,
     "position" : "Standard",
-    "w" : 182.4,
-    "h" : 179.24,
-    "translateTransform" : [ -376.5, 139.22, 0 ],
+    "w" : 22.8,
+    "h" : 39.83,
+    "translateTransform" : [ -47.06, -30.94, 0 ],
     "rotateTransform" : [ 0, 0, 0 ],
     "shearTransform" : [ 0, 0, 0 ],
     "opacity" : 1,
