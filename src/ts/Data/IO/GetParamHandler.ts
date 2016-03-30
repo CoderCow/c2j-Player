@@ -34,11 +34,23 @@ module Player {
 			GetParamHandler.processBooleanParam('noov', parameterSet, true, (value: boolean) =>
 				playerConfigToUpdate.disableOverlays = value);
 
-			GetParamHandler.processBooleanParam('fsubs', parameterSet, true, (value: boolean) =>
+			GetParamHandler.processBooleanParam('subs', parameterSet, true, (value: boolean) =>
 				playerConfigToUpdate.enableSubtitlesByDefault = value);
 
 			GetParamHandler.processStringParam('playerlang', parameterSet, false, (value: string) =>
 				playerConfigToUpdate.playerLanguage = value);
+
+			GetParamHandler.processStringParam('medialang', parameterSet, false, (value: string) =>
+				playerConfigToUpdate.mediaLanguage = value);
+
+			GetParamHandler.processStringParam('addslang', parameterSet, false, (value: string) =>
+				playerConfigToUpdate.additionalsLanguage = value);
+
+			GetParamHandler.processStringParam('subslang', parameterSet, false, (value: string) =>
+				playerConfigToUpdate.subtitlesLanguage = value);
+
+			GetParamHandler.processBooleanParam('autoplay', parameterSet, true, (value: boolean) =>
+				playerConfigToUpdate.autoplay = value);
 		}
 
 		/**

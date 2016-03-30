@@ -71,6 +71,7 @@ module Player {
 		public init(initCompleted: (error: Exception) => void): void {
 			this._player = null;
 
+			var userPreferredLanguage = normalizeLanguageCode(navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage || 'de');
 			var videojsOptions = <VideoJSOptions>{};
 			videojsOptions.defaultVolume = this._userSettings.volume;
 			videojsOptions.poster = this.prependMediaUrl(this._videoData.poster);
@@ -79,7 +80,10 @@ module Player {
 			videojsOptions.playbackRates = [0.5, 1, 1.5, 2, 3];
 			if (this._playerConfig.playerLanguage !== null)
 				videojsOptions.language = this._playerConfig.playerLanguage;
-			if (this._playerConfig.startPlaybackAt !== null)
+			else
+				videojsOptions.language = userPreferredLanguage;
+
+			if (this._playerConfig.startPlaybackAt !== null || this._playerConfig.autoplay)
 				videojsOptions.autoplay = true;
 
 			var manager = this;
@@ -91,30 +95,30 @@ module Player {
 					// TODO: Remove when VideoJSOptions.defaultVolume works again..
 					manager._player.volume(manager._userSettings.volume);
 
-					var initalLanguage = normalizeLanguageCode(manager._player.language());
 					manager.setupButtons();
 
 					// Set playback position prior loading media, so no useless buffering will be done.
 					if (manager._playerConfig.startPlaybackAt !== null)
 						manager._player.currentTime(manager._playerConfig.startPlaybackAt);
 
-					manager.setMediaLanguage(initalLanguage);
+					manager.setMediaLanguage(manager._playerConfig.mediaLanguage || userPreferredLanguage);
 
-					manager._chapterManager = new ChapterManager(manager._player, manager._videoData, initalLanguage);
+					var initialAdditionalsLanguage = (manager._playerConfig.mediaLanguage || userPreferredLanguage);
+					manager._chapterManager = new ChapterManager(manager._player, manager._videoData, initialAdditionalsLanguage);
 					if (!manager._playerConfig.disableAuthorNotes)
-						manager._authorNotesManager = new AuthorNotesManager(manager._player, manager._videoData, initalLanguage);
+						manager._authorNotesManager = new AuthorNotesManager(manager._player, manager._videoData, initialAdditionalsLanguage);
 
 					if (!manager._playerConfig.disableOverlays)
-						manager._overlayManager = new OverlayManager(manager._player, manager._videoData, initalLanguage);
+						manager._overlayManager = new OverlayManager(manager._player, manager._videoData, initialAdditionalsLanguage);
 
 					// TODO bug: this will not auto select the language in the language menu
 					var initialSubtitleLanguage: string = null;
 					if (manager._playerConfig.enableSubtitlesByDefault)
-						initialSubtitleLanguage = initalLanguage;
+						initialSubtitleLanguage = manager._playerConfig.subtitlesLanguage || userPreferredLanguage;
 
 					manager._subtitleManager = new SubtitleManager(manager._player, manager, initialSubtitleLanguage);
 
-					manager.setupPanes(initalLanguage);
+					manager.setupPanes(initialAdditionalsLanguage);
 					manager.setupTimeDisplay();
 				} catch (thrownError) {
 					error = <Exception>thrownError;
@@ -179,12 +183,16 @@ module Player {
 				media.push(<VideoJSSource>{ src: srcUrl, type: medium.type });
 			});
 
-			// Setting new source files will reset the playback position and pause the player, so got to preserve
-			// the time first and then start playback again.
+			// Setting new source files will reset the playback position, so got to preserve
+			// the time first and then start playback again if required.
 			var playbackPosition = this.player.currentTime();
+			var isPaused = this.player.paused();
 			this.player.src(media);
+
 			this.player.currentTime(playbackPosition);
-			this.player.play();
+			if (!isPaused)
+				this.player.play();
+
 			this._languageMenu.selectedAudioLanguage = languageCode;
 		}
 

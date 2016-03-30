@@ -11,6 +11,10 @@ module Player {
 		public disableAuthorNotes: boolean;
 		public disableOverlays: boolean;
 		public playerLanguage: string;
+		public mediaLanguage: string;
+		public additionalsLanguage: string;
+		public subtitlesLanguage: string;
+		public autoplay: boolean;
 
 		public constructor() {
 			this.videoMetadataUrl = null;
@@ -24,6 +28,10 @@ module Player {
 			this.disableAuthorNotes = false;
 			this.disableOverlays = false;
 			this.playerLanguage = null;
+			this.mediaLanguage = null;
+			this.additionalsLanguage = null;
+			this.subtitlesLanguage = null;
+			this.autoplay = false;
 		}
 
 		public invalidate(): void {
