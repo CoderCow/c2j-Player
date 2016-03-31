@@ -34,6 +34,9 @@ module Player {
 			GetParamHandler.processBooleanParam('noov', parameterSet, true, (value: boolean) =>
 				playerConfigToUpdate.disableOverlays = value);
 
+			GetParamHandler.processBooleanParam('simplelangsel', parameterSet, true, (value: boolean) =>
+				playerConfigToUpdate.simpleLanguageSelection = value);
+
 			GetParamHandler.processBooleanParam('subs', parameterSet, true, (value: boolean) =>
 				playerConfigToUpdate.enableSubtitlesByDefault = value);
 

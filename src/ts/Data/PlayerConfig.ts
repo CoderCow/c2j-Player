@@ -15,6 +15,7 @@ module Player {
 		public additionalsLanguage: string;
 		public subtitlesLanguage: string;
 		public autoplay: boolean;
+		public simpleLanguageSelection: boolean;
 
 		public constructor() {
 			this.videoMetadataUrl = null;
@@ -32,6 +33,7 @@ module Player {
 			this.additionalsLanguage = null;
 			this.subtitlesLanguage = null;
 			this.autoplay = false;
+			this.simpleLanguageSelection = false;
 		}
 
 		public invalidate(): void {

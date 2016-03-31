@@ -6,5 +6,10 @@
 	"enableSubtitlesByDefault": false,
 	"disableAuthorNotes": false,
 	"disableOverlays": false,
-	"playerLanguage": null
+	"playerLanguage": null,
+	"mediaLanguage": null,
+	"additionalsLanguage": null,
+	"subtitlesLanguage": null,
+	"autoplay": false,
+	"simpleLanguageSelection": false
 }

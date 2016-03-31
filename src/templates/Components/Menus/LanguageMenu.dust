@@ -1,4 +1,4 @@
-<div class="vjs-menu language-menu" title="">
+<div class="vjs-menu language-menu {?isSimpleMenuMode}simple{/isSimpleMenuMode}" title="">
 	<div class="title">{title}</div>
 
 	{#audio}
@@ -21,6 +21,7 @@
 	</div>
 	{/audio}
 
+	{^isSimpleMenuMode}
 	{#extras}
 	<div class="extras">
 		<label class="label">
@@ -40,6 +41,7 @@
 		</label>
 	</div>
 	{/extras}
+	{/isSimpleMenuMode}
 
 	{#subtitle}
 	<div class="subtitle">

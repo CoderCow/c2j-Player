@@ -3,10 +3,12 @@ module Player {
 	/** The button to open the language menu. */
 	export class LanguageButtonComponent extends VideoJSMenuButton {
 		private _videoData: VideoData;
+		private _isSimpleMenuMode: boolean;
 
 		/** Initializes a new instance of this class. */
-		public constructor(player: VideoJSPlayer, videoData: VideoData) {
+		public constructor(player: VideoJSPlayer, videoData: VideoData, isSimpleMenuMode: boolean) {
 			this._videoData = videoData;
+			this._isSimpleMenuMode = isSimpleMenuMode;
 
 			super(player, {});
 		}
@@ -20,7 +22,7 @@ module Player {
 
 		/** @inheritdoc */
 		public createMenu() {
-			return new LanguageMenuComponent(this.player_, this._videoData);
+			return new LanguageMenuComponent(this.player_, this._videoData, this._isSimpleMenuMode);
 		}
 	}
 }

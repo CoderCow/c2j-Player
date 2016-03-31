@@ -14,10 +14,12 @@ module Player {
 		private _selectedAudioLanguage: string;
 		private _selectedExtrasLanguage: string;
 		private _selectedSubtitleLanguage: string;
+		private _isSimpleMenuMode: boolean;
 
 		/** Initializes a new instance of this class. */
-		public constructor(player: VideoJSPlayer, videoData: VideoData) {
+		public constructor(player: VideoJSPlayer, videoData: VideoData, isSimpleMenuMode: boolean) {
 			this._videoData = videoData;
+			this._isSimpleMenuMode = isSimpleMenuMode;
 
 			super(player, {});
 		}
@@ -47,6 +49,7 @@ module Player {
 					isJustOne: subtitleSelectables.length === 1,
 					selectables: subtitleSelectables,
 				},
+				isSimpleMenuMode: this._isSimpleMenuMode
 			}));
 
 			menu.find('.audio select').change((event: Event) => {

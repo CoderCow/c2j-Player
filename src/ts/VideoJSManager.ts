@@ -101,9 +101,11 @@ module Player {
 					if (manager._playerConfig.startPlaybackAt !== null)
 						manager._player.currentTime(manager._playerConfig.startPlaybackAt);
 
-					manager.setMediaLanguage(manager._playerConfig.mediaLanguage || userPreferredLanguage);
+					var initialMediaLanguage = (manager._playerConfig.mediaLanguage || userPreferredLanguage);
+					var initialAdditionalsLanguage = (manager._playerConfig.additionalsLanguage || userPreferredLanguage);
+					if (manager._playerConfig.simpleLanguageSelection)
+						initialAdditionalsLanguage = initialMediaLanguage;
 
-					var initialAdditionalsLanguage = (manager._playerConfig.mediaLanguage || userPreferredLanguage);
 					manager._chapterManager = new ChapterManager(manager._player, manager._videoData, initialAdditionalsLanguage);
 					if (!manager._playerConfig.disableAuthorNotes)
 						manager._authorNotesManager = new AuthorNotesManager(manager._player, manager._videoData, initialAdditionalsLanguage);
@@ -118,6 +120,7 @@ module Player {
 
 					manager._subtitleManager = new SubtitleManager(manager._player, manager, initialSubtitleLanguage);
 
+					manager.setMediaLanguage(initialMediaLanguage);
 					manager.setupPanes(initialAdditionalsLanguage);
 					manager.setupTimeDisplay();
 				} catch (thrownError) {
@@ -147,8 +150,8 @@ module Player {
 		}
 
 		/** Creates the custom top pane of the player. */
-		private setupPanes(languageCode: string) {
-			var title = this._videoData.titleByLanguage(languageCode);
+		private setupPanes(languageTag: string) {
+			var title = this._videoData.titleByLanguage(languageTag);
 
 			this._topPane = new TopPaneComponent(this._player, title);
 			this._player.addChild(this._topPane);
@@ -156,7 +159,7 @@ module Player {
 
 		/** Creates additional buttons in the bottom pane. */
 		private setupButtons() {
-			var languageButton = new LanguageButtonComponent(this._player, this._videoData);
+			var languageButton = new LanguageButtonComponent(this._player, this._videoData, this._playerConfig.simpleLanguageSelection);
 			var languageMenu = <LanguageMenuComponent>languageButton.menu;
 
 			languageMenu.on('audioLanguageChanged', () => this.setMediaLanguage(languageMenu.selectedAudioLanguage));
@@ -172,8 +175,8 @@ module Player {
 		}
 
 		/** Sets the language of the played media to the given language. */
-		public setMediaLanguage(languageCode: string) {
-			var availableMedia = this._videoData.mediaByLanguage(languageCode);
+		public setMediaLanguage(languageTag: string) {
+			var availableMedia = this._videoData.mediaByLanguage(languageTag);
 			availableMedia.sort((m1: MediumData, m2: MediumData) =>
 				VideoJSManager.MEDIA_TYPE_PRIORITIES[m1.type] - VideoJSManager.MEDIA_TYPE_PRIORITIES[m2.type]);
 
@@ -193,25 +196,28 @@ module Player {
 			if (!isPaused)
 				this.player.play();
 
-			this._languageMenu.selectedAudioLanguage = languageCode;
+			this._languageMenu.selectedAudioLanguage = languageTag;
+
+			if (this._playerConfig.simpleLanguageSelection)
+				this.setExtrasLanguage(languageTag);
 		}
 
 		/** Sets the language of all extra content, such as author notes and overlays, to the given language. */
-		public setExtrasLanguage(languageCode: string) {
-			this._chapterManager.setLanguage(languageCode);
-			this._languageMenu.selectedExtrasLanguage = languageCode;
+		public setExtrasLanguage(languageTag: string) {
+			this._chapterManager.setLanguage(languageTag);
+			this._languageMenu.selectedExtrasLanguage = languageTag;
 
 			if (!this._playerConfig.disableAuthorNotes)
-				this._authorNotesManager.setLanguage(languageCode);
+				this._authorNotesManager.setLanguage(languageTag);
 
 			if (!this._playerConfig.disableOverlays)
-				this._overlayManager.setLanguage(languageCode);
+				this._overlayManager.setLanguage(languageTag);
 		}
 
 		/** Sets the subtitle language to the given language. */
-		public setSubtitleLanguage(languageCode: string) {
-			this._subtitleManager.setLanguage(languageCode);
-			this._languageMenu.selectedSubtitleLanguage = languageCode;
+		public setSubtitleLanguage(languageTag: string) {
+			this._subtitleManager.setLanguage(languageTag);
+			this._languageMenu.selectedSubtitleLanguage = languageTag;
 		}
 
 		/** Creates the time display popup of the timeline. */
