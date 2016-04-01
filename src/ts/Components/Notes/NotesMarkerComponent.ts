@@ -47,11 +47,11 @@ module Player {
 			var element: JQuery = $(this.el());
 			var title: string;
 			if (this._notes.length == 1) {
-				title = this.localize('Author Note');
+				title = this._notes[0].title;
 				element.removeClass('vjs-icon-file');
 				element.addClass('vjs-icon-file-text');
 			} else {
-				title = this._notes.length + ' ' + this.localize('Author Notes');
+				title = this._notes.length + ' ' + this.localize('Hints');
 				element.removeClass('vjs-icon-file-text');
 				element.addClass('vjs-icon-file');
 			}
