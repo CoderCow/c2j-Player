@@ -45,6 +45,10 @@ module Player {
 
 			  this.el().setAttribute('data-current-time', tooltipString);
 	      this.el().style.left = position + 'px';
+			  if (tooltipString.length <= 5)
+				  $(this.el()).addClass('simple');
+			  else
+				  $(this.el()).removeClass('simple');
 
 			  if (this._isHidden) {
 			    $(this.el()).removeClass('vjs-hidden');
