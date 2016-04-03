@@ -33,16 +33,34 @@ module Player {
 
 		/** @inheritdoc */
 		public pressButton() {
+			this.arrangeMenu();
+
 			super.pressButton();
-			$(this.el()).attr('data-hide-mouse-text', 'true');
+
+			this.player_.reportUserActivity();
+			$('.vjs-mouse-display').addClass('vjs-hidden');
+			//$(this.el()).attr('data-hide-mouse-text', 'true');
 			$(this.el()).addClass('marker-pressed');
 		}
 
 		/** @inheritdoc */
 		public unpressButton() {
 			super.unpressButton();
-			$(this.el()).attr('data-hide-mouse-text', null);
+			$('.vjs-mouse-display').removeClass('vjs-hidden');
+			//$(this.el()).attr('data-hide-mouse-text', null);
 			$(this.el()).removeClass('marker-pressed');
+		}
+
+		/** Position the menu so that it doesn't exceed the player's boundaries. */
+		private arrangeMenu() {
+			var playerWidth = $(this.player().el()).width();
+			var menuElement = $(this.menu.el());
+			var buttonX = $(this.el()).offset().left;
+			var menuWidth = menuElement.width();
+			var menuRight = buttonX + menuWidth;
+
+			if (menuRight > playerWidth)
+				menuElement.css('left', '-' + (menuRight - playerWidth).toString() + 'px');
 		}
 
 		/** @inheritdoc */

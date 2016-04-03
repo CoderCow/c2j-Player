@@ -60,21 +60,12 @@ module Player {
 			$(this.menu.el()).find('.vjs-menu-title').text(title);
 		}
 
-		/** @inheritdoc */
-		public pressButton() {
-			super.pressButton();
-
-			// This must be called after a user interaction has happened.
-			if (!ClipboardUtils.isCopySupported())
-				$(this.el()).find('.note-copy-button').addClass('vjs-hidden');
-		}
-
 		/** Visually highlights the marker when the video playback position is close to it. */
 		private player_timeUpdate() {
 			var primaryNote = this._notes[0];
 			var time = this.player_.currentTime();
 
-			if (time >= primaryNote.begin - 4 && time <= primaryNote.end + 4) {
+			if (time >= primaryNote.begin - 4 && time <= primaryNote.begin + 4) {
 				if (!this._isBeingPlayed) {
 					$(this.el()).addClass('being-played');
 					this._isBeingPlayed = true;

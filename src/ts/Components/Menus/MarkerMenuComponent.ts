@@ -13,7 +13,7 @@ module Player {
 			this._hasCapturedMouse = false;
 			this._linkedMenuButton = linkedMenuButton;
 
-			// Gonna need this to disable the inactivity timeout while the menu is opened.
+			// Gonna need this to disable the inactivity timeout while the menu is opened, so preserve the original timeout to restore it later.
 			MarkerMenuComponent._originalInactivityTimeout = player.options_.inactivityTimeout;
 
 			this.on('click', EventUtils.noImmediatePropagationAndPreventDefaultHandler);

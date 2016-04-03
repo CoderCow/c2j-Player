@@ -1,12 +1,12 @@
 <li class="vjs-menu-item" tabIndex="1">
 	<div class="note-title">
-		{title}
+		<div class="note-icon vjs-icon-file-text"></div>
+		<span class="title-text">{title}</span>
 		<div class="note-buttons">
-			<div class="note-goto-button vjs-icon-cog" title="{gotoButtonHint}" tabIndex="1" data-close-menu="true"></div>
+			<div class="note-goto-button vjs-icon-play-circle" title="{gotoButtonHint}" tabIndex="1" data-close-menu="true"></div>
 			{! The copy button will get class 'vjs-hidden', if the Clipboard API is not available.
 			   It will also get the 'copy-failed' or 'copy-succeeded' classes accordingly. !}
-			<div class="note-copy-button vjs-icon-cog" title="{copyButtonHint}" tabIndex="1" data-close-menu="true"></div>
-			<div class="note-collapse-button vjs-icon-cog" tabIndex="1"></div>
+			<div class="note-copy-button vjs-icon-clipboard" title="{copyButtonHint}" tabIndex="1" data-close-menu="true"></div>
 		</div>
 	</div>
 	<div class="note-content">

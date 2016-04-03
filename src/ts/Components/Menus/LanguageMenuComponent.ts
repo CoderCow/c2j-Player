@@ -11,17 +11,24 @@ module Player {
 		private static NONE_SELECTABLE_CODE = 'none';
 
 		private _videoData: VideoData;
-		private _selectedAudioLanguage: string;
+		private _selectedMediaLanguage: string;
 		private _selectedExtrasLanguage: string;
 		private _selectedSubtitleLanguage: string;
 		private _isSimpleMenuMode: boolean;
 
 		/** Initializes a new instance of this class. */
-		public constructor(player: VideoJSPlayer, videoData: VideoData, isSimpleMenuMode: boolean) {
+		public constructor(player: VideoJSPlayer, videoData: VideoData, isSimpleMenuMode: boolean, initialMediaLanguage: string, initialAdditionalsLanguage: string, initialSubtitleLanguage: string) {
 			this._videoData = videoData;
 			this._isSimpleMenuMode = isSimpleMenuMode;
+			this._selectedMediaLanguage = initialMediaLanguage;
+			this._selectedExtrasLanguage = initialAdditionalsLanguage;
+			this._selectedSubtitleLanguage = initialSubtitleLanguage || 'none';
 
 			super(player, {});
+
+			this.setSelected('audio', this._selectedMediaLanguage);
+			this.setSelected('extras', this._selectedExtrasLanguage);
+			this.setSelected('subtitle', this._selectedSubtitleLanguage);
 		}
 
 		/** @inheritdoc */
@@ -53,7 +60,7 @@ module Player {
 			}));
 
 			menu.find('.audio select').change((event: Event) => {
-				this._selectedAudioLanguage = $(event.target).val();
+				this._selectedMediaLanguage = $(event.target).val();
 				this.trigger('audioLanguageChanged');
 			});
 			menu.find('.extras select').change((event: Event) => {
@@ -69,15 +76,15 @@ module Player {
 		}
 
 		/** Gets the IETF language tag of the currently selected audio language. */
-		public get selectedAudioLanguage(): string {
-			return this._selectedAudioLanguage;
+		public get selectedMediaLanguage(): string {
+			return this._selectedMediaLanguage;
 		}
 
 		/** Sets the currently selected audio language by using the given IETF language tag. */
-		public set selectedAudioLanguage(languageTag: string) {
-			if (languageTag !== this._selectedAudioLanguage) {
+		public set selectedMediaLanguage(languageTag: string) {
+			if (languageTag !== this._selectedMediaLanguage) {
 				this.setSelected('audio', languageTag);
-				this._selectedAudioLanguage = languageTag;
+				this._selectedMediaLanguage = languageTag;
 
 				this.trigger('audioLanguageChanged');
 			}
@@ -89,10 +96,10 @@ module Player {
 		}
 
 		/** Sets the currently selected language for additional content by using the given IETF language tag. */
-		public set selectedExtrasLanguage(languageSet: string) {
-			if (languageSet !== this._selectedExtrasLanguage) {
-				this.setSelected('extras', languageSet);
-				this._selectedExtrasLanguage = languageSet;
+		public set selectedExtrasLanguage(languageTag: string) {
+			if (languageTag !== this._selectedExtrasLanguage) {
+				this.setSelected('extras', languageTag);
+				this._selectedExtrasLanguage = languageTag;
 
 				this.trigger('extrasLanguageChanged');
 			}

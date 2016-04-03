@@ -15,6 +15,7 @@ module Player {
       this.on('click', this.handleClick);
 			this.on('mouseup', this.handleClick);
 			this.on('mousedown', this.handleMouseDown);
+			this.on('keydown', this.handleKeyPress);
 		}
 
 		/** @inheritdoc */
@@ -27,6 +28,8 @@ module Player {
 		/** Handles the marker's click event. Changes the playback position to the position of the marker. */
 		public handleClick(event: Event) {
 			this.player_.currentTime(this._chapterData.begin);
+			this.el().blur();
+
 			event.stopImmediatePropagation();
 		}
 
@@ -34,6 +37,15 @@ module Player {
 		public handleMouseDown(event: Event) {
 			event.stopImmediatePropagation();
 		}
+
+		/** @inheritdoc */
+		public handleKeyPress(event: KeyboardEvent) {
+	    // Check for space bar (32) or enter (13) keys
+	    if (event.which === 32 || event.which === 13) {
+	      event.preventDefault();
+	      this.handleClick(event);
+	    }
+	  }
 
 		/** Gets the data which are visually represented by this marker. */
 		public get chapterData(): ChapterData {

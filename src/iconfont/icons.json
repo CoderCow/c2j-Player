@@ -64,5 +64,8 @@
   }, {
     "name": "play-circle-o",
     "svg": "fontawesome/play-circle-o.svg"
+  }, {
+    "name": "chevron-down",
+    "svg": "fontawesome/chevron-down.svg"
   }]
 }

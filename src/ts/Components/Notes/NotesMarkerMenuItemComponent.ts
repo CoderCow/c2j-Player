@@ -10,17 +10,15 @@ module Player {
 
 			super(player, {});
 
-			VideoJSUtils.appendChildrenKeepParent(this, () => {
-				var elementToCopy = $(this.el()).find('.note-content')[0];
-				this.addChild(new CopyToClipboardButtonComponent(this.player_, {
-					el: $(this.el()).find('.note-copy-button')[0]
-				}, elementToCopy));
+			var elementToCopy = $(this.el()).find('.note-content')[0];
+			new CopyToClipboardButtonComponent(this.player_, {
+				el: $(this.el()).find('.note-copy-button')[0]
+			}, elementToCopy);
 
-				var goToTime = this._note.begin;
-				this.addChild(new GoToPositionButtonComponent(this.player_, {
-					el: $(this.el()).find('.note-goto-button')[0]
-				}, goToTime));
-			});
+			var goToTime = this._note.begin;
+			new GoToPositionButtonComponent(this.player_, {
+				el: $(this.el()).find('.note-goto-button')[0]
+			}, goToTime);
 		}
 
 		/** @inheritdoc */

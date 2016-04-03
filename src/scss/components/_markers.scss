@@ -8,68 +8,33 @@
 		position: absolute;
 		z-index: 3;
 		text-shadow: -1.5px 0 #000, 0 1.5px #000, 1.5px 0 #000, 0 -1.5px #000;
+		outline:none;
 
 		&.note-marker {
 			color: #ff6;
 			font-size: 0.9em;
 			width: 1.5em;
-			top: -1.6em;
+			top: -1.9em;
+			margin-top: 0.3em;
 			padding-top: 0.3em;
 			padding-bottom: 0.2em;
 			text-shadow: none;
-
-			.vjs-menu {
-				width: 25em;
-
-				li {
-					text-transform: initial;
-					-webkit-user-select: initial;
-					user-select: initial;
-				}
-			}
-
-			.vjs-menu-item {
-				text-align: left;
-			}
-
-			.note-title {
-
-			}
-
-			.note-buttons {
-				float: right;
-
-				div {
-					display: inline;
-				}
-			}
-
-			.note-content {
-
-			}
 		}
 
-		&:hover .vjs-menu {
-			display: none;
-		}
-
-		&:hover.marker-pressed .vjs-menu {
-			display: block;
-		}
-
-		.vjs-menu .vjs-menu-content {
-			bottom: 1.7em;
+		&:focus {
+			text-shadow: 0 0 1em #fff;
 		}
 	}
 
 	&.vjs-user-inactive.vjs-playing {
 		.note-marker {
-			top: -1em;
+			top: -1.3em;
 			text-shadow: -1.5px 0 #000, 0 1.5px #000, 1.5px 0 #000, 0 -1.5px #000;
-			transition: height,font-size 0.5s;
+			transition: all 0.5s;
+			opacity: 0.7;
 
 			&.being-played {
-				font-size: 2em;
+				font-size: 1.4em;
 			}
 		}
 	}

@@ -1,1 +1,1 @@
-<div class="seek-bar-marker vjs-icon-circle" data-mouse-text="{mouseText}"></div>
+<div class="seek-bar-marker vjs-icon-circle" data-mouse-text="{mouseText}" tabindex="1"></div>

@@ -44,7 +44,7 @@ module Player {
 		private setupAuthorNote(authorNote: AuthorNoteData) {
 			if (authorNote.displayInTimeline) {
 				var existingMarkerAtAboutTheSamePosition = this._authorNoteMarkers.firstOrUndefined((existingMarker: NotesMarkerComponent) =>
-					(authorNote.begin >= existingMarker.time - 4 && authorNote.end <= existingMarker.time + 4));
+					(authorNote.begin >= existingMarker.time - 4 && authorNote.begin <= existingMarker.time + 4));
 
 				if (existingMarkerAtAboutTheSamePosition !== undefined) {
 					existingMarkerAtAboutTheSamePosition.addNote(authorNote);
@@ -52,6 +52,7 @@ module Player {
 					var noteMarkerComponent = new NotesMarkerComponent(this._player, this._videoData, authorNote);
 					this._authorNoteMarkers.push(noteMarkerComponent);
 
+					//this._player.controlBar.progressControl.addChild(noteMarkerComponent);
 					this._player.controlBar.progressControl.seekBar.addChild(noteMarkerComponent);
 				}
 			}

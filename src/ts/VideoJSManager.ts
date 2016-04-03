@@ -92,11 +92,6 @@ module Player {
 				try {
 					manager._player = <VideoJSPlayer>this;
 
-					// TODO: Remove when VideoJSOptions.defaultVolume works again..
-					manager._player.volume(manager._userSettings.volume);
-
-					manager.setupButtons();
-
 					// Set playback position prior loading media, so no useless buffering will be done.
 					if (manager._playerConfig.startPlaybackAt !== null)
 						manager._player.currentTime(manager._playerConfig.startPlaybackAt);
@@ -105,6 +100,11 @@ module Player {
 					var initialAdditionalsLanguage = (manager._playerConfig.additionalsLanguage || userPreferredLanguage);
 					if (manager._playerConfig.simpleLanguageSelection)
 						initialAdditionalsLanguage = initialMediaLanguage;
+					var initialSubtitleLanguage: string = null;
+					if (manager._playerConfig.enableSubtitlesByDefault)
+						initialSubtitleLanguage = manager._playerConfig.subtitlesLanguage || userPreferredLanguage;
+					
+					manager.setupButtons(initialMediaLanguage, initialAdditionalsLanguage, initialSubtitleLanguage);
 
 					manager._chapterManager = new ChapterManager(manager._player, manager._videoData, initialAdditionalsLanguage);
 					if (!manager._playerConfig.disableAuthorNotes)
@@ -113,16 +113,14 @@ module Player {
 					if (!manager._playerConfig.disableOverlays)
 						manager._overlayManager = new OverlayManager(manager._player, manager._videoData, initialAdditionalsLanguage);
 
-					// TODO bug: this will not auto select the language in the language menu
-					var initialSubtitleLanguage: string = null;
-					if (manager._playerConfig.enableSubtitlesByDefault)
-						initialSubtitleLanguage = manager._playerConfig.subtitlesLanguage || userPreferredLanguage;
-
 					manager._subtitleManager = new SubtitleManager(manager._player, manager, initialSubtitleLanguage);
 
 					manager.setMediaLanguage(initialMediaLanguage);
 					manager.setupPanes(initialAdditionalsLanguage);
 					manager.setupTimeDisplay();
+
+					// TODO: Remove when VideoJSOptions.defaultVolume works again..
+					manager._player.volume(manager._userSettings.volume);
 				} catch (thrownError) {
 					error = <Exception>thrownError;
 				}
@@ -158,11 +156,11 @@ module Player {
 		}
 
 		/** Creates additional buttons in the bottom pane. */
-		private setupButtons() {
-			var languageButton = new LanguageButtonComponent(this._player, this._videoData, this._playerConfig.simpleLanguageSelection);
+		private setupButtons(initialMediaLanguage: string, initialAdditionalsLanguage: string, initialSubtitleLanguage: string) {
+			var languageButton = new LanguageButtonComponent(this._player, this._videoData, this._playerConfig.simpleLanguageSelection, initialMediaLanguage, initialAdditionalsLanguage, initialSubtitleLanguage);
 			var languageMenu = <LanguageMenuComponent>languageButton.menu;
 
-			languageMenu.on('audioLanguageChanged', () => this.setMediaLanguage(languageMenu.selectedAudioLanguage));
+			languageMenu.on('audioLanguageChanged', () => this.setMediaLanguage(languageMenu.selectedMediaLanguage));
 			languageMenu.on('extrasLanguageChanged', () => this.setExtrasLanguage(languageMenu.selectedExtrasLanguage));
 			languageMenu.on('subtitleLanguageChanged', () => this.setSubtitleLanguage(languageMenu.selectedSubtitleLanguage));
 			this._languageMenu = languageMenu;
@@ -196,7 +194,7 @@ module Player {
 			if (!isPaused)
 				this.player.play();
 
-			this._languageMenu.selectedAudioLanguage = languageTag;
+			this._languageMenu.selectedMediaLanguage = languageTag;
 
 			if (this._playerConfig.simpleLanguageSelection)
 				this.setExtrasLanguage(languageTag);

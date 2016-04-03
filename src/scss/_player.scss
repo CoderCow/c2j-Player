@@ -24,13 +24,28 @@ body {
 		margin-top: -($big-play-height / 2);
 	}
 
+	&.vjs-fluid {
+		position: absolute;
+		height: 100%;
+		max-height: 100%;
+		overflow: hidden;
+	}
+
+	&.vjs-fullscreen {
+		position: relative !important;
+	}
+
 	.vjs-control-bar {
-		background: rgba(0, 0, 0, 0.7);
+		background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(50, 50, 50, 0.8) 20%, rgba(50, 50, 50, 0.8) 80%, rgba(0, 0, 0, 0.7) 100%);
+	}
+
+	.video-duration-time {
+		color: #CCC;
 	}
 
 	.vjs-control {
 		width: 3.5em;
-		transition: all 1s;
+		transition: all 0.5s;
 
 		&::before { // Icons
 			font-size: 2.3em;
@@ -40,25 +55,22 @@ body {
 
 	.vjs-menu-button-inline {
 		&::before {
-			width: inherit;
+			width: 1.5em;
 		}
 
-		&:hover {
-			width: 8em;
+		&:hover, &:focus {
+			width: 9.5em;
 		}
 
-		&:hover::before {
-			left: -1.1em;
-		}
-
-		.vjs-menu {
-			left: 1em;
+		.vjs-menu-content {
+			padding: 0;
 		}
 	}
 
 	.vjs-current-time {
 		display: block;
 		width: 6em;
+		overflow: hidden;
 	}
 
 	.vjs-remaining-time {
@@ -78,6 +90,7 @@ body {
 
 		.vjs-mouse-display {
 			&.simple::after {
+				pointer-events: none;
 				width: 3em;
 				right: -1.5em;
 			}
@@ -109,7 +122,7 @@ body {
 			height: 0.6em;
 			opacity: inherit;
 			visibility: inherit;
-			transition: none;
+			transition: all 0.7s;
 		}
 	}
 }
