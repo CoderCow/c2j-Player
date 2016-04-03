@@ -7,17 +7,17 @@ $dialogFont: Arial, Helvetica, sans-serif;
 		select {
 			// As Chrome allows us to redesign the select control, this comes with the disadvantage of a different default padding
 			padding: 3px 2em 3px 7px !important;
+			background: #fff url('../img/chevron-down.svg') no-repeat 95% center;
+			background-size: 0.7em;
+			border-radius: 3px;
 		}
 	}
 
 	select {
-		border-radius: 3px;
 		-webkit-appearance: none;
 		appearance: none;
 		border: 0;
 		padding: 0;
-		background: #fff url('../img/chevron-down.svg') no-repeat 95% center;
-		background-size: 0.7em;
 		font-family: $dialogFont;
 		font-size: 1em;
 	}
