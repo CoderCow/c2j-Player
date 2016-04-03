@@ -1,7 +1,7 @@
 {
-  "name": "C2J Player",
+  "name": "C2JPlayer",
   "description": "",
-  "version": "0.6",
+  "version": "0.6.0",
   "copyright": "(c) 2016 David-Kay P.",
   "license": "",
   "keywords": [],
@@ -27,14 +27,14 @@
     "grunt-dust": "^0.9.4",
     "grunt-html-validation": "^0.1.18",
     "grunt-scss-lint": "^0.3.8",
-    "grunt-ts": "^5.2.0",
-    "grunt-tslint": "^3.0.1",
+    "grunt-ts": "=5.2.0",
+    "grunt-tslint": "=3.0.1",
     "jit-grunt": "^0.9.1",
-    "jquery": "2.2.0",
-    "tslint": "^3.2.1",
-    "typescript": "^1.7.5",
+    "jquery": "=2.2.0",
+    "tslint": "=3.2.1",
+    "typescript": "=1.7.5",
     "uglify-js": "^2.6.1",
-    "video.js": "5.4.4",
+    "video.js": "=5.4.4",
     "webfonts-generator": "^0.3.1"
   }
 }
