@@ -6,8 +6,6 @@
       <task value="release" />
     </tasks>
     <envs />
-    <force value="false" />
-    <verbose value="false" />
     <method />
   </configuration>
 </component>
