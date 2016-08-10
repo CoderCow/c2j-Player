@@ -6,12 +6,11 @@ module Player {
 
 		/**
 		 * Initializes a new instance of this class.
-		 * @param goToPosition The second to set playback to when this button is clicked.
 		 */
-		public constructor(player: VideoJSPlayer, options: VideoJSComponentOptions, goToPosition: number) {
-			super(player, options);
+		public constructor(player: VideoJSPlayer, options: IGoToPositionButtonComponentOptions) {
+			super(player, { cjOptions: options });
 
-			this._goToPosition = goToPosition;
+			this._goToPosition = options.goToPosition;
 		}
 
 		/** @inheritdoc */
@@ -19,6 +18,10 @@ module Player {
 			this.player_.currentTime(this._goToPosition);
 
 			super.handleClick(event);
+		}
+
+		public cjOptions(): IGoToPositionButtonComponentOptions {
+			return super.options().cjOptions;
 		}
 	}
 }

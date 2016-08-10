@@ -7,7 +7,7 @@ module Player {
 	export class DummyComponent extends VideoJSComponent {
 		/** Initializes a new instance of this class. */
 		public constructor(player: VideoJSPlayer) {
-			super(player, <VideoJSComponentOptions>{
+			super(player, {
 				createEl: false,
 				reportTouchActivity: false
 			});

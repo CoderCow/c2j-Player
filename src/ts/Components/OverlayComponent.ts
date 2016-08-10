@@ -2,27 +2,24 @@ module Player {
 	'use strict';
 	/** Represents a visual, interactible overlay. */
 	export class OverlayComponent extends VideoJSButton {
-		private _overlay: OverlayData;
 		private _isVisible: boolean;
 		private _isPausing: boolean;
 
 		/** Initializes a new instance of this class. */
-		public constructor(player: VideoJSPlayer, videoData: VideoData, overlay: OverlayData) {
-			this._overlay = overlay;
-
-			super(player, {});
+		public constructor(player: VideoJSPlayer, options: IOverlayComponentOptions) {
+			super(player, { cjOptions: options });
 
 			var element: HTMLElement = this.el();
 			element.style.position = 'absolute';
-			element.style.left = element.style.right = (50 - this._overlay.w / 2) + '%';
-			element.style.top = element.style.bottom = (50 - this._overlay.h / 2) + '%';
+			element.style.left = element.style.right = (50 - options.overlayData.w / 2) + '%';
+			element.style.top = element.style.bottom = (50 - options.overlayData.h / 2) + '%';
 			element.style.transform =
-				'translate(' + ((this._overlay.translateTransform.x / this._overlay.w) * 100) + '%,' + ((this._overlay.translateTransform.y / this._overlay.h) * 100) + '%) ' +
-				'rotateX(-' + this._overlay.rotateTransform.x + 'rad) ' +
-				'rotateY(-' + this._overlay.rotateTransform.y + 'rad) ' +
-				'rotateZ(-' + this._overlay.rotateTransform.z + 'rad) ';
+				'translate(' + ((options.overlayData.translateTransform.x / options.overlayData.w) * 100) + '%,' + ((options.overlayData.translateTransform.y / options.overlayData.h) * 100) + '%) ' +
+				'rotateX(-' + options.overlayData.rotateTransform.x + 'rad) ' +
+				'rotateY(-' + options.overlayData.rotateTransform.y + 'rad) ' +
+				'rotateZ(-' + options.overlayData.rotateTransform.z + 'rad) ';
 
-			if (this._overlay.action === OverlayAction.None)
+			if (options.overlayData.action === OverlayAction.None)
 				element.style.pointerEvents = 'none';
 			else
 				element.style.pointerEvents = 'all';
@@ -32,26 +29,29 @@ module Player {
 
 		/** @inheritdoc */
 		public createEl(tagName: string, properties?: any, attributes?: any) {
+			let overlay = this.cjOptions().overlayData;
 			// TODO: format content like _blank on all <a>, make beautiful anchors with a symbol, convert links to <a>'s, format code etc.
 			return $(TemplateUtils.renderSynch('Components/Overlay', {
-				content: this._overlay.content,
-				isClickable: (this._overlay.action !== OverlayAction.None),
-				tooltip: this._overlay.tooltip
+				content: overlay.content,
+				isClickable: (overlay.action !== OverlayAction.None),
+				tooltip: overlay.tooltip
 			}))[0];
 		}
 
 		/** @inheritdoc */
 		public handleClick() {
-			switch (this._overlay.action) {
+			let overlay = this.cjOptions().overlayData;
+
+			switch (overlay.action) {
 				case OverlayAction.GotoPos: {
-					var goToParams = <GotoActionParamsData>this._overlay.actionParams;
+					var goToParams = <GotoActionParamsData>overlay.actionParams;
 					this.player_.currentTime(goToParams.gotoPos);
 					this.player_.play();
 
 					break;
 				}
 				case OverlayAction.OpenLink: {
-					var openLinkParams = <LinkActionParamsData>this._overlay.actionParams;
+					var openLinkParams = <LinkActionParamsData>overlay.actionParams;
 					var target = '';
 					if (openLinkParams.inNewWindow)
 						target = '_blank';
@@ -87,7 +87,7 @@ module Player {
 
 		/** Gets the data which are visually represented by this overlay. */
 		public get overlay(): OverlayData {
-			return this._overlay;
+			return this.cjOptions().overlayData;
 		}
 
 		/** Gets whether this overlay is currently visible or not. */
@@ -108,6 +108,10 @@ module Player {
 				$(this.el()).removeClass('is-pausing');
 
 			this._isPausing = value;
+		}
+
+		public cjOptions(): IOverlayComponentOptions {
+			return super.options().cjOptions;
 		}
 	}
 }

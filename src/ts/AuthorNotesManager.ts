@@ -49,7 +49,11 @@ module Player {
 				if (existingMarkerAtAboutTheSamePosition !== undefined) {
 					existingMarkerAtAboutTheSamePosition.addNote(authorNote);
 				} else {
-					var noteMarkerComponent = new NotesMarkerComponent(this._player, this._videoData, authorNote);
+					var noteMarkerComponent = new NotesMarkerComponent(this._player, <INotesMarkerComponentOptions>{
+						videoData: this._videoData,
+						notes: [authorNote],
+						time: authorNote.begin
+					});
 					this._authorNoteMarkers.push(noteMarkerComponent);
 
 					//this._player.controlBar.progressControl.addChild(noteMarkerComponent);

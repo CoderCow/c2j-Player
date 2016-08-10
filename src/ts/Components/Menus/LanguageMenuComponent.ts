@@ -10,25 +10,22 @@ module Player {
 	export class LanguageMenuComponent extends VideoJSMenu {
 		private static NONE_SELECTABLE_CODE = 'none';
 
-		private _videoData: VideoData;
 		private _selectedMediaLanguage: string;
 		private _selectedExtrasLanguage: string;
 		private _selectedSubtitleLanguage: string;
-		private _isSimpleMenuMode: boolean;
 
 		/** Initializes a new instance of this class. */
-		public constructor(player: VideoJSPlayer, videoData: VideoData, isSimpleMenuMode: boolean, initialMediaLanguage: string, initialAdditionalsLanguage: string, initialSubtitleLanguage: string) {
-			this._videoData = videoData;
-			this._isSimpleMenuMode = isSimpleMenuMode;
-			this._selectedMediaLanguage = initialMediaLanguage;
-			this._selectedExtrasLanguage = initialAdditionalsLanguage;
-			this._selectedSubtitleLanguage = initialSubtitleLanguage || 'none';
+		public constructor(player: VideoJSPlayer, options: ILanguageMenuComponentOptions) {
+			options.initialSubtitleLanguage = options.initialSubtitleLanguage || 'none';
 
-			super(player, {});
+			super(player, { cjOptions: options });
 
-			this.setSelected('audio', this._selectedMediaLanguage);
-			this.setSelected('extras', this._selectedExtrasLanguage);
-			this.setSelected('subtitle', this._selectedSubtitleLanguage);
+			this.setSelected('audio', options.initialMediaLanguage);
+			this._selectedMediaLanguage = options.initialMediaLanguage;
+			this.setSelected('extras', options.initialAdditionalsLanguage);
+			this._selectedExtrasLanguage = options.initialAdditionalsLanguage;
+			this.setSelected('subtitle', options.initialSubtitleLanguage);
+			this._selectedSubtitleLanguage = options.initialSubtitleLanguage;
 		}
 
 		/** @inheritdoc */
@@ -56,7 +53,7 @@ module Player {
 					isJustOne: subtitleSelectables.length === 1,
 					selectables: subtitleSelectables,
 				},
-				isSimpleMenuMode: this._isSimpleMenuMode
+				isSimpleMenuMode: this.cjOptions().isSimpleMenuMode
 			}));
 
 			menu.find('.audio select').change((event: Event) => {
@@ -129,7 +126,7 @@ module Player {
 		private availableAudioLanguages(languageTagTable: ILanguageTagDictionary): { languageTag: string, label: string }[] {
 			var audioSelectables: { languageTag: string, label: string }[] = [];
 
-			$.each(this._videoData.media, (languageTag: string, medium: MediumData) =>
+			$.each(this.cjOptions().videoData.media, (languageTag: string, medium: MediumData) =>
 				audioSelectables.push({ languageTag: languageTag, label: this.languageNameFromTag(languageTagTable, languageTag) }));
 
 			return audioSelectables;
@@ -140,7 +137,8 @@ module Player {
 			var extraSelectables: { languageTag: string, label: string }[] = [];
 
 			// TODO: add categories when it is time
-			var extraDataLanguages = LanguageMenuComponent.distinctLanguagesFromDataSets(this._videoData.chapters, this._videoData.authorNotes, this._videoData.overlays);
+			let videoData = this.cjOptions().videoData;
+			var extraDataLanguages = LanguageMenuComponent.distinctLanguagesFromDataSets(videoData.chapters, videoData.authorNotes, videoData.overlays);
 			$.each(extraDataLanguages, (languageTag: string) =>
 				extraSelectables.push({ languageTag: languageTag, label: this.languageNameFromTag(languageTagTable, languageTag) }));
 
@@ -155,7 +153,7 @@ module Player {
 			var subtitleSelectables: { languageTag: string, label: string }[] = [];
 
 			subtitleSelectables.push({ languageTag: LanguageMenuComponent.NONE_SELECTABLE_CODE, label: this.localize('none') });
-			$.each(this._videoData.captions, (languageTag: string) =>
+			$.each(this.cjOptions().videoData.captions, (languageTag: string) =>
 				subtitleSelectables.push({ languageTag: languageTag, label: this.languageNameFromTag(languageTagTable, languageTag) }));
 
 			// Use this code to resolve subtitle tracks from the current video.js tech. This will probably be required when YouTube should be supported int he future.
@@ -195,6 +193,10 @@ module Player {
 			}
 
 			return languageName;
+		}
+
+		public cjOptions(): ILanguageMenuComponentOptions {
+			return super.options().cjOptions;
 		}
 	}
 }

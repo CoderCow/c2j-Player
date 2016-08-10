@@ -122,7 +122,7 @@ module Player {
 					// TODO: Remove when VideoJSOptions.defaultVolume works again..
 					manager._player.volume(manager._userSettings.volume);
 				} catch (thrownError) {
-					error = <Exception>thrownError;
+					error = new Exception('VideoJS Initialization has failed.', thrownError);
 				}
 
 				initCompleted(error);
@@ -157,7 +157,16 @@ module Player {
 
 		/** Creates additional buttons in the bottom pane. */
 		private setupButtons(initialMediaLanguage: string, initialAdditionalsLanguage: string, initialSubtitleLanguage: string) {
-			var languageButton = new LanguageButtonComponent(this._player, this._videoData, this._playerConfig.simpleLanguageSelection, initialMediaLanguage, initialAdditionalsLanguage, initialSubtitleLanguage);
+			var languageButton = new LanguageButtonComponent(this._player, <ILanguageButtonComponentOptions>{
+				videoData: this._videoData,
+				menuOptions: <ILanguageMenuComponentOptions>{
+					videoData: this._videoData,
+					isSimpleMenuMode: this._playerConfig.simpleLanguageSelection,
+					initialMediaLanguage: initialMediaLanguage,
+					initialAdditionalsLanguage: initialAdditionalsLanguage,
+					initialSubtitleLanguage: initialSubtitleLanguage
+				}
+			});
 			var languageMenu = <LanguageMenuComponent>languageButton.menu;
 
 			languageMenu.on('audioLanguageChanged', () => this.setMediaLanguage(languageMenu.selectedMediaLanguage));

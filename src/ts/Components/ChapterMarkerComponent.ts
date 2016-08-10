@@ -2,15 +2,11 @@ module Player {
 	'use strict';
 	/** A chapter marker placed on the player's timeline. */
 	export class ChapterMarkerComponent extends VideoJSComponent {
-		private _chapterData: ChapterData;
-
 		/** Initializes a new instance of this class. */
-		public constructor(player: VideoJSPlayer, videoData: VideoData, chapterData: ChapterData) {
-			this._chapterData = chapterData;
+		public constructor(player: VideoJSPlayer, options: IChapterMarkerComponentOptions) {
+			super(player, { cjOptions: options });
 
-			super(player, {});
-
-			super.el().style.left = ((chapterData.begin / videoData.dur) * 100) + '%';
+			super.el().style.left = ((options.chapterData.begin / options.videoData.dur) * 100) + '%';
 			this.on('tap', this.handleClick);
       this.on('click', this.handleClick);
 			this.on('mouseup', this.handleClick);
@@ -21,13 +17,13 @@ module Player {
 		/** @inheritdoc */
 		public createEl(tagName: string, properties?: any, attributes?: any) {
 			return $(TemplateUtils.renderSynch('Components/SeekBarChapterMarker', {
-				mouseText: this._chapterData.title
+				mouseText: this.cjOptions().chapterData.title
 			}))[0];
 		}
 
 		/** Handles the marker's click event. Changes the playback position to the position of the marker. */
 		public handleClick(event: Event) {
-			this.player_.currentTime(this._chapterData.begin);
+			this.player_.currentTime(this.cjOptions().chapterData.begin);
 			this.el().blur();
 
 			event.stopImmediatePropagation();
@@ -49,7 +45,11 @@ module Player {
 
 		/** Gets the data which are visually represented by this marker. */
 		public get chapterData(): ChapterData {
-			return this._chapterData;
+			return this.cjOptions().chapterData;
+		}
+
+		public cjOptions(): IChapterMarkerComponentOptions {
+			return super.options().cjOptions;
 		}
 	}
 }

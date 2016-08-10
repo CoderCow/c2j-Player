@@ -9,13 +9,15 @@ module Player {
 		private _isBeingPlayed: boolean;
 
 		/** Initializes a new instance of this class. */
-		public constructor(player: VideoJSPlayer, videoData: VideoData, note: INoteData) {
-			this._notes = [note];
+		public constructor(player: VideoJSPlayer, options: INotesMarkerComponentOptions) {
+			super(player, options);
 
-			super(player, {}, videoData, note.begin);
+			this._notes = [].concat(options.notes);
 
 			this._isBeingPlayed = false;
 			this.player_.on('timeupdate', this.player_timeUpdate.bind(this));
+
+			this.update();
 		}
 
 		/** @inheritdoc */
@@ -34,14 +36,17 @@ module Player {
 			if (items === undefined)
 				items = [];
 
-			this._notes.forEach((note: AuthorNoteData) =>
-				items.push(new NotesMarkerMenuItemComponent(this.player_, note)));
+			this.cjOptions().notes.forEach((note: AuthorNoteData) =>
+				items.push(new NotesMarkerMenuItemComponent(this.player_, <INotesMarkerMenuItemComponentOptions>{ note: note })));
 
 			return items;
 		}
 
 		/** Updates the visual representation of the contained note data. */
 		public update() {
+			if (this._notes === undefined)
+				return;
+
 			super.update();
 
 			var element: JQuery = $(this.el());
@@ -84,6 +89,10 @@ module Player {
 		/** Gets the video time this marker is placed at. */
 		public get time(): number {
 			return this._notes[0].begin;
+		}
+
+		public cjOptions(): INotesMarkerComponentOptions {
+			return <INotesMarkerComponentOptions>super.cjOptions();
 		}
 	}
 }

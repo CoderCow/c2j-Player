@@ -2,31 +2,28 @@ module Player {
 	'use strict';
 	/** A menu item of a note marker menu. */
 	export class NotesMarkerMenuItemComponent extends VideoJSMenuItem {
-		private _note: AuthorNoteData;
-
 		/** Initializes a new instance of this class. */
-		public constructor(player: VideoJSPlayer, note: AuthorNoteData) {
-			this._note = note;
-
-			super(player, {});
+		public constructor(player: VideoJSPlayer, options: INotesMarkerMenuItemComponentOptions) {
+			super(player, { cjOptions: options });
 
 			var elementToCopy = $(this.el()).find('.note-content')[0];
-			new CopyToClipboardButtonComponent(this.player_, {
-				el: $(this.el()).find('.note-copy-button')[0]
-			}, elementToCopy);
+			new CopyToClipboardButtonComponent(this.player_, <ICopyToClipboardButtonComponentOptions>{
+				el: $(this.el()).find('.note-copy-button')[0],
+				elementToCopy: elementToCopy
+			});
 
-			var goToTime = this._note.begin;
-			new GoToPositionButtonComponent(this.player_, {
-				el: $(this.el()).find('.note-goto-button')[0]
-			}, goToTime);
+			new GoToPositionButtonComponent(this.player_, <IGoToPositionButtonComponentOptions>{
+				el: $(this.el()).find('.note-goto-button')[0],
+				goToPosition: options.note.begin
+			});
 		}
 
 		/** @inheritdoc */
 		public createEl(tagName: string, properties?: any, attributes?: any) {
 			// TODO: format content like _blank on all <a>, make beautiful anchors with a symbol, convert links to <a>'s, format code etc.
 			var el = $(TemplateUtils.renderSynch('Components/Menus/NoteMenuItem', {
-				title: this._note.title,
-				content: this._note.content,
+				title: this.cjOptions().note.title,
+				content: this.cjOptions().note.content,
 				gotoButtonHint: this.localize('Go to this Position'),
 				copyButtonHint: this.localize('Copy to Clipboard')
 			}));
@@ -38,8 +35,6 @@ module Player {
 			var copyButton = el.find('.note-copy-button');
 			copyButton.click(() => {
 				var contentElement = $(this.el()).find('.note-content');
-
-
 			});*/
 
 			return el[0];
@@ -48,6 +43,10 @@ module Player {
 		/** @inheritdoc */
 		public handleClick(event: Event) {
 			event.stopPropagation();
+		}
+
+		public cjOptions(): INotesMarkerMenuItemComponentOptions {
+			return super.options().cjOptions;
 		}
 	}
 }

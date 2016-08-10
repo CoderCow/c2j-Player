@@ -58,7 +58,10 @@ module Player {
 			// Set the array size first, so later appends will not resize it (better performance).
 			this._overlays.length = overlays.length;
 			for (var i = 0; i < overlays.length; i++) {
-				this._overlays[i] = new OverlayComponent(this._player, this._videoData, overlays[i]);
+				this._overlays[i] = new OverlayComponent(this._player, <IOverlayComponentOptions>{
+					videoData: this._videoData,
+					overlayData: overlays[i]
+				});
 				this._overlayContainer.append(this._overlays[i].el());
 			}
 		}

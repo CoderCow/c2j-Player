@@ -32,7 +32,7 @@
     "jit-grunt": "^0.9.1",
     "jquery": "=2.2.0",
     "tslint": "=3.2.1",
-    "typescript": "=1.7.5",
+    "typescript": "*",
     "uglify-js": "^2.6.1",
     "video.js": "=5.4.4",
     "webfonts-generator": "^0.3.1"

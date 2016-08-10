@@ -3,10 +3,10 @@ module Player {
 	/** A generic timeline marker with a deposited menu. */
 	export class MenuMarkerComponent extends VideoJSMenuButton {
 		/** Initializes a new instance of this class. */
-		public constructor(player: VideoJSPlayer, options: VideoJSComponentOptions, videoData: VideoData, time: number) {
-			super(player, options);
+		public constructor(player: VideoJSPlayer, options: IMenuMarkerComponentOptions) {
+			super(player, { cjOptions: options });
 
-			super.el().style.left = ((time / videoData.dur) * 100) + '%';
+			super.el().style.left = ((options.time / options.videoData.dur) * 100) + '%';
 			this.update();
 
 			// Stop event propagation, so that the seek bar (behind the marker) will not change the playback position.
@@ -82,6 +82,10 @@ module Player {
 	        menu.addItem(this.items[i]);
 
 			return menu;
+		}
+
+		public cjOptions(): IMenuMarkerComponentOptions {
+			return super.options().cjOptions;
 		}
 	}
 }

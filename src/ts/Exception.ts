@@ -17,11 +17,29 @@ module Player {
 		private _inner: Exception;
 
 		/** Initializes a new instance of the Exception class. */
-		public constructor(public message: string, inner: Exception = null) {
-			super(message);
-			this.name = 'Exception';
-			this.stack = (<any>new Error()).stack;
-			this._inner = inner || null;
+		public constructor(message: any, inner: Exception = null) {
+			if (message instanceof Error) {
+				let error = <Error>message;
+
+				super(error.message);
+				this.message = error.message;
+				this.name = 'Exception';
+				this.stack = error.stack;
+				this._inner = null;
+			} else {
+				super(message);
+				this.message = message;
+				this.name = 'Exception';
+				this.stack = (<any>new Error('[' + this.name + '] ' + message + (inner ? ' See inner exception for details.' : ''))).stack;
+
+				if (inner instanceof Exception) {
+					this._inner = inner;
+				} else if (inner instanceof Error) {
+					this._inner = new Exception(inner);
+				} else {
+					this._inner = null;
+				}
+			}
 		}
 
 		/** The exception instances which caused this exception to be thrown.  */
@@ -31,11 +49,9 @@ module Player {
 
 		/** @inheritdoc */
 		public toString() {
-			var stringValue = this.name + ': ' + this.message;
-			if (typeof this.stack !== 'undefined')
-				stringValue += '\nStack trace: \n' + this.stack;
+			var stringValue = this.stack;
 			if (this._inner !== null)
-				stringValue += '\n------------inner-->\n' + this._inner.toString();
+				stringValue += '\n------Inner Exception------\n' + this._inner.toString();
 
 			return stringValue;
 		}

@@ -15,8 +15,7 @@ module Player {
 
 		/** @inheritdoc */
 		public createEl(tagName: string, properties?: any, attributes?: any) {
-			return $(TemplateUtils.renderSynch('Components/MouseTimeDisplay', {
-			}))[0];
+			return $(TemplateUtils.renderSynch('Components/MouseTimeDisplay', {}))[0];
 		}
 
 		/**

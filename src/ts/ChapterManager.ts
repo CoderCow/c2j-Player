@@ -31,7 +31,10 @@ module Player {
 			this._markers = [];
 			this._markers.length = chapters.length - 1;
 			for (var i = 1; i < chapters.length; i++) {
-				var marker = new ChapterMarkerComponent(this._player, this._videoData, chapters[i])
+				var marker = new ChapterMarkerComponent(this._player, <IChapterMarkerComponentOptions>{
+					videoData: this._videoData,
+					chapterData: chapters[i]
+				});
 
 				this._markers.push(marker);
 				this._player.controlBar.progressControl.seekBar.addChild(marker);

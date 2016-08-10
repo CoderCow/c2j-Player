@@ -1,7 +1,7 @@
 module Player {
 	'use strict';
 	export class TestButtonComponent extends VideoJSButton {
-		public constructor(player?: VideoJSPlayer, options?: VideoJSComponentOptions) {
+		public constructor(player?: VideoJSPlayer, options?: VideoJSComponentOptions|any) {
 			super(player, options);
 		}
 

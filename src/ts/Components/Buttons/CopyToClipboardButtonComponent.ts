@@ -6,17 +6,15 @@ module Player {
 
 		/**
 		 * Initializes a new instance of this class.
-		 * @param elementToCopy The DOM element to copy the content of.
 		 */
-		public constructor(player: VideoJSPlayer, options: VideoJSComponentOptions, elementToCopy: HTMLElement) {
-			super(player, options);
+		public constructor(player: VideoJSPlayer, options: ICopyToClipboardButtonComponentOptions) {
+			super(player, { cjOptions: options });
 
-			this._elementToCopy = elementToCopy;
+			this._elementToCopy = options.elementToCopy;
 		}
 
 		/** @inheritdoc */
 		public handleClick(event: Event) {
-			console.debug('copy button');
 			var buttonElement = $(this.el());
 			var result: boolean = ClipboardUtils.copyElementContent(this._elementToCopy);
 			if (result) {
@@ -33,6 +31,10 @@ module Player {
 			});
 
 			super.handleClick(event);
+		}
+
+		public cjOptions(): ICopyToClipboardButtonComponentOptions {
+			return super.options().cjOptions;
 		}
 	}
 }

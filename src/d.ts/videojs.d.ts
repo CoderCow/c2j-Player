@@ -348,7 +348,7 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	 * @param options Object of option names and values
 	 * @param ready Ready callback function
 	 */
-	constructor (player?: VideoJSPlayer, options?: VideoJSComponentOptions, ready?: () => void);
+	constructor (player?: VideoJSPlayer, options?: VideoJSComponentOptions|any, ready?: () => void);
 
 	/**
 	 * Bind a listener to the component's ready state.
@@ -516,7 +516,7 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	/**
 	 * @return The current options.
 	 */
-	public options(): VideoJSComponentOptions;
+	public options(): VideoJSComponentOptions|any;
 	/**
 	 * Deep merge of options objects.
 	 * Whenever a property is an object on both options objects
@@ -524,7 +524,7 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	 * @param  newOptions Object of new option values
 	 * @return A NEW object of this.options_ and obj merged
 	 */
-	options(newOptions: VideoJSComponentOptions): void;
+	options(newOptions: VideoJSComponentOptions|any): void;
 
 	/**
 	 * Create the component's DOM element.
@@ -552,7 +552,7 @@ declare class VideoJSComponent implements VideoJSEventSubject {
 	 * @param options Options, including options to be passed to children of the child.
 	 * @return The child component (created by this process if a string was used).
 	 */
-	public addChild(child: VideoJSComponent, options?: VideoJSChildComponentOptions): VideoJSComponent;
+	public addChild(child: VideoJSComponent, options?: VideoJSChildComponentOptions|any): VideoJSComponent;
 
 	/**
 	 * Remove a child component from this component's list of children, and the

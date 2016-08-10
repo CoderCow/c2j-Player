@@ -54,6 +54,7 @@ module Player {
 							App._userSettingsManager.player = App._videoJSManager.player;
 						} else {
 							App.fatalError('An error occurred while loading the video data. This video can not be played.'); // note: strings can not be localized as long as the videojs player isn't initialized.
+							console.log(error);
 							App.consoleError(`${error.toString()}`);
 						}
 					});

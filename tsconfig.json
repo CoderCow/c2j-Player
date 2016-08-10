@@ -6,7 +6,12 @@
 		"outFile": "dist/js/script.js",
 		"sourceMap": true,
 		"sourceRoot": "../../src/ts",
-		"target": "ES5"
+		"target": "ES5",
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"jsx": "preserve",
+		"strictNullChecks": true,
+		"noImplicitThis": true
 	},
 	"exclude": [
 		"node_modules",
