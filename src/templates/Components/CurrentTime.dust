@@ -1,6 +1,0 @@
-<div class="vjs-current-time vjs-time-control vjs-control" aria-live="off">
-	<span class="vjs-control-text">{currentTimeString}</span>
-	<span class="video-current-time"></span>
-	&nbsp;/&nbsp;
-	<span class="video-duration-time"></span>
-</div>

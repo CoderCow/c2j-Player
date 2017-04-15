@@ -11,60 +11,39 @@ Please complete the following steps to setup your development environment for th
 
 * Gruntfile.js                          Primary grunt file.
 * scss-lint.yml                         Configuration file for the SCSS linter.
-* tslint.yml                            Configuration file for the TypeScript linter.
+* tslint.json                           Configuration file for the TypeScript linter.
 * tsconfig.json                         Configuration file for the TypeScript transpiler.
-* tsconfig.release.json                 Configuration file for the TypeScript transpiler (for release builds).
-* +-- dist                              Distribution files (compiled software ready for shipping).
-* +-- src                               Source files.
-* |   +-- d.ts                          TypeScript definition files which are fed to the TypeScript transpiler for type checking.
-* |   +-- iconfont                      Images and definitions out of which the icon font is generated.
-* |       `-- icons.json                If an SVG image should be included into the font, it must be registered in this JSON file.
-* |       +-- fontawesome               SVG images used from the 'fontawesome' set.
-* |       +-- material-design-icons     SVG images used from the 'material-design-icons' npm package.
-* |       +-- custom                    Custom SVG images.
-* |   +-- scss                          SASS CSS files which get compiled to CSS.
-* |   +-- templates                     Dust template files which get compiled to JavaScript.
-* |   +-- ts                            TypeScript files which get compiled to JavaScript.
-* +-- test                              Contains test code for "src".
-* +-- build                             Files necessary for building the
-* |   +-- dist                          Prebuilt files for distribution. Should not be edited unless dependencies must be updated. Will simply be copied to dist/
-* |   +-- grunt                         Grunt task configurations.
-* |   +-- iconfont                      Files required to generate the icons font.
-* |       `-- preview_template.html.hbs The template used to generate the font preview HTML file.
-* |       `-- template.scss.hbs         The template used for the resulting font CSS file.
-* |   +-- temp                          Temporary files of the build process go here.
-* |       `-- font_preview.html         After a font has been generated, you may use this page to check whether all SVGs have been encoded properly.
-* |       `-- font.css                  The final font.css generated from the SVG files. Contains the actual font as base64 value.
-* |   `-- grunt.js                      Grunt configuration.
+* tsconfig.coverage.json                Configuration file for the TypeScript transpiler (for unit text coverage).
+* dist                                  Distribution files (compiled software ready for shipping or debugging).
+* typings                               TypeScript definition files which are fed to the TypeScript transpiler for type checking. Managed by the "typings" utility.
+* public                                Production files such as source code and assets.
+* public/iconfont                       Files used for icon font generation.
+* public/scss                           SASS CSS files which to be compiled to CSS.
+* public/ts                             TypeScript files which get compiled to JavaScript.
+* public/dist                           Files for distribution. Should not be edited. Will simply be copied to dist/
 
-# Grunt Tasks #
+# Npm Scripts #
 
-**debug**: Builds the project to "dist" for debugging purposes.
-**release**: Builds the project to "dist" for distribution.
+**build**: Builds the project to "dist" for debugging purposes.
+**build:prod**: Builds the project to "dist" for distribution.
 
-**debugging**: Builds the project to "dist" for debugging purposes and continuously rebuilds required files as they are changed in "src".
+**develop**: Builds the project to "dist" for debugging purposes and starts the webpack development server. Continuously rebuilds source files as they are changed.
 
-**webserver**: Starts a webserver on port 63343 (one number above IntelliJ's default Webserver). If you're not doing any JavaScript debugging,
-switch to this webserver because, unlike the IntelliJ server, it supports 206 partial HTTP requests which allows for proper video playback in Chrome.
+**test**: Runs all unit tests.
 
-**validate**: Runs all linters on source files.
+**coverage**: Runs all unit tests and generates a coverage report.
+
+**testing**: Runs all unit tests and continously re-runs them when source files or test files are changed.
+
+**tslint**: Runs the TypeScript linter on all production source files.
+
+**clean**: Removes all content of the "dist" directory.
 
 # Icons and Font Generation #
 
 Video.js displays icons by using a font which is generated from svg files. Such a set of icons is scalable, very small and easy to use.
-This project uses the same font generators as the video.js project for further icons.
-To override an existing video.js icon, simply name it (in the icons.json) just like the video.js icon, so that the css class will eventually be overridden.
+This project uses very similar font generators as the video.js project.
 
 # IntelliJ IDEA Related #
 
 If you're using IntelliJ IDEA then you should install the 'scss-lint' plugin to get real time linting while writing SCSS code.
-
-This project also provides several preconfigured project run configurations. Some to simply run or debug the grunt tasks stated above, and some tasks useful
-for JavaScript debugging.
-
-The general development cycle should be
-* Run the Debug Webserver Grunt configuration and keep it running.
-* Run the Debugging Grunt configuration and keep it running.
-* Run the Debug JavaScript configuration once (in debugging mode, bug icon).
-* From now on: edit files in src, save and refresh browser.
-* If you need proper video playback in Chrome, switch to port 63343. There will be no JavaScript debug support from within IntelliJ on this port though.

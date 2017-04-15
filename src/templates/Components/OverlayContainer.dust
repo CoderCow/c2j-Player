@@ -1,2 +1,0 @@
-{! Overlays are put into this container which should be placed right above the video tag. !}
-<div class="overlay-container"></div>

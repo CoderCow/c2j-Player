@@ -1,0 +1,9 @@
+// https://babeljs.io/docs/usage/options/
+{
+  // note: babel has support for multiple environments, see: https://babeljs.io/docs/usage/babelrc/
+  presets: ["es2015"],
+  sourceMaps: 'inline',
+  "plugins": [
+    ["transform-react-jsx", { "pragma": "__jsx" }]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "files": ["**/*.svg"],
+  "fontName": "c2jicons",
+  "classPrefix": "c2j-icon-",
+  "baseClass": "c2j-icon",
+  "fixedWidth": true,
+  "types": ["eot", "woff", "ttf", "svg"]
+}

@@ -1,6 +1,0 @@
-<p>
-	Outer context text: {outerText}, <br>
-	inner context text: {#inner}{innerText} inner context text2: {innerText2}{/inner}, <br>
-	outer context text2: {outerText2}. <br>
-	inner context text (direct reference): {inner.innerText}
-</p>

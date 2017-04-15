@@ -1,3 +1,4 @@
+// http://palantir.github.io/tslint/rules/
 {
   "rules": {
     "class-name": true,
@@ -6,7 +7,6 @@
 	  "interface-name": false,
 	  "jsdoc-format": true,
     "label-position": true,
-    "label-undefined": true,
 	  "member-ordering": [false,
 		  "static-before-instance",
 		  "variables-before-functions"
@@ -14,27 +14,48 @@
     "no-bitwise": true,
     "no-construct": true,
     "no-debugger": false,
-    "no-duplicate-key": true,
     "no-duplicate-variable": true,
     "no-eval": true,
-    "no-unreachable": true,
 	  "no-unused-expression": true,
-	  "no-unused-variable": true,
-	  "no-use-before-declare": true,
     "one-line": [true,
       "check-catch",
-	    "check-open-brace"
+      "check-finally",
+	    "check-open-brace",
+      "check-else",
+      "check-whitespace"
     ],
     "radix": true,
     "semicolon": true,
-	  "type-def": [true,
+	  "typedef": [true,
 		  "parameter",
-		  "property-declaration"
+      "member-variable-declaration"
 		],
-	  "use-strict": [true,
-		  "check-module",
-		  "check-function"
-	  ],
-    "variable-name": [true, "allow-leading-underscore"]
+    "variable-name": [true,
+      "check-format",
+      "allow-leading-underscore",
+      "allow-pascal-case", // for constants
+      "ban-keywords"
+    ],
+    "interface-name": [true, "always-prefix"],
+    "quotemark": [true, "single", "jsx-double"],
+    "triple-equals": true,
+    "no-var-keyword": true,
+    "trailing-comma": [true, {
+      "multiline": "always",
+      "singleline": "never"
+    }],
+    "no-reference": true,
+    "no-invalid-this": true,
+    "one-variable-per-declaration": true,
+    "no-namespace": true,
+    "new-parens": true,
+    "linebreak-style": [true, "LF"],
+    //"restrict-plus-operands": true,
+    "object-literal-key-quotes": [true, "as-needed"],
+    "no-unsafe-finally": true,
+    "max-file-line-count": 1000,
+    "arrow-parens": true,
+    "object-literal-shorthand": true,
+    "adjacent-overload-signatures": true
   }
 }

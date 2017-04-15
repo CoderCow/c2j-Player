@@ -1,0 +1,34 @@
+#videojs {
+	.top-pane {
+		display: none;
+		visibility: visible;
+		opacity: 1;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 4em;
+		width: 100%;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+
+		.title {
+			font-size: 1.1em;
+			color: #ddd;
+			margin-left: 4em;
+			margin-top: 1em;
+		}
+	}
+
+	&.vjs-has-started {
+		.top-pane {
+			display: flex;
+		}
+
+		&.vjs-user-inactive.vjs-playing .top-pane {
+			visibility: hidden;
+			opacity: 0;
+
+			transition: visibility 1s, opacity 1s;
+		}
+	}
+}

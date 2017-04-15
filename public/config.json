@@ -1,0 +1,15 @@
+{
+	"defaultVideoMetadataUrl": "demo.json",
+	"videoMetaBaseUrl": "videos/",
+	"videoMediaBaseUrl": "videos/",
+	"disallowFullscreen": false,
+	"enableSubtitlesByDefault": false,
+	"disableAuthorNotes": false,
+	"disableOverlays": false,
+	"playerLanguage": null,
+	"mediaLanguage": null,
+	"additionalsLanguage": null,
+	"subtitlesLanguage": null,
+	"autoplay": false,
+	"simpleLanguageSelection": true
+}

@@ -1,0 +1,15 @@
+{
+  "globalDependencies": {
+    "bootstrap": "registry:dt/bootstrap#3.3.5+20160619023404",
+    "jquery": "registry:dt/jquery#1.10.0+20160704162008",
+    "virtual-dom": "registry:dt/virtual-dom#2.0.1+20160317120654"
+  },
+  "dependencies": {},
+  "globalDevDependencies": {
+    "mocha": "registry:env/mocha#2.2.5+20160723033700"
+  },
+  "devDependencies": {
+    "sinon": "registry:npm/sinon#1.16.0+20160723033700",
+    "sinon-chai": "registry:npm/sinon-chai#2.8.0+20160310030142"
+  }
+}

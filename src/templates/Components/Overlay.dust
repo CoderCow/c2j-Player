@@ -1,5 +1,0 @@
-{! gets class 'is-pausing' when the overlay is currently pausing the video playback. !}
-<div class="overlay" title="{tooltip}">
-	{! Content can contain p, b, i, span elements (as provided by Camtasia2Json) !}
-	{content|s}
-</div>

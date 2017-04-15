@@ -4,9 +4,9 @@
 		"preserveConstEnums": true,
     "sourceMap": false,
 		"inlineSourceMap": true,
-    "inlineSources": false,
+    "inlineSources": true,
 		"target": "ES5",
-		"module": "commonjs",
+    "module": "commonjs",
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
 		"jsx": "preserve",
@@ -19,11 +19,8 @@
   "exclude": [
     ".awcache",
     ".idea",
-		".vscode",
-		".vagrant",
     "node_modules",
-    "utils",
-    "test-coverage",
+	  "lib",
     "dist",
     "**/*.test.ts"
   ]
