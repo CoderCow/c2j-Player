@@ -1,0 +1,1 @@
+export { CurrentTimeComponent } from './CurrentTimeComponent';

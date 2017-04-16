@@ -1,20 +1,20 @@
 import { DummyComponent } from './Components/DummyComponent';
-import { MouseTimeDisplayComponent } from './Components/MouseTimeDisplayComponent';
-import { CurrentTimeComponent } from './Components/CurrentTimeComponent';
-import { MediumData } from './Data/VideoData/MediumData';
-import { ILanguageMenuComponentOptions } from './Components/Menus/ILanguageMenuComponentOptions';
-import { ILanguageButtonComponentOptions } from './Components/Buttons/ILanguageButtonComponentOptions';
-import { LanguageButtonComponent } from './Components/Buttons/LanguageButtonComponent';
+import { MouseTimeDisplayComponent } from './Components/MouseTimeDisplay';
+import { CurrentTimeComponent } from './Components/CurrentTime';
+import { LanguageButtonComponent, ILanguageButtonOptions } from './Components/LanguageButton';
+import { LanguageMenuComponent, ILanguageMenuOptions } from './Components/LanguageButton/LanguageMenu';
+import { TopPaneComponent } from './Components/TopPane';
+
 import { Camtasia2JsonReader } from './Data/IO/Camtasia2JsonReader';
+import { VideoData } from './Data/VideoData/VideoData';
+import { MediumData } from './Data/VideoData/MediumData';
+import { UserSettings } from './Data/UserSettings';
+import { PlayerConfig } from './Data/PlayerConfig';
+
 import { OverlayManager } from './OverlayManager';
 import { AuthorNotesManager } from './AuthorNotesManager';
 import { SubtitleManager } from './SubtitleManager';
 import { ChapterManager } from './ChapterManager';
-import { LanguageMenuComponent } from './Components/Menus/LanguageMenuComponent';
-import { TopPaneComponent } from './Components/TopPaneComponent';
-import { VideoData } from './Data/VideoData/VideoData';
-import { UserSettings } from './Data/UserSettings';
-import { PlayerConfig } from './Data/PlayerConfig';
 import { Utils } from './Utils/Utils';
 
 // Override not required video.js components with the dummy.
@@ -170,9 +170,9 @@ export class VideoJSManager {
 
 	/** Creates additional buttons in the bottom pane. */
 	private setupButtons(initialMediaLanguage: string, initialAdditionalsLanguage: string, initialSubtitleLanguage: string | undefined) {
-		var languageButton = new LanguageButtonComponent(this._player, <ILanguageButtonComponentOptions>{
+		var languageButton = new LanguageButtonComponent(this._player, <ILanguageButtonOptions>{
 			videoData: this._videoData,
-			menuOptions: <ILanguageMenuComponentOptions>{
+			menuOptions: <ILanguageMenuOptions>{
 				videoData: this._videoData,
 				isSimpleMenuMode: this._playerConfig.simpleLanguageSelection,
 				initialMediaLanguage: initialMediaLanguage,
@@ -181,7 +181,6 @@ export class VideoJSManager {
 			}
 		});
 		var languageMenu = <LanguageMenuComponent>languageButton.menu;
-
 		languageMenu.on('audioLanguageChanged', () => this.setMediaLanguage(languageMenu.selectedMediaLanguage));
 		languageMenu.on('extrasLanguageChanged', () => this.setExtrasLanguage(languageMenu.selectedExtrasLanguage));
 		languageMenu.on('subtitleLanguageChanged', () => this.setSubtitleLanguage(languageMenu.selectedSubtitleLanguage));

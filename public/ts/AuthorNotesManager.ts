@@ -1,6 +1,5 @@
-import { INotesMarkerComponentOptions } from './Components/Notes/INotesMarkerComponentOptions';
 import { AuthorNoteData } from './Data/VideoData/AuthorNoteData';
-import { NotesMarkerComponent } from './Components/Notes/NotesMarkerComponent';
+import { NotesMarkerComponent } from './Components/NotesMarker';
 import { VideoData } from './Data/VideoData/VideoData';
 
 /**
@@ -54,7 +53,7 @@ export class AuthorNotesManager {
 			if (existingMarkerAtAboutTheSamePosition !== undefined) {
 				existingMarkerAtAboutTheSamePosition.addNote(authorNote);
 			} else {
-				var noteMarkerComponent = new NotesMarkerComponent(this._player, <INotesMarkerComponentOptions>{
+				var noteMarkerComponent = new NotesMarkerComponent(this._player, {
 					videoData: this._videoData,
 					notes: [authorNote],
 					time: authorNote.begin

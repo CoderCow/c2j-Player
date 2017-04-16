@@ -1,6 +1,5 @@
-import { IChapterMarkerComponentOptions } from './Components/IChapterMarkerComponentOptions';
 import { ChapterData } from './Data/VideoData/ChapterData';
-import { ChapterMarkerComponent } from './Components/ChapterMarkerComponent';
+import { ChapterMarkerComponent, IChapterMarkerOptions } from './Components/ChapterMarker';
 import { VideoData } from './Data/VideoData/VideoData';
 
 /**
@@ -33,7 +32,7 @@ export class ChapterManager {
 		this._markers = [];
 		this._markers.length = chapters.length - 1;
 		for (var i = 1; i < chapters.length; i++) {
-			var marker = new ChapterMarkerComponent(this._player, <IChapterMarkerComponentOptions>{
+			var marker = new ChapterMarkerComponent(this._player, {
 				videoData: this._videoData,
 				chapterData: chapters[i]
 			});

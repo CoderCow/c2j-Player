@@ -1,6 +1,5 @@
-import { IOverlayComponentOptions } from './Components/IOverlayComponentOptions';
 import { OverlayData } from './Data/VideoData/OverlayData';
-import { OverlayComponent } from './Components/OverlayComponent';
+import { OverlayComponent } from './Components/Overlay';
 import { VideoData } from './Data/VideoData/VideoData';
 import vtreeToDomElement = require('virtual-dom/create-element');
 
