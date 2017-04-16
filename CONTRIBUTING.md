@@ -18,8 +18,7 @@ Please complete the following steps to setup your development environment for th
 * typings                               TypeScript definition files which are fed to the TypeScript transpiler for type checking. Managed by the "typings" utility.
 * public                                Production files such as source code and assets.
 * public/iconfont                       Files used for icon font generation.
-* public/scss                           SASS CSS files which to be compiled to CSS.
-* public/ts                             TypeScript files which get compiled to JavaScript.
+* public/src                            Source code and markup files.
 * public/dist                           Files for distribution. Should not be edited. Will simply be copied to dist/
 
 # Npm Scripts #

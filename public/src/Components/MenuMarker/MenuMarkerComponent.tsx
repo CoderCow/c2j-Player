@@ -3,6 +3,7 @@ import { EventUtils } from './../../Utils/EventUtils';
 import { MarkerMenuComponent } from './MarkerMenu';
 import { IMenuMarkerOptions } from './IMenuMarkerOptions';
 import vtreeToDomElement = require('virtual-dom/create-element');
+require('./menu-marker.scss');
 
 /** A generic timeline marker with a deposited menu. */
 export class MenuMarkerComponent extends VideoJSMenuButton {

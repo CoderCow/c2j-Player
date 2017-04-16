@@ -11,7 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // https://webpack.github.io/docs/configuration.html
 let config = {
-  entry: './public/ts/App.ts',
+  entry: './public/src/App.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.js'

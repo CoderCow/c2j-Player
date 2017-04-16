@@ -1,32 +1,4 @@
-$dialogFont: Arial, Helvetica, sans-serif;
-
 #videojs {
-	// Chrome only
-	@media screen and (-webkit-min-device-pixel-ratio:0)
-	{
-		select {
-			// As Chrome allows us to redesign the select control, this comes with the disadvantage of a different default padding
-			padding: 3px 2em 3px 7px !important;
-			background: #fff url('../img/chevron-down.svg') no-repeat 95% center;
-			background-size: 0.7em;
-			border-radius: 3px;
-		}
-	}
-
-	select {
-		-webkit-appearance: none;
-		appearance: none;
-		border: 0;
-		padding: 0;
-		font-family: $dialogFont;
-		font-size: 1em;
-	}
-
-	// Hides Arrow Icon in IE10
-	select::-ms-expand {
-		display: none;
-	}
-
 	.language-menu {
 		background: linear-gradient(to right, rgba(50, 50, 50, 0.8) 10%, rgba(0, 0, 0, 0.7) 100%);
 		left: -13em;

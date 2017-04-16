@@ -4,6 +4,7 @@ import { MenuMarkerComponent } from './../MenuMarker';
 import { NotesMarkerMenuItemComponent, INotesMarkerMenuItemOptions } from './NotesMarkerMenuItem';
 import { INotesMarkerOptions } from './INotesMarkerOptions';
 import vtreeToDomElement = require('virtual-dom/create-element');
+require('./note-marker.scss');
 
 /**
  * A note marker placed on the player's timeline.

@@ -1,6 +1,7 @@
 import { OverlayData, OverlayAction, GotoActionParamsData, LinkActionParamsData } from './../../Data/VideoData/OverlayData';
 import { IOverlayOptions } from './IOverlayOptions';
 import vtreeToDomElement = require('virtual-dom/create-element');
+require('./overlay.scss');
 
 /** Represents a visual, interactible overlay. */
 export class OverlayComponent extends VideoJSButton {

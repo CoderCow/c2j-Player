@@ -8,8 +8,8 @@ import { VideoJSManager } from './VideoJSManager';
 import { PlayerConfig } from './Data/PlayerConfig';
 import { UserSettingsManager } from './UserSettingsManager';
 
-require('./../index.html');
-require('./../scss/main.scss');
+require('./app.scss');
+require('./index.html');
 require('./../iconfont/c2jicons.json');
 
 /**

@@ -1,4 +1,5 @@
 import vtreeToDomElement = require('virtual-dom/create-element');
+require('./top-pane.scss');
 
 /** The top pane of the player window, meant to contain the video title and some extra buttons. */
 export class TopPaneComponent extends VideoJSComponent {

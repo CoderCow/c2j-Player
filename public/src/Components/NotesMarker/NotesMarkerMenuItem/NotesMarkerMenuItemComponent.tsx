@@ -3,6 +3,7 @@ import { CopyToClipboardButtonComponent, ICopyToClipboardButtonOptions } from '.
 import { INotesMarkerMenuItemOptions } from './INotesMarkerMenuItemOptions';
 import vtreeToDomElement = require('virtual-dom/create-element');
 import h = require('virtual-dom/h');
+require('./note-marker-menu-item.scss');
 
 /** A menu item of a note marker menu. */
 export class NotesMarkerMenuItemComponent extends VideoJSMenuItem {

@@ -1,0 +1,72 @@
+#videojs {
+	.seek-bar-marker {
+		&.note-marker {
+			.vjs-menu {
+				li {
+					padding: 0.5em 0.5em 1em 1em;
+					color: #000;
+					border-radius: 8px;
+					background: linear-gradient(45deg, #faf2b6, #fcf38e);
+					box-shadow: 5px 5px 15px -9px rgba(0, 0, 0, 0.6);
+					margin: 0.5em;
+					text-transform: initial;
+					-webkit-user-select: initial;
+					user-select: initial;
+				}
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			.vjs-menu-item {
+				text-align: left;
+			}
+
+			.collapse-button {
+				display: inline;
+				margin-right: 0.5em;
+				font-size: 0.8em;
+				cursor: pointer;
+			}
+
+			.note-icon {
+				display: inline-block;
+				margin-right: 0.5em;
+				font-size: 0.8em;
+			}
+
+			.note-title {
+				display: flex;
+				margin-bottom: 1em;
+
+				.title-text {
+					width: 100%;
+				}
+			}
+
+			.note-buttons {
+				display: flex;
+				cursor: pointer;
+
+				div {
+					margin: 0.2em;
+				}
+			}
+
+			.note-content {
+				width: 100%;
+				overflow-y: auto;
+				max-height: 12em;
+
+				p:first-child {
+					margin-top: 0;
+				}
+
+				p:last-child {
+          margin-bottom: 0;
+				}
+			}
+		}
+	}
+}

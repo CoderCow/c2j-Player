@@ -1,0 +1,25 @@
+#videojs {
+	.seek-bar-marker {
+		color: #ddd;
+		width: 2.5em;
+		top: -0.15em;
+		font-size: 0.4em;
+		margin-left: -1em;
+		position: absolute;
+		z-index: 3;
+		text-shadow: -1.5px 0 #000, 0 1.5px #000, 1.5px 0 #000, 0 -1.5px #000;
+		outline:none;
+
+		&:focus {
+			text-shadow: 0 0 1em #fff;
+		}
+
+		&:hover .vjs-menu {
+			display: none;
+		}
+
+		&:hover.marker-pressed .vjs-menu {
+			display: block;
+		}
+	}
+}

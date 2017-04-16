@@ -1,15 +1,5 @@
 #videojs {
 	.seek-bar-marker {
-		color: #ddd;
-		width: 2.5em;
-		top: -0.15em;
-		font-size: 0.4em;
-		margin-left: -1em;
-		position: absolute;
-		z-index: 3;
-		text-shadow: -1.5px 0 #000, 0 1.5px #000, 1.5px 0 #000, 0 -1.5px #000;
-		outline:none;
-
 		&.note-marker {
 			color: #ff6;
 			font-size: 0.9em;
@@ -19,10 +9,18 @@
 			padding-top: 0.3em;
 			padding-bottom: 0.2em;
 			text-shadow: none;
-		}
 
-		&:focus {
-			text-shadow: 0 0 1em #fff;
+			.vjs-menu {
+				width: 25em;
+				position: relative;
+				margin-left: -3em;
+			}
+
+			.vjs-menu-content {
+				background: none;
+				max-height: 40em;
+				bottom: 1em;
+			}
 		}
 	}
 
@@ -33,6 +31,7 @@
 			transition: all 0.5s;
 			opacity: 0.7;
 
+			// when the playback position is close to the marker
 			&.being-played {
 				font-size: 1.4em;
 			}
