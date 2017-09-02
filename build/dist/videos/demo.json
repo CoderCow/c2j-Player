@@ -31,6 +31,10 @@
       "lang" : "de",
       "type" : "video/mp4",
       "src" : "demo/video.mp4"
+    }, {
+      "lang" : "de",
+      "type" : "video/ogg",
+      "src" : "demo/video.ogv"
     } ]
   },
   "categories" : [ {
