@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Web Service</name>
+    </assembly>
+    <members>
+        <member name="M:Web_Service.Controllers.ValuesController.Get">
+            <summary>
+              Gets a value!
+            </summary>
+            <returns>RETURN VALUE</returns>
+        </member>
+    </members>
+</doc>

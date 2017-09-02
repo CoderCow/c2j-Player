@@ -1,0 +1,10 @@
+D:\Projects\C2J Player\C2J Player\dist\netcoreapp1.1\c2j-web-api.deps.json
+D:\Projects\C2J Player\C2J Player\dist\netcoreapp1.1\c2j-web-api.runtimeconfig.json
+D:\Projects\C2J Player\C2J Player\dist\netcoreapp1.1\c2j-web-api.runtimeconfig.dev.json
+D:\Projects\C2J Player\C2J Player\dist\netcoreapp1.1\c2j-web-api.xml
+D:\Projects\C2J Player\C2J Player\dist\netcoreapp1.1\c2j-web-api.dll
+D:\Projects\C2J Player\C2J Player\dist\netcoreapp1.1\c2j-web-api.pdb
+D:\Projects\C2J Player\C2J Player\webapi\obj\DEBUG\netcoreapp1.1\c2j-web-api.AssemblyInfo.cs
+D:\Projects\C2J Player\C2J Player\webapi\obj\DEBUG\netcoreapp1.1\c2j-web-api.dll
+D:\Projects\C2J Player\C2J Player\webapi\obj\DEBUG\netcoreapp1.1\c2j-web-api.pdb
+D:\Projects\C2J Player\C2J Player\dist\netcoreapp1.1\appsettings.json
