@@ -25,21 +25,31 @@ The whole player (playing a Camtasia Studio tutorial video).
 ![c2j-Player as a Whole](https://raw.githubusercontent.com/CoderCow/c2j-Player/master/docs/assets/player.png)
 
 The control bar in minimized mode:
+
+
 ![Minimized Control Bar](https://raw.githubusercontent.com/CoderCow/c2j-Player/master/docs/assets/minimized-controlbar.png)
 
 A chapter:
+
+
 ![Chapter on Bar](https://raw.githubusercontent.com/CoderCow/c2j-Player/master/docs/assets/chapter-on-bar.png)
 
 An Overlay:
+
+
 ![Overlay](https://raw.githubusercontent.com/CoderCow/c2j-Player/master/docs/assets/overlay.png)
 
 A note on the bar:
+
+
 ![Note on Bar](https://raw.githubusercontent.com/CoderCow/c2j-Player/master/docs/assets/note-on-bar.png)
 
 A note on the bar (revealed):
+
 ![Clicked Note](https://raw.githubusercontent.com/CoderCow/c2j-Player/master/docs/assets/note.png)
 
 Language selection (configured in simplified mode):
+
 ![Language Selection Menu](https://raw.githubusercontent.com/CoderCow/c2j-Player/master/docs/assets/language-selection.png)
 
 # How to Use
