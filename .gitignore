@@ -1,4 +1,5 @@
 /build/temp
+/build/dist/videos/demo
 /dist
 /node_modules
 .sass-cache
